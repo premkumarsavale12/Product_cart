@@ -1,0 +1,114 @@
+.slider-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.slider-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.slider-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+}
+
+/* Buttons container spacing */
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between; /* or center */
+    flex-wrap: wrap; /* makes it responsive */
+}
+
+.button-group button {
+    flex: 1;
+    min-width: 100px;
+}
+/* Individual button styles */
+.submit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background: #45a049;
+}
+
+.update-btn {
+    background: #2196F3;
+    color: white;
+}
+
+.update-btn:hover {
+    background: #1976d2;
+}
+
+.delete-btn {
+    background: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+}
+
+.clear-btn {
+    background: #9e9e9e;
+    color: white;
+}
+
+.clear-btn:hover {
+    background: #757575;
+}
+
+/* Add spacing between buttons */
+button + button {
+    margin-top: 8px;
+}
