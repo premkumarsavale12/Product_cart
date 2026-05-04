@@ -6,9 +6,11 @@ import { useEffect } from 'react'
 import axios from "axios"
 
 const Product = () => {
+
     const [data, setData] = useState([]);
 
     useEffect(() => {
+
         FetchApiData();
 
     }, []);
@@ -30,20 +32,19 @@ const Product = () => {
     return (
         <>
             <h1> This is Product Page </h1>
+
             {
+
                 data.map((item, index) => {
 
                     return (
-                        <>
 
+                        <> 
 
-
-                            <h4> ProductName :-  {item.ProductName}</h4>
-                            <h4> ProductPrice :- {item.ProductPrice}</h4>
-                            <h4> Productquantity :- {item.Productquantity}</h4>
-                            <img src={item.ProductImage} />
-
-
+                                <h4> ProductName :-  {item.ProductName}</h4>
+                                <h4> ProductPrice :- {item.ProductPrice}</h4>
+                                <h4> Productquantity :-{item.Productquantity}</h4>
+                                <img src={item.ProductImage} />
                         </>
                     )
                 })
