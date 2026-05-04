@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Slider from "./Slider"
+import Product from './Product'
 
 const App = () => {
 
@@ -10,12 +11,11 @@ const App = () => {
 
       <Navbar />
       <Slider />
-       
-
+      <Product />
 
 
     </>
   )
 }
 
-export default App
+export default App   
