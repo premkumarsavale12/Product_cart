@@ -81,7 +81,7 @@ const Product_Page = () => {
                     onChange={handleChange}
                 />
 
-                <button type="submit" onSubmit={handleSubmit}>Submit Product</button>
+                <button type="submit">Submit Product</button>
             </form>
         </div>
     );
