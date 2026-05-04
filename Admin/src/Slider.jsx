@@ -108,10 +108,10 @@ const Slider = () => {
     const handleSelect = (item) => {
         setFormData({
             SliderContent: item.SliderContent,
-            SliderImage: null 
+            SliderImage: null
         });
 
-        setSelectedId(item._id || item.id); 
+        setSelectedId(item._id || item.id);
     };
 
 
@@ -134,6 +134,7 @@ const Slider = () => {
                         type="file"
                         accept="image/*"
                         name="SliderImage"
+                        required
                         onChange={handleChange}
                     />
                 </div>
@@ -146,6 +147,7 @@ const Slider = () => {
                         name="SliderContent"
                         value={formdata.SliderContent}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 

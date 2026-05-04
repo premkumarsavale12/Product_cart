@@ -29,6 +29,7 @@ const Product = () => {
 
         }
     }
+    
     return (
         <>
             <h1> This is Product Page </h1>
@@ -39,12 +40,12 @@ const Product = () => {
 
                     return (
 
-                        <> 
+                        <>
 
-                                <h4> ProductName :-  {item.ProductName}</h4>
-                                <h4> ProductPrice :- {item.ProductPrice}</h4>
-                                <h4> Productquantity :-{item.Productquantity}</h4>
-                                <img src={item.ProductImage} />
+                            <h4> ProductName :-  {item.ProductName}</h4>
+                            <h4> ProductPrice :- {item.ProductPrice}</h4>
+                            <h4> Productquantity :-{item.Productquantity}</h4>
+                            <img src={item.ProductImage} />
                         </>
                     )
                 })
