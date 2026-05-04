@@ -7,7 +7,8 @@ const port = 5000;
 
 const ConnectDb = require("./config/db");
 
-const ProductRoute = require("./router/product")
+const ProductRoute = require("./router/product");
+const SliderRoute = require("./router/slider");
 
 ConnectDb();
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 app.use("/api/product", ProductRoute);
+app.use("/api/slider", SliderRoute);
 
 
 app.listen(port, () => {
