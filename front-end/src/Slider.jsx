@@ -31,8 +31,8 @@ const Slider = () => {
                     prev === data.length - 1 ? 0 : prev + 1
                 );
                 setIsFading(false);
-            }, 400);
-        }, 3000);
+            }, 100);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, [data]);
