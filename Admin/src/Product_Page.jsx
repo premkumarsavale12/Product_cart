@@ -41,7 +41,7 @@ const Product_Page = () => {
             console.log(err.response?.data || err.message);
         }
     };
-    
+
     return (
         <div className="product-container">
             <h1 className="title">Product Page</h1>
