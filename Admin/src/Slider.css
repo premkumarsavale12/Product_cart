@@ -1,13 +1,16 @@
+/* ===== MAIN CONTAINER ===== */
 .slider-container {
-    max-width: 500px;
+    width: 90%;
+    max-width: 1100px;
     margin: 40px auto;
-    padding: 30px;
+    padding: 25px;
     background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ===== TITLE ===== */
 .slider-title {
     text-align: center;
     margin-bottom: 25px;
@@ -16,11 +19,13 @@
     font-weight: 600;
 }
 
+/* ===== FORM ===== */
 .slider-form {
     display: flex;
     flex-direction: column;
 }
 
+/* ===== INPUT GROUP ===== */
 .form-group {
     margin-bottom: 20px;
     display: flex;
@@ -48,35 +53,31 @@
     box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
 }
 
-/* Buttons container spacing */
-button {
+/* ===== BUTTON GROUP ===== */
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
     margin-top: 10px;
+}
+
+.button-group button {
+    flex: 1;
+    min-width: 100px;
     padding: 10px;
     border: none;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-.button-group {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between; /* or center */
-    flex-wrap: wrap; /* makes it responsive */
-}
-
-.button-group button {
-    flex: 1;
-    min-width: 100px;
-}
-/* Individual button styles */
+/* ===== BUTTON COLORS ===== */
 .submit-btn {
     background: #4CAF50;
     color: white;
 }
-
 .submit-btn:hover {
     background: #45a049;
 }
@@ -85,7 +86,6 @@ button {
     background: #2196F3;
     color: white;
 }
-
 .update-btn:hover {
     background: #1976d2;
 }
@@ -94,7 +94,6 @@ button {
     background: #f44336;
     color: white;
 }
-
 .delete-btn:hover {
     background: #d32f2f;
 }
@@ -103,12 +102,71 @@ button {
     background: #9e9e9e;
     color: white;
 }
-
 .clear-btn:hover {
     background: #757575;
 }
 
-/* Add spacing between buttons */
-button + button {
-    margin-top: 8px;
+/* ===== DATA LIST (HORIZONTAL SLIDER) ===== */
+.data-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;   /* horizontal scroll */
+    padding: 20px 10px;
+    margin-top: 30px;
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar (optional) */
+.data-list::-webkit-scrollbar {
+    height: 6px;
+}
+.data-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* ===== CARD STYLE ===== */
+.data-row {
+    min-width: 200px;
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.data-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== IMAGE ===== */
+.slider-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===== TEXT ===== */
+.slider-text {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+/* ===== SELECT BUTTON ===== */
+.select-btn {
+    padding: 6px 12px;
+    background: #673ab7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.select-btn:hover {
+    background: #5e35b1;
 }

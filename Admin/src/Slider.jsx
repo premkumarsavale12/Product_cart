@@ -1,43 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slider.css';
 import axios from 'axios';
 
 const Slider = () => {
 
     const [formdata, setFormData] = useState({
-        SliderImage: "",
+        SliderImage: null,
         SliderContent: ""
     });
+
+    const [selectedId, setSelectedId] = useState(null);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetchApiData();
+    }, []);
+
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
 
-        setFormData({
-            ...formdata,
-            [name]: name === "SliderImage" ? files[0] : value,
-        });
+        if (name === "SliderImage") {
+            setFormData((prev) => ({
+                ...prev,
+                SliderImage: files[0]
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
 
+
     const handleSubmit = async (e) => {
-        debugger;
-
         e.preventDefault();
+
         try {
+            const form = new FormData();
+            form.append("SliderImage", formdata.SliderImage);
+            form.append("SliderContent", formdata.SliderContent);
 
-            const data = new FormData();
+            const res = await axios.post("http://localhost:5000/api/slider/add", form);
 
-            data.append("SliderImage", formdata.SliderImage);
-            data.append("SliderContent", formdata.SliderContent);
+            alert("Data Submitted Successfully!");
+            fetchApiData();
+            handleClear();
 
-            const res = await axios.post("http://localhost:5000/api/slider/add", data);
-            console.log(res.data);
-            alert("Data Submitted SuccessFully....");
-        }
-
-        catch (err) {
+        } catch (err) {
             console.log(err.response?.data || err.message);
-
         }
+    };
+
+
+    const handleUpdate = async () => {
+        if (!selectedId) {
+            alert("Please select a record first...");
+            return;
+        }
+
+        try {
+            const res = await axios.put(
+                `http://localhost:5000/api/slider/${selectedId}`,
+                formdata
+            );
+
+            alert("Updated successfully!");
+            fetchApiData();
+            handleClear();
+
+        } catch (err) {
+            console.error(err);
+            alert("Error updating data");
+        }
+    };
+
+
+    const handleDelete = async () => {
+        if (!selectedId) {
+            alert("Please select a record first...");
+            return;
+        }
+
+        try {
+            await axios.delete(`http://localhost:5000/api/slider/${selectedId}`);
+            alert("Deleted successfully!");
+            fetchApiData();
+            handleClear();
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
+    const fetchApiData = async () => {
+        try {
+            const res = await axios.get("http://localhost:5000/api/slider/all");
+            setData(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    const handleSelect = (item) => {
+        setFormData({
+            SliderContent: item.SliderContent,
+            SliderImage: null 
+        });
+
+        setSelectedId(item._id || item.id); 
+    };
+
+
+    const handleClear = () => {
+        setFormData({
+            SliderImage: null,
+            SliderContent: ""
+        });
+        setSelectedId(null);
     };
 
     return (
@@ -45,7 +128,6 @@ const Slider = () => {
             <h1 className="slider-title">Slider Admin Panel</h1>
 
             <form className="slider-form" onSubmit={handleSubmit}>
-
                 <div className="form-group">
                     <label>Upload Image</label>
                     <input
@@ -69,11 +151,31 @@ const Slider = () => {
 
                 <div className="button-group">
                     <button type="submit" className="submit-btn">Submit</button>
-                    <button type="button" className="update-btn">Update</button>
-                    <button type="button" className="delete-btn">Delete</button>
-                    <button type="button" className="clear-btn">Clear</button>
+                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
+                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
+                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
                 </div>
             </form>
+
+            <div className="data-list">
+                {data.map((item, index) => (
+                    <div key={index} className="data-row">
+                        <img
+                            src={`http://localhost:5000/uploads/${item.SliderImage}`}
+                            alt="slider"
+                            className="slider-img"
+                        />
+                        <p className="slider-text">{item.SliderContent}</p>
+
+                        <button
+                            className="select-btn"
+                            onClick={() => handleSelect(item)}
+                        >
+                            Select
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
