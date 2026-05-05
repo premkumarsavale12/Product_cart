@@ -117,6 +117,7 @@ const Product_Page = () => {
     }
 
     const handleSelect = (item) => {
+        console.log(item);
         setFormData({
             ProductName: item.ProductName,
             ProductPrice: item.ProductPrice,
@@ -168,6 +169,14 @@ const Product_Page = () => {
                     name="ProductImage"
                     onChange={handleChange}
                 />
+
+                {formdata.ProductImage && typeof formdata.ProductImage === 'string' && (
+                    <img
+                        src={`http://localhost:5000/uploads/${formdata.ProductImage}`}
+                        alt="Selected Product Image"
+                        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
+                    />
+                )}
 
                 <input
                     type="text"
