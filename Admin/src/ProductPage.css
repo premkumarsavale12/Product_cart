@@ -1,67 +1,66 @@
-
 .product-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
-  font-family: Arial, sans-serif;
-  padding: 40px 20px;
-  box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    font-family: Arial, sans-serif;
+    padding: 40px 20px;
+    box-sizing: border-box;
 }
 
 
 .title {
-  color: #fff;
-  margin-bottom: 30px;
-  font-size: 36px;
-  font-weight: 800;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
 }
 
 .product-form {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 35px 30px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .product-form input {
-  padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  outline: none;
-  background: rgba(255, 255, 255, 0.7);
-  font-size: 15px;
-  color: #333;
-  transition: all 0.3s ease;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    color: #333;
+    transition: all 0.3s ease;
 }
 
 .product-form input::placeholder {
-  color: #555;
+    color: #555;
 }
 
 .product-form input:focus {
-  background: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .product-form input[type="file"] {
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  font-size: 14px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-size: 14px;
 }
 
 /* ===== BUTTON GROUP ===== */
@@ -90,6 +89,7 @@
     color: white;
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
+
 .submit-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
@@ -100,6 +100,7 @@
     color: white;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
 }
+
 .update-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(33, 150, 243, 0.5);
@@ -110,6 +111,7 @@
     color: white;
     box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
 }
+
 .delete-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(244, 67, 54, 0.5);
@@ -120,6 +122,7 @@
     color: white;
     box-shadow: 0 4px 15px rgba(158, 158, 158, 0.3);
 }
+
 .clear-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(158, 158, 158, 0.5);
@@ -129,10 +132,11 @@
 .data-list {
     margin-top: 30px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    padding: 20px 10px;
 }
 
 .data-row {
@@ -167,6 +171,12 @@
     color: #333;
 }
 
+@media (max-width: 1024px) {
+    .data-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .data-list {
         grid-template-columns: repeat(2, 1fr);
@@ -178,6 +188,7 @@
         grid-template-columns: 1fr;
     }
 }
+
 
 .select-btn {
     background: #ff9800;
@@ -194,4 +205,3 @@
     background: #e68900;
     transform: scale(1.05);
 }
-

@@ -18,8 +18,6 @@ const Product_Page = () => {
         FetchApiData();
     }, []);
 
-
-
     const handleChange = (e) => {
         const { name, value, files } = e.target;
 
@@ -72,10 +70,7 @@ const Product_Page = () => {
             console.log(err);
             alert("Error Updating data...");
 
-
         }
-
-
     }
 
     const handleDelete = async () => {
