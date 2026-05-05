@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ProductPage.css";
 
-
 const Product_Page = () => {
+
     const [formdata, setFormData] = useState({
         ProductName: "",
         ProductPrice: "",
         Productquantity: "",
         ProductImage: "",
     });
+
+    const [selectedId, setSelectedId] = useState(null);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        FetchApiData();
+    }, []);
+
+
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -19,6 +28,7 @@ const Product_Page = () => {
             [name]: name === "ProductImage" ? files[0] : value,
         });
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -42,11 +52,92 @@ const Product_Page = () => {
         }
     };
 
+    const handleUpdate = async () => {
+
+        if (!selectedId) {
+            alert("Please Select a record First....");
+            return;
+
+        }
+
+        try {
+
+            const res = await axios.put(`http://localhost:5000/api/product/${selectedId}`, formdata);
+            alert("Updated SuccessFully....");
+            handleClear();
+        }
+
+        catch (err) {
+
+            console.log(err);
+            alert("Error Updating data...");
+
+
+        }
+
+
+    }
+
+    const handleDelete = async () => {
+        if (!selectedId) {
+            alert("Please select a record first....");
+            return;
+        }
+
+        try {
+
+            await axios.delete(`http://localhost:5000/api/product/${selectedId}`);
+            alert("Deleted SuccessFully....");
+            handleClear();
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    const handleClear = () => {
+        setFormData({
+            ProductName: "",
+            ProductImage: null,
+            Productquantity: "",
+            ProductPrice: "",
+
+        })
+
+    }
+
+    const FetchApiData = async () => {
+
+        try {
+
+            const res = await axios.get("http://localhost:5000/api/product/all");
+            setData(res.data);
+
+        }
+        catch (err) {
+
+            console.log(err);
+
+        }
+    }
+
+    const handleSelect = (item) => {
+        setFormData({
+            ProductName: item.ProductName,
+            ProductPrice: item.ProductPrice,
+            Productquantity: item.Productquantity,
+            ProductImage: item.ProductImage,
+        });
+        setSelectedId(item._id || item.id);
+    }
+
     return (
         <div className="product-container">
             <h1 className="title">Product Page</h1>
 
-            <form className="product-form" onSubmit={handleSubmit}>
+            <form className="product-form" onSubmit={handleSubmit}> 
+                
                 <input
                     type="text"
                     placeholder="Enter Product Name"
@@ -81,8 +172,40 @@ const Product_Page = () => {
                     onChange={handleChange}
                 />
 
-                <button type="submit">Submit Product</button>
+                {/* <button type="submit">Submit Product</button> */}
+
+                <div className="button-group">
+                    <button type="submit" className="submit-btn">Submit</button>
+                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
+                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
+                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
+                </div>
+
             </form>
+
+            <div className="data-list">
+
+                {data.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <div className="data-row">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.ProductImage}`}
+                                className="slider-img"
+                            />
+                            <p className="slider-text">{item.ProductName}</p>
+                            <p className="slider-text">{item.ProductPrice}</p>
+                            <button
+                                className="select-btn"
+                                onClick={() => handleSelect(item)}
+                            >
+                                Select
+                            </button>
+                        </div>
+                        <hr className="horizontal-line" />
+                    </React.Fragment>
+                ))}
+            </div>
+
         </div>
     );
 };

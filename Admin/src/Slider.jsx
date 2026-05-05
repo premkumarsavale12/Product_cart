@@ -106,7 +106,7 @@ const Slider = () => {
     const handleSelect = (item) => {
         setFormData({
             SliderContent: item.SliderContent,
-            SliderImage: null
+            SliderImage: item.SliderImage,
         });
 
         setSelectedId(item._id || item.id);
