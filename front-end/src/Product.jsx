@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import "./Product.css"
@@ -59,8 +57,8 @@ const Product = () => {
                                     />
                                     <div className="product-details">
                                         <h4>{item.ProductName}</h4>
-                                        <p>Price: {item.ProductPrice}</p>
-                                        <p>Quantity: {item.Productquantity}</p>
+                                        <h3>Price: {item.ProductPrice}</h3>
+                                        <h5>Quantity: {item.Productquantity}</h5>
                                         <button className='btn'> {item.Button}</button>
                                     </div>
                                 </div>
