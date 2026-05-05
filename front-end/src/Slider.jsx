@@ -37,7 +37,6 @@ const Slider = () => {
         return () => clearInterval(interval);
     }, [data]);
 
-    if (data.length === 0) return <h3>Loading...</h3>;
 
     return (
         <div className="slider-container">

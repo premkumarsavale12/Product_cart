@@ -2,7 +2,7 @@
     width: 100vw;
     height: 450px;
     position: fixed;
-    margin-top: 10px;
+  
     z-index: 9999;
     text-align: center;
 }

@@ -33,7 +33,6 @@ const Slider = () => {
         }
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -52,7 +51,6 @@ const Slider = () => {
             console.log(err.response?.data || err.message);
         }
     };
-
 
     const handleUpdate = async () => {
         if (!selectedId) {

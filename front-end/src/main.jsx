@@ -1,11 +1,17 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import App from './App.jsx'
+import Navbar from './Navbar'
+import Slider from "./Slider"
+import Product from './Product'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+
+    <Navbar />
+    <Slider />
+    <Product/>
+
 
   </StrictMode>,
 )
