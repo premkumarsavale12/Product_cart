@@ -78,6 +78,7 @@
     background: #4CAF50;
     color: white;
 }
+
 .submit-btn:hover {
     background: #45a049;
 }
@@ -86,6 +87,7 @@
     background: #2196F3;
     color: white;
 }
+
 .update-btn:hover {
     background: #1976d2;
 }
@@ -94,6 +96,7 @@
     background: #f44336;
     color: white;
 }
+
 .delete-btn:hover {
     background: #d32f2f;
 }
@@ -102,6 +105,7 @@
     background: #9e9e9e;
     color: white;
 }
+
 .clear-btn:hover {
     background: #757575;
 }
@@ -110,7 +114,8 @@
 .data-list {
     display: flex;
     gap: 20px;
-    overflow-x: auto;   /* horizontal scroll */
+    overflow-x: auto;
+    /* horizontal scroll */
     padding: 20px 10px;
     margin-top: 30px;
     scroll-behavior: smooth;
@@ -120,6 +125,7 @@
 .data-list::-webkit-scrollbar {
     height: 6px;
 }
+
 .data-list::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 10px;

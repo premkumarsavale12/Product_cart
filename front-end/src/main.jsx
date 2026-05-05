@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
 
     <Navbar />
     <Slider />
-    <Product/>
+    <Product />
 
 
   </StrictMode>,
