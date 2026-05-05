@@ -20,6 +20,11 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category  : { 
+         type : String,
+          required : true,
+    },
+
     Button: {
         type: String,
         required : true 

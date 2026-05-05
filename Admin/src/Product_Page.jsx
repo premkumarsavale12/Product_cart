@@ -9,6 +9,7 @@ const Product_Page = () => {
         ProductPrice: "",
         Productquantity: "",
         ProductImage: "",
+        category: "",
         Button: "",
     });
 
@@ -40,6 +41,7 @@ const Product_Page = () => {
             data.append("ProductPrice", formdata.ProductPrice);
             data.append("Productquantity", formdata.Productquantity);
             data.append("ProductImage", formdata.ProductImage);
+            data.append("category", formdata.category);
             data.append("Button", formdata.Button);
 
 
@@ -97,8 +99,8 @@ const Product_Page = () => {
             ProductImage: null,
             Productquantity: "",
             ProductPrice: "",
+            category: "",
             Button: "",
-
         })
 
     }
@@ -120,6 +122,7 @@ const Product_Page = () => {
             ProductPrice: item.ProductPrice,
             Productquantity: item.Productquantity,
             ProductImage: item.ProductImage,
+            category: item.category,
             Button: item.Button,
 
         });
@@ -164,6 +167,15 @@ const Product_Page = () => {
                     accept="image/*"
                     name="ProductImage"
                     onChange={handleChange}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Enter Category"
+                    name="category"
+                    onChange={handleChange}
+                    value={formdata.category}
+                    required
                 />
 
                 <input

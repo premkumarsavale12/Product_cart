@@ -63,6 +63,7 @@ router.post("/add", upload.single('ProductImage'), async (req, res) => {
             ProductName: req.body.ProductName,
             ProductPrice: req.body.ProductPrice,
             Productquantity: req.body.Productquantity,
+            category: req.body.category,
             Button: req.body.Button
 
         });
@@ -90,7 +91,9 @@ router.put("/:id", async (req, res) => {
                 ProductName: req.body.ProductName,
                 ProductPrice: req.body.ProductPrice,
                 Productquantity: req.body.Productquantity,
+                category: req.body.category,
                 Button: req.body.Button,
+
                 ...(req.file && { ProductImage: req.file.filename })
 
             },
@@ -116,11 +119,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 
     try {
-
         const deletedata = await Product.findByIdAndDelete(req.params.id);
         res.json("Deleted SuccessFully...");
         if (!deletedata) return res.status(404).json({ message: "Not Foud Item" });
-
     }
 
     catch (err) {
