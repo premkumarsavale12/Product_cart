@@ -8,6 +8,7 @@
     font-family: Arial, sans-serif;
     padding: 40px 20px;
     box-sizing: border-box;
+
 }
 
 
@@ -30,6 +31,7 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     width: 350px;
     display: flex;
+    position: sticky;
     flex-direction: column;
     gap: 18px;
 }
@@ -131,18 +133,24 @@
 
 .data-list {
     margin-top: 30px;
-    width: 100%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    /* 👈 stack items vertically */
     gap: 20px;
     padding: 20px 10px;
+    height: 80vh;
+    /* scroll area */
+    overflow-y: auto;
+    /* scroll inside */
+
 }
 
 .data-row {
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    /* 👈 required */
     flex-direction: row;
+    /* or column if you want vertical content inside each card */
     align-items: center;
     background: #ffffff;
     padding: 20px;
