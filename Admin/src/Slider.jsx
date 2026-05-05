@@ -135,6 +135,17 @@ const Slider = () => {
                         required
                         onChange={handleChange}
                     />
+
+                    {
+                        formdata.SliderImage && typeof formdata.SliderImage === 'string' && (
+                            <img
+                                src={`http://localhost:5000/uploads/${formdata.SliderImage}`}
+                                alt="Selected Product Image"
+                                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
+                            />
+                        )
+                    }
+
                 </div>
 
                 <div className="form-group">
