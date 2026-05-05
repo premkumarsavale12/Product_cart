@@ -136,8 +136,8 @@ const Product_Page = () => {
         <div className="product-container">
             <h1 className="title">Product Page</h1>
 
-            <form className="product-form" onSubmit={handleSubmit}> 
-                
+            <form className="product-form" onSubmit={handleSubmit}>
+
                 <input
                     type="text"
                     placeholder="Enter Product Name"
@@ -184,25 +184,21 @@ const Product_Page = () => {
             </form>
 
             <div className="data-list">
-
                 {data.map((item, index) => (
-                    <React.Fragment key={index}>
-                        <div className="data-row">
-                            <img
-                                src={`http://localhost:5000/uploads/${item.ProductImage}`}
-                                className="slider-img"
-                            />
-                            <p className="slider-text">{item.ProductName}</p>
-                            <p className="slider-text">{item.ProductPrice}</p>
-                            <button
-                                className="select-btn"
-                                onClick={() => handleSelect(item)}
-                            >
-                                Select
-                            </button>
-                        </div>
-                        <hr className="horizontal-line" />
-                    </React.Fragment>
+                    <div className="data-row" key={index}>
+                        <img
+                            src={`http://localhost:5000/uploads/${item.ProductImage}`}
+                            className="slider-img"
+                        />
+                        <p className="slider-text">{item.ProductName}</p>
+                        <p className="slider-text">₹{item.ProductPrice}</p>
+                        <button
+                            className="select-btn"
+                            onClick={() => handleSelect(item)}
+                        >
+                            Select
+                        </button>
+                    </div>
                 ))}
             </div>
 
