@@ -63,6 +63,8 @@ router.post("/add", upload.single('ProductImage'), async (req, res) => {
             ProductName: req.body.ProductName,
             ProductPrice: req.body.ProductPrice,
             Productquantity: req.body.Productquantity,
+            Button: req.body.Button
+
         });
 
         res.status(201).json(savedata);
@@ -88,6 +90,7 @@ router.put("/:id", async (req, res) => {
                 ProductName: req.body.ProductName,
                 ProductPrice: req.body.ProductPrice,
                 Productquantity: req.body.Productquantity,
+                Button: req.body.Button,
                 ...(req.file && { ProductImage: req.file.filename })
 
             },
@@ -95,7 +98,6 @@ router.put("/:id", async (req, res) => {
         );
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
-
         res.json(updateddata);
 
     }

@@ -46,6 +46,7 @@ const Product = () => {
                             <h4>{item.ProductName}</h4>
                             <p>Price: {item.ProductPrice}</p>
                             <p>Quantity: {item.Productquantity}</p>
+                            <button className='btn'> {item.Button}</button>
                         </div>
                     </div>
                 ))}

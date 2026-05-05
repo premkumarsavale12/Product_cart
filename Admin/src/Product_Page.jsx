@@ -9,6 +9,7 @@ const Product_Page = () => {
         ProductPrice: "",
         Productquantity: "",
         ProductImage: "",
+        Button: "",
     });
 
     const [selectedId, setSelectedId] = useState(null);
@@ -28,6 +29,8 @@ const Product_Page = () => {
     };
 
     const handleSubmit = async (e) => {
+        debugger;
+
         e.preventDefault();
 
         try {
@@ -37,6 +40,8 @@ const Product_Page = () => {
             data.append("ProductPrice", formdata.ProductPrice);
             data.append("Productquantity", formdata.Productquantity);
             data.append("ProductImage", formdata.ProductImage);
+            data.append("Button", formdata.Button);
+
 
             const res = await axios.post(
                 "http://localhost:5000/api/product/add",
@@ -92,6 +97,7 @@ const Product_Page = () => {
             ProductImage: null,
             Productquantity: "",
             ProductPrice: "",
+            Button: "",
 
         })
 
@@ -114,6 +120,8 @@ const Product_Page = () => {
             ProductPrice: item.ProductPrice,
             Productquantity: item.Productquantity,
             ProductImage: item.ProductImage,
+            Button: item.Button,
+
         });
         setSelectedId(item._id || item.id);
     }
@@ -156,6 +164,15 @@ const Product_Page = () => {
                     accept="image/*"
                     name="ProductImage"
                     onChange={handleChange}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Enter Button Name"
+                    name="Button"
+                    onChange={handleChange}
+                    value={formdata.Button}
+                    required
                 />
 
                 {/* <button type="submit">Submit Product</button> */}
