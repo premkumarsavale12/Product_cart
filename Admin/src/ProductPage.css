@@ -63,7 +63,7 @@
     font-size: 14px;
 }
 
-/* ===== BUTTON GROUP ===== */
+
 .button-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -83,7 +83,7 @@
     letter-spacing: 0.5px;
 }
 
-/* ===== BUTTON COLORS ===== */
+
 .submit-btn {
     background: linear-gradient(135deg, #4CAF50, #2E7D32);
     color: white;
@@ -128,7 +128,7 @@
     box-shadow: 0 6px 20px rgba(158, 158, 158, 0.5);
 }
 
-/* ===== DATA LIST ===== */
+
 .data-list {
     margin-top: 30px;
     width: 100%;

@@ -55,21 +55,17 @@ const Product_Page = () => {
         if (!selectedId) {
             alert("Please Select a record First....");
             return;
-
         }
 
         try {
-
             const res = await axios.put(`http://localhost:5000/api/product/${selectedId}`, formdata);
             alert("Updated SuccessFully....");
             handleClear();
         }
 
         catch (err) {
-
             console.log(err);
             alert("Error Updating data...");
-
         }
     }
 
@@ -80,7 +76,6 @@ const Product_Page = () => {
         }
 
         try {
-
             await axios.delete(`http://localhost:5000/api/product/${selectedId}`);
             alert("Deleted SuccessFully....");
             handleClear();
@@ -105,15 +100,11 @@ const Product_Page = () => {
     const FetchApiData = async () => {
 
         try {
-
             const res = await axios.get("http://localhost:5000/api/product/all");
             setData(res.data);
-
         }
         catch (err) {
-
             console.log(err);
-
         }
     }
 
