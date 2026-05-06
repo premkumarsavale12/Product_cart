@@ -86,3 +86,54 @@
   background-color: #1d4ed8;
   transform: translateY(-2px);
 }
+
+.search-container {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+}
+
+.star-rating {
+  margin-bottom: 8px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.product-actions .btn {
+  flex: 1; /* Make buttons equal width */
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+.cart-btn {
+  background-color: #10b981;
+}
+
+.cart-btn:hover {
+  background-color: #059669;
+}
+
+.no-products {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 50px;
+}
