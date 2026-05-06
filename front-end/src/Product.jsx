@@ -20,7 +20,7 @@ const Product = () => {
         try {
 
             const res = await axios.get("http://localhost:5000/api/product/all");
-            console.log(res.data);
+     
             setData(res.data);
 
             const grouped = res.data.reduce((acc, product) => {

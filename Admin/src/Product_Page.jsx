@@ -50,7 +50,6 @@ const Product_Page = () => {
                 data
             );
 
-            console.log(res.data);
             alert("Data Submitted Successfully");
         } catch (err) {
             console.log(err.response?.data || err.message);
@@ -117,7 +116,7 @@ const Product_Page = () => {
     }
 
     const handleSelect = (item) => {
-        console.log(item);
+
         setFormData({
             ProductName: item.ProductName,
             ProductPrice: item.ProductPrice,
