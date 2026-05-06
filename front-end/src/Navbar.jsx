@@ -32,7 +32,6 @@ const Navbar = () => {
                     </form>
                 )}
 
-
                 <li className="nav-item">Home</li>
                 <li className="nav-item">About</li>
                 <li className="nav-item">Contact</li>
@@ -44,9 +43,7 @@ const Navbar = () => {
                     <FaSearch className={`text-lg transition-colors ${isSearchOpen ? 'text-indigo-600' : 'text-gray-700'}`} />
                 </button>
             </ul>
-
         </nav>
-
 
     )
 }
