@@ -2,6 +2,9 @@ import React, { useEffect, useState, useMemo } from 'react'
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./Product.css"
+import { useCart } from './context/CartContext'
+import { useWishlist } from './context/WishlistContext'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 const Product = () => {
     const navigate = useNavigate();
@@ -21,16 +24,17 @@ const Product = () => {
         }
     }
 
-    const addToCart = (product) => {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingProduct = cart.find(item => item._id === product._id);
-        if (existingProduct) {
-            existingProduct.cartQuantity = (existingProduct.cartQuantity || 1) + 1;
-        } else {
-            cart.push({ ...product, cartQuantity: 1 });
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${product.ProductName || "Product"} added to cart!`);
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+
+    const handleAddToCart = (product) => {
+        addToCart({
+            _id: product._id,
+            name: product.ProductName,
+            price: product.ProductPrice,
+            image: product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/400x300?text=No+Image"
+        });
+        // alert(`${product.ProductName || "Product"} added to cart!`);
     }
 
     const renderStars = (rating) => {
@@ -82,11 +86,24 @@ const Product = () => {
                         <div className="product-list">
                             {products.map((item, index) => (
                                 <div className="product-card" key={item._id || index}>
-                                    <img
-                                        src={item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : "https://via.placeholder.com/400x300?text=No+Image"}
-                                        alt={item.ProductName || "Product"}
-                                        className="product-image"
-                                    />
+                                    <div className="relative">
+                                        <img
+                                            src={item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : "https://via.placeholder.com/400x300?text=No+Image"}
+                                            alt={item.ProductName || "Product"}
+                                            className="product-image"
+                                        />
+                                        <button 
+                                            className="wishlist-btn-overlay"
+                                            onClick={() => toggleWishlist({
+                                                _id: item._id,
+                                                ProductName: item.ProductName,
+                                                ProductPrice: item.ProductPrice,
+                                                ProductImage: item.ProductImage
+                                            })}
+                                        >
+                                            {isInWishlist(item._id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+                                        </button>
+                                    </div>
                                     <div className="product-details">
                                         <h4>{item.ProductName}</h4>
                                         {renderStars(item.rating)}
@@ -94,7 +111,7 @@ const Product = () => {
                                         <h5>Quantity: {item.Productquantity}</h5>
                                         <div className="product-actions">
                                             <button className='btn buy-btn' onClick={() => navigate(`/product/${item._id}`)}> {item.Button || "Buy Now"}</button>
-                                            <button className='btn cart-btn' onClick={() => addToCart(item)}>Add to Cart</button>
+                                            <button className='btn cart-btn' onClick={() => handleAddToCart(item)}>Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>

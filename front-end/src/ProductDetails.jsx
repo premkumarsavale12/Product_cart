@@ -2,12 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetails.css';
+import { useCart } from './context/CartContext';
+import { useWishlist } from './context/WishlistContext';
+import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+
+    const handleAddToCart = () => {
+        addToCart({
+            _id: product._id,
+            name: product.ProductName,
+            price: product.ProductPrice,
+            image: product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/600x450?text=No+Image"
+        });
+    }
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -67,7 +81,24 @@ const ProductDetails = () => {
                         </p>
                     </div>
 
-                    <button className="buy-now-btn">{product.Button || "Buy Now"}</button>
+                    <div className="details-actions">
+                        <button className="buy-now-btn">{product.Button || "Buy Now"}</button>
+                        <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                            <FaShoppingCart /> Add to Cart
+                        </button>
+                        <button 
+                            className={`details-wishlist-btn ${isInWishlist(product._id) ? 'active' : ''}`}
+                            onClick={() => toggleWishlist({
+                                _id: product._id,
+                                ProductName: product.ProductName,
+                                ProductPrice: product.ProductPrice,
+                                ProductImage: product.ProductImage
+                            })}
+                        >
+                            {isInWishlist(product._id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+                            {isInWishlist(product._id) ? ' In Wishlist' : ' Add to Wishlist'}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,3 +106,5 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+

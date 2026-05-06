@@ -1,41 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Navbar.css'
 import { FaSearch, FaTimes, FaRegStar, FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import { useWishlist } from './context/WishlistContext';
+import { useCart } from './context/CartContext';
 
 const Navbar = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const [totalCount, setTotalCount] = useState(0);
     
-    let totalWishlistCount = 0;
-    try {
-        const wishlistContext = useWishlist();
-        if (wishlistContext) {
-            totalWishlistCount = wishlistContext.totalWishlistCount || 0;
-        }
-    } catch (e) {
-        // Safe fallback if context is missing
-    }
-
-    useEffect(() => {
-        const updateCartCount = () => {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const count = cart.reduce((acc, item) => acc + (item.cartQuantity || 1), 0);
-            setTotalCount(count);
-        };
-        
-        updateCartCount();
-        
-        window.addEventListener('storage', updateCartCount);
-        const interval = setInterval(updateCartCount, 1000);
-        
-        return () => {
-            window.removeEventListener('storage', updateCartCount);
-            clearInterval(interval);
-        };
-    }, []);
+    const { totalCount } = useCart();
+    const { totalWishlistCount } = useWishlist();
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -52,7 +27,7 @@ const Navbar = () => {
                         <FaSearch className="text-gray-400 mr-3" />
                         <input
                             type="text"
-                            placeholder="Search for products, concerns, ingredients..."
+                            placeholder="Search for products..."
                             className="w-full outline-none text-sm bg-transparent"
                             autoFocus
                             value={searchQuery}
