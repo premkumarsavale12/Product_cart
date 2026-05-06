@@ -98,7 +98,7 @@ router.delete("/:id", async (req, res) => {
 
 // for updated
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single('SliderImage'), async (req, res) => {
 
     try {
 
@@ -111,7 +111,7 @@ router.put("/:id", async (req, res) => {
                 ...(req.file && { SliderImage: req.file.filename })
 
             },
-            { new: true }
+            { returnDocument: 'after' }
 
         );
 

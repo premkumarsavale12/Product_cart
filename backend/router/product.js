@@ -82,7 +82,7 @@ router.post("/add", upload.single('ProductImage'), async (req, res) => {
 
 // for update 
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single('ProductImage'), async (req, res) => {
 
     try {
         const updateddata = await Product.findByIdAndUpdate(
@@ -97,7 +97,7 @@ router.put("/:id", async (req, res) => {
                 ...(req.file && { ProductImage: req.file.filename })
 
             },
-            { new: true }
+            { returnDocument: 'after' }
         );
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });

@@ -1,5 +1,6 @@
 
 const express = require("express");
+const path = require("path");
 const app = express();
 const cors = require('cors')
 
@@ -18,7 +19,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from uploads directory
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/product", ProductRoute);
 app.use("/api/slider", SliderRoute);

@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const WishlistContext = createContext();
 
 export function WishlistProvider({ children }) {
-    
+
     const [wishlistItems, setWishlistItems] = useState([]);
 
     const [isInitialized, setIsInitialized] = useState(false);
