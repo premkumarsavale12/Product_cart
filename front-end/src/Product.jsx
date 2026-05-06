@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 import "./Product.css"
 
 const Product = () => {
 
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [groupedProducts, setGroupedProducts] = useState({});
 
@@ -59,7 +61,7 @@ const Product = () => {
                                         <h4>{item.ProductName}</h4>
                                         <h3>Price: {item.ProductPrice}</h3>
                                         <h5>Quantity: {item.Productquantity}</h5>
-                                        <button className='btn'> {item.Button}</button>
+                                        <button className='btn' onClick={() => navigate(`/product/${item._id}`)}> {item.Button || "Buy Now"}</button>
                                     </div>
                                 </div>
                             ))}
