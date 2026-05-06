@@ -8,7 +8,7 @@ import { useCart } from './context/CartContext';
 const Navbar = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    
+
     const { totalCount } = useCart();
     const { totalWishlistCount } = useWishlist();
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <li className="nav-item">About</li>
                 <li className="nav-item">Contact</li>
                 <li className="nav-item"><Link to="/">Product</Link></li>
-                
+
                 <button
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:flex"
                     onClick={() => setIsSearchOpen(!isSearchOpen)}
