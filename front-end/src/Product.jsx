@@ -47,7 +47,7 @@ const Product = () => {
     }
 
     const groupedProducts = useMemo(() => {
-        const filteredData = data.filter(item => 
+        const filteredData = data.filter(item =>
             item.ProductName?.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
@@ -66,11 +66,11 @@ const Product = () => {
             <h1>Products</h1>
 
             <div className="search-container">
-                <input 
-                    type="text" 
-                    placeholder="Search for products..." 
-                    value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)} 
+                <input
+                    type="text"
+                    placeholder="Search for products..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                 />
             </div>

@@ -17,7 +17,6 @@ const Footer = () => {
                     </ul>
                 </div>
 
-
                 <div className="footer-column">
                     <h4>GROUP COMPANIES</h4>
                     <ul>
