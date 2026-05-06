@@ -14,7 +14,7 @@ const Wishlist = () => {
             {wishlistItems.length === 0 ? (
                 <div className="flex flex-col items-center justify-center gap-4 text-gray-500 py-10">
                     <p className="text-xl">Your wishlist is empty.</p>
-                    <Link to="/home" className="text-indigo-600 font-semibold hover:underline">
+                    <Link to="/" className="text-indigo-600 font-semibold hover:underline">
                         Continue Shopping
                     </Link>
                 </div>
@@ -24,7 +24,7 @@ const Wishlist = () => {
                         <div key={item._id} className="border border-gray-200 rounded-lg overflow-hidden group hover:shadow-lg transition-all">
                             <div className="relative aspect-[4/5] bg-gray-100 p-4">
                                 <img
-                                    src={item.image}
+                                    src={item.image ? `http://localhost:5000/uploads/${item.image}` : "https://via.placeholder.com/400x300?text=No+Image"}
                                     alt={item.name}
                                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                                 />

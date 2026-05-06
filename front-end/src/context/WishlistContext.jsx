@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 // import api from "../utils/api";
 
-
 const WishlistContext = createContext();
 
 export function WishlistProvider({ children }) {
@@ -44,9 +43,9 @@ export function WishlistProvider({ children }) {
                 ...prev,
                 {
                     _id: id,
-                    name: product.Image_Name || product.name,
-                    image: product.Image || product.image,
-                    price: product.Price || product.price,
+                    name: product.ProductName || product.name || product.Image_Name,
+                    image: product.ProductImage || product.image || product.Image,
+                    price: product.ProductPrice || product.price || product.Price,
                 },
             ];
         });
