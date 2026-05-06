@@ -1,7 +1,7 @@
 .navbar {
     background: linear-gradient(90deg, #4f46e5, #06b6d4);
     padding: 15px 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .nav-list {
