@@ -59,7 +59,7 @@ export default function CartPage() {
                     </p>
                 </div>
                 <Link
-                    to="/collection"
+                    to="/"
                     className="hidden sm:flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black transition-colors"
                 >
                     <FaArrowLeft size={12} />

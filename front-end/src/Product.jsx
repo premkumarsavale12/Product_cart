@@ -5,6 +5,8 @@ import "./Product.css"
 import { useCart } from './context/CartContext'
 import { useWishlist } from './context/WishlistContext'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import Swal from "sweetalert2";
+
 
 const Product = () => {
     const navigate = useNavigate();
@@ -32,10 +34,19 @@ const Product = () => {
             _id: product._id,
             name: product.ProductName,
             price: product.ProductPrice,
-            image: product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/400x300?text=No+Image"
+            image: product.ProductImage
+                ? `http://localhost:5000/uploads/${product.ProductImage}`
+                : "https://via.placeholder.com/400x300?text=No+Image"
         });
-        // alert(`${product.ProductName || "Product"} added to cart!`);
-    }
+
+        Swal.fire({
+            icon: "success",
+            title: "Added to Cart",
+            text: `${product.ProductName || "Product"} added successfully!`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    };
 
     const renderStars = (rating) => {
         const validRating = rating || 4; // Default to 4 stars if no rating provided
@@ -92,7 +103,7 @@ const Product = () => {
                                             alt={item.ProductName || "Product"}
                                             className="product-image"
                                         />
-                                        <button 
+                                        <button
                                             className="wishlist-btn-overlay"
                                             onClick={() => toggleWishlist({
                                                 _id: item._id,
