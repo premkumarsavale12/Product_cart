@@ -33,7 +33,7 @@ export default function CartPage() {
                     find something you'll love!
                 </p>
                 <Link
-                    to="/collection"
+                    to="/"
                     className="mt-2 bg-black text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-gray-800 transition-all shadow-lg hover:shadow-black/20 flex items-center gap-2"
                 >
                     <FaArrowLeft size={14} />
