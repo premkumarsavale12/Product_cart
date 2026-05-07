@@ -86,7 +86,7 @@ const ProductDetails = () => {
                         <button className="add-to-cart-btn" onClick={handleAddToCart}>
                             <FaShoppingCart /> Add to Cart
                         </button>
-                        <button 
+                        <button
                             className={`details-wishlist-btn ${isInWishlist(product._id) ? 'active' : ''}`}
                             onClick={() => toggleWishlist({
                                 _id: product._id,
@@ -106,5 +106,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-
