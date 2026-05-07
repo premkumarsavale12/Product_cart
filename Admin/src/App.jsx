@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Product_Page from './Product_Page.jsx';
 import Slider from './Slider.jsx';
 import './App.css';
+import AboutHero from './AboutHero.jsx';
 
 const App = () => {
   const [activeView, setActiveView] = useState('dashboard'); // Default to dashboard or slider
@@ -13,6 +14,8 @@ const App = () => {
         return <Slider />;
       case 'product':
         return <Product_Page />;
+      case 'abouthero':
+        return <AboutHero />
       default:
         return <div className="dashboard"><h1>Welcome to Admin Panel</h1><p>Select an option from the sidebar.</p></div>;
     }
@@ -31,6 +34,9 @@ const App = () => {
           </li>
           <li>
             <button onClick={() => setActiveView('product')}>Product</button>
+          </li>
+          <li>
+            <button onClick={() => setActiveView('abouthero')}>AboutHero</button>
           </li>
         </ul>
       </div>
