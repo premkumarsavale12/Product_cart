@@ -55,13 +55,22 @@ router.get("/:id", async (req, res) => {
 
 // for post 
 
-router.post("/add", upload.single("Icon"), async (req, res) => {
+router.post("/add", upload.any(), async (req, res) => {
 
     try {
+
+        const iconFile = req.files?.find(f => f.fieldname.trim() === "Icon");
+
+
+        const body = {};
+        for (const key of Object.keys(req.body)) {
+            body[key.trim()] = req.body[key];
+        }
+
         const savedata = await AboutMiddle.create({
-            Icon: req.file ? req.file.filename : req.body.Icon,
-            Number: req.body.Number,
-            Data: req.body.Data
+            Icon: iconFile ? iconFile.filename : body.Icon,
+            Number: body.Number,
+            Data: body.Data
         });
         res.status(201).json(savedata);
 
@@ -73,22 +82,29 @@ router.post("/add", upload.single("Icon"), async (req, res) => {
 });
 
 // for put method 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.any(), async (req, res) => {
 
     try {
+
+        const iconFile = req.files?.find(f => f.fieldname.trim() === "Icon");
+
+
+        const body = {};
+        for (const key of Object.keys(req.body)) {
+            body[key.trim()] = req.body[key];
+        }
 
         const updateddata = await AboutMiddle.findByIdAndUpdate(
             req.params.id,
             {
-                Icon: req.body.Icon,
-                Number: req.body.Number,
-                Data: req.body.Data,
+                Icon: body.Icon,
+                Number: body.Number,
+                Data: body.Data,
 
-                ...(req.file && { Icon: req.file.filename })
+                ...(iconFile && { Icon: iconFile.filename })
             },
             { returnDocument: 'after' }
-        )
-
+        );
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
         res.json(updateddata);
@@ -96,11 +112,8 @@ router.put("/:id", async (req, res) => {
     }
 
     catch (err) {
-
         res.status(500).json({ message: err.message });
-
     }
-
 });
 
 // for delete 
@@ -117,8 +130,20 @@ router.delete("/:id", async (req, res) => {
         console.log(err);
         res.status(500).json({ message: err.message });
 
-
     }
 })
+
+
+router.use((err, req, res, next) => {
+    if (err && err.code === 'LIMIT_UNEXPECTED_FILE') {
+        return res.status(400).json({
+            message: `Unexpected file field: "${err.field}". Expected field name is "Icon".`
+        });
+    }
+    if (err) {
+        return res.status(500).json({ message: err.message });
+    }
+    next();
+});
 
 module.exports = router;
