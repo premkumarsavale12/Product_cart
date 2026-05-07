@@ -17,6 +17,39 @@ const ProductFilter = () => {
     const navigate = useNavigate();
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedPrice, setSelectedPrice] = useState("");
+
+    const filteredProducts = useMemo(() => {
+        return products.filter((item) => {
+            const nameMatch = item.ProductName?.toLowerCase().includes(searchTerm.toLowerCase());
+            const categoryMatch = selectedCategory
+                ? item.category?.toLowerCase().includes(selectedCategory.toLowerCase())
+                : true;
+            const priceValue = Number(String(item.ProductPrice).replace(/[^0-9.-]/g, ''));
+            const priceMatch = selectedPrice
+                ? selectedPrice === 'low'
+                    ? priceValue < 400
+                    : selectedPrice === 'mid'
+                        ? priceValue >= 400 && priceValue <= 700
+                        : priceValue > 700
+                : true;
+
+            return nameMatch && categoryMatch && priceMatch;
+        });
+    }, [products, searchTerm, selectedCategory, selectedPrice]);
+
+    const categories = useMemo(() => {
+        const unique = Array.from(new Set(products.map((item) => item.category).filter(Boolean)));
+        return unique.length > 0 ? unique : ["Acne", "Dry", "Pigmentation", "Odor"];
+    }, [products]);
+
+    const clearFilters = () => {
+        setSelectedCategory("");
+        setSelectedPrice("");
+        setSearchTerm("");
+    };
+
 
     const handleAddToCart = (item) => {
         addToCart({
@@ -58,15 +91,13 @@ const ProductFilter = () => {
     }, [id]);
 
     const groupedProducts = useMemo(() => {
-        return products
-            .filter((item) => item.ProductName?.toLowerCase().includes(searchTerm.toLowerCase()))
-            .reduce((acc, product) => {
-                const category = product.category || 'Uncategorized';
-                if (!acc[category]) acc[category] = [];
-                acc[category].push(product);
-                return acc;
-            }, {});
-    }, [products, searchTerm]);
+        return filteredProducts.reduce((acc, product) => {
+            const category = product.category || 'Uncategorized';
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(product);
+            return acc;
+        }, {});
+    }, [filteredProducts]);
 
     if (loading) {
         return (
@@ -137,61 +168,141 @@ const ProductFilter = () => {
     return (
         <div className="product-page">
             <h1>Product Filter</h1>
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search for products..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="search-input"
-                />
-            </div>
-            {Object.keys(groupedProducts).length > 0 ? (
-                Object.entries(groupedProducts).map(([category, items]) => (
-                    <div key={category} className="category-section">
-                        <h2 className="category-title">{category}</h2>
-                        <div className="product-list">
-                            {items.map((item) => (
-                                <div className="product-card" key={item._id}>
-                                    <div className="relative">
-                                        <img
-                                            src={item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : 'https://via.placeholder.com/400x300?text=No+Image'}
-                                            alt={item.ProductName || 'Product'}
-                                            className="product-image"
-                                        />
-                                        <button
-                                            className="wishlist-btn-overlay"
-                                            onClick={() => toggleWishlist({
-                                                _id: item._id,
-                                                ProductName: item.ProductName,
-                                                ProductPrice: item.ProductPrice,
-                                                ProductImage: item.ProductImage
-                                            })}
-                                        >
-                                            {isInWishlist(item._id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
-                                        </button>
-                                    </div>
-                                    <div className="product-details">
-                                        <h4>{item.ProductName}</h4>
-                                        <h3>Price: {item.ProductPrice}</h3>
-                                        <h5>Quantity: {item.Productquantity}</h5>
-                                        <div className="product-actions">
-                                            <button className="btn buy-btn" onClick={() => navigate(`/productfilter/${item._id}`)}>
-                                                {item.Button || 'View Details'}
-                                            </button>
-                                            <button className="btn cart-btn" onClick={() => handleAddToCart(item)}>
-                                                Add to Cart
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+            <div className="product-page-grid md:flex md:gap-6">
+                <aside className="w-full md:w-1/4 p-6 bg-gray-50 md:border border-gray-200 rounded-md mb-6 md:mb-0">
+                    <div className="flex items-center justify-between mb-6">
+                        <h3 className="font-bold text-lg">Filters</h3>
+                        {(selectedCategory || selectedPrice || searchTerm) && (
+                            <button
+                                onClick={clearFilters}
+                                className="text-xs text-red-500 hover:text-red-700 font-medium underline"
+                            >
+                                Clear All
+                            </button>
+                        )}
                     </div>
-                ))
-            ) : (
-                <p className="no-products">No products found.</p>
-            )}
+                    <div className="mb-8">
+                        <h4 className="font-semibold text-sm text-gray-600 uppercase tracking-wider mb-4 font-sans">
+                            Product
+                        </h4>
+                        {categories.map((cat) => (
+                            <label
+                                key={cat}
+                                className="flex items-center gap-3 text-sm mb-3 cursor-pointer group"
+                            >
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    checked={selectedCategory.toLowerCase() === cat.toLowerCase()}
+                                    onChange={() => setSelectedCategory(cat.toLowerCase())}
+                                    className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                                />
+                                <span className="group-hover:text-black transition-colors">
+                                    {cat}
+                                </span>
+                            </label>
+                        ))}
+                        {categories.length > 0 && (
+                            <button
+                                onClick={() => setSelectedCategory("")}
+                                className="text-xs text-gray-600 hover:text-gray-900 font-medium underline"
+                            >
+                                Clear category
+                            </button>
+                        )}
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-sm text-gray-600 uppercase tracking-wider mb-4 font-sans">
+                            Price Range
+                        </h4>
+                        {[
+                            { label: "Under ₹400", value: "low" },
+                            { label: "₹400 - ₹700", value: "mid" },
+                            { label: "Above ₹700", value: "high" },
+                        ].map((range) => (
+                            <label
+                                key={range.value}
+                                className="flex items-center gap-3 text-sm mb-3 cursor-pointer group"
+                            >
+                                <input
+                                    type="radio"
+                                    name="price"
+                                    checked={selectedPrice === range.value}
+                                    onChange={() => setSelectedPrice(range.value)}
+                                    className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                                />
+                                <span className="group-hover:text-black transition-colors">
+                                    {range.label}
+                                </span>
+                            </label>
+                        ))}
+                        <button
+                            onClick={() => setSelectedPrice("")}
+                            className="text-xs text-gray-600 hover:text-gray-900 font-medium underline mt-2 block"
+                        >
+                            Clear price range
+                        </button>
+                    </div>
+                </aside>
+
+                <main className="w-full md:w-3/4">
+                    <div className="search-container mb-6">
+                        <input
+                            type="text"
+                            placeholder="Search for products..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="search-input w-full"
+                        />
+                    </div>
+                    {Object.keys(groupedProducts).length > 0 ? (
+                        Object.entries(groupedProducts).map(([category, items]) => (
+                            <div key={category} className="category-section mb-8">
+                                <h2 className="category-title">{category}</h2>
+                                <div className="product-list">
+                                    {items.map((item) => (
+                                        <div className="product-card" key={item._id}>
+                                            <div className="relative">
+                                                <img
+                                                    src={item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : 'https://via.placeholder.com/400x300?text=No+Image'}
+                                                    alt={item.ProductName || 'Product'}
+                                                    className="product-image"
+                                                />
+                                                <button
+                                                    className="wishlist-btn-overlay"
+                                                    onClick={() => toggleWishlist({
+                                                        _id: item._id,
+                                                        ProductName: item.ProductName,
+                                                        ProductPrice: item.ProductPrice,
+                                                        ProductImage: item.ProductImage
+                                                    })}
+                                                >
+                                                    {isInWishlist(item._id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+                                                </button>
+                                            </div>
+                                            <div className="product-details">
+                                                <h4>{item.ProductName}</h4>
+                                                <h3>Price: {item.ProductPrice}</h3>
+                                                <h5>Quantity: {item.Productquantity}</h5>
+                                                <div className="product-actions">
+                                                    <button className="btn buy-btn" onClick={() => navigate(`/productfilter/${item._id}`)}>
+                                                        {item.Button || 'View Details'}
+                                                    </button>
+                                                    <button className="btn cart-btn" onClick={() => handleAddToCart(item)}>
+                                                        Add to Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="no-products">No products found.</p>
+                    )}
+                </main>
+            </div>
         </div>
     );
 };
