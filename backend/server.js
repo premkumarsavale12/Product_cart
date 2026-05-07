@@ -11,6 +11,8 @@ const ConnectDb = require("./config/db");
 const ProductRoute = require("./router/product");
 const SliderRoute = require("./router/slider");
 const AboutRoute = require("./router/abouthero");
+const AboutMiddleRoute = require("./router/aboutmiddle");
+ 
 
 
 ConnectDb();
@@ -26,6 +28,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/api/product", ProductRoute);
 app.use("/api/slider", SliderRoute);
 app.use("/api/about", AboutRoute);
+app.use("/api/aboutmiddle", AboutMiddleRoute);
+ 
  
 
 
