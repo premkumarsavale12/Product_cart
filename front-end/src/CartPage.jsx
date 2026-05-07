@@ -1,4 +1,3 @@
-
 import {
     FaTrash,
     FaMinus,
@@ -48,7 +47,6 @@ export default function CartPage() {
 
     return (
         <div className="max-w-[1200px] mx-auto px-4 sm:px-8 py-10">
-
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">

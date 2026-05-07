@@ -9,6 +9,7 @@ import CartPage from './CartPage';
 import Wishlist from './Wishlist';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import ProductFilter from './ProductFilter';
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/productfilter" element={<ProductFilter />} />
+            <Route path="/productfilter/:id" element={<ProductFilter />} />
           </Routes>
           <Footer />
         </BrowserRouter>

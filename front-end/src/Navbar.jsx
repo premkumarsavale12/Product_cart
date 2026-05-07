@@ -43,7 +43,7 @@ const Navbar = () => {
                 <li className="nav-item"><Link to="/">Home</Link></li>
                 <li className="nav-item">About</li>
                 <li className="nav-item">Contact</li>
-                <li className="nav-item"><Link to="/">Product</Link></li>
+                <li className="nav-item"><Link to="/productfilter">Product</Link></li>
 
                 <button
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:flex"
