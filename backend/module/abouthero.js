@@ -10,13 +10,13 @@ const aboutheroSchema = new mongoose.Schema({
 
     Description: {
         type: String,
-        required: true,
+
 
     },
 
     Image: {
         type: String,
-        required: true
+
     }
 
 });

@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const AboutHero = require("../module/abouthero");
-const abouthero = require("../module/abouthero");
+
 
 
 // for get all
@@ -54,16 +54,17 @@ router.post("/add", upload.single('Image'), async (req, res) => {
 
     try {
 
-        const savedata = await abouthero.create({
+        const savedata = await AboutHero.create({
             Image: req.file ? req.file.filename : req.body.Image,
             heading: req.body.heading,
-            Image: req.body.Image,
+            Description: req.body.Description
         });
-        res.status(201).json(saveata);
+
+        res.status(201).json(savedata);
     }
 
     catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: err.message })
     }
 
 });
@@ -75,7 +76,7 @@ router.put("/:id", async (req, res) => {
 
     try {
 
-        const updateddata = await abouthero.findByIdAndUpdate(
+        const updateddata = await AboutHero.findByIdAndUpdate(
             req.params.id,
             {
                 Image: req.body.Image,
@@ -108,7 +109,7 @@ router.delete("/:id", async (req, res) => {
     try {
 
 
-        const deletedata = await abouthero.findByIdAndDelete(req.params.id);
+        const deletedata = await AboutHero.findByIdAndDelete(req.params.id);
         res.json("Deleted SuccessFully....");
         if (!deletedata) return res.status(404).json({ message: "Not Found  Items " });
 
@@ -116,12 +117,12 @@ router.delete("/:id", async (req, res) => {
 
     catch (err) {
 
-         res.status(500).json({ message: err.message });
+        res.status(500).json({ message: err.message });
 
     }
 
 });
 
- module.exports = router;
-  
+module.exports = router;
+
 
