@@ -1,15 +1,21 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const AboutHero = () => {
 
     const [formdata, setFormdata] = useState({
         heading: "",
-        description: "",
+        Description: "",
         Image: ""
     });
 
+    useEffect(() => {
+        FetchApiData();
+    }, []);
+
     const [selectedId, setSelectedId] = useState(null);
+    const [data, setData] = useState([]);
+
 
     const handleChange = (e) => {
 
@@ -31,7 +37,7 @@ const AboutHero = () => {
 
             data.append("Image", formdata.Image);
             data.append("heading", formdata.heading);
-            data.append("description", formdata.description);
+            data.append("Description", formdata.Description);
 
             const res = await axios.post(
                 "http://localhost:5000/api/about/add",
@@ -47,6 +53,8 @@ const AboutHero = () => {
 
             alert("Data Submitted Successfully....");
 
+
+            FetchApiData();
             handleClear();
 
         } catch (err) {
@@ -70,7 +78,7 @@ const AboutHero = () => {
 
             data.append("Image", formdata.Image);
             data.append("heading", formdata.heading);
-            data.append("description", formdata.description);
+            data.append("Description", formdata.Description);
 
             await axios.put(
                 `http://localhost:5000/api/about/${selectedId}`,
@@ -84,6 +92,7 @@ const AboutHero = () => {
 
             alert("Updated Successfully....");
 
+            FetchApiData();
             handleClear();
 
         } catch (err) {
@@ -107,6 +116,7 @@ const AboutHero = () => {
 
             alert("Deleted Successfully....");
 
+            FetchApiData();
             handleClear();
 
         } catch (err) {
@@ -117,15 +127,39 @@ const AboutHero = () => {
         }
     };
 
+
+    const FetchApiData = async () => {
+
+        try {
+            const res = await axios.get("http://localhost:5000/api/about/all");
+            setData(res.data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     const handleClear = () => {
 
         setFormdata({
             heading: "",
-            description: "",
+            Description: "",
             Image: ""
         });
 
         setSelectedId(null);
+    };
+
+
+    const handleSelect = (item) => {
+
+        setFormdata({
+            heading: item.heading,
+            Description: item.Description,
+            Image: item.Image,
+        });
+
+        setSelectedId(item._id || item.id);
     };
 
     return (
@@ -148,9 +182,9 @@ const AboutHero = () => {
                     <input
                         type="text"
                         placeholder="Enter Description"
-                        name="description"
+                        name="Description"
                         onChange={handleChange}
-                        value={formdata.description}
+                        value={formdata.Description}
                         required
                     />
 
@@ -160,6 +194,15 @@ const AboutHero = () => {
                         name="Image"
                         onChange={handleChange}
                     />
+
+
+                    {formdata.Image && typeof formdata.Image === 'string' && (
+                        <img
+                            src={`http://localhost:5000/uploads/${formdata.Image}`}
+                            alt="Selected Product Image"
+                            style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
+                        />
+                    )}
 
                     <div className="button-group">
 
@@ -197,6 +240,26 @@ const AboutHero = () => {
                     </div>
 
                 </form>
+
+
+                <div className="data-list">
+                    {data.map((item, index) => (
+                        <div className="data-row" key={index}>
+                            <img
+                                src={`http://localhost:5000/uploads/${item.Image}`}
+                                className="slider-img"
+                            />
+                            <p className="slider-text">{item.heading}</p>
+                            <p className="slider-text">{item.Description}</p>
+                            <button
+                                className="select-btn"
+                                onClick={() => handleSelect(item)}
+                            >
+                                Select
+                            </button>
+                        </div>
+                    ))}
+                </div>
 
             </div>
         </>
