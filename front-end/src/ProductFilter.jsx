@@ -7,6 +7,7 @@ import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
 import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import Related_Product from './Related_Product';
 
 const ProductFilter = () => {
     const { id } = useParams();
@@ -161,6 +162,7 @@ const ProductFilter = () => {
                         </div>
                     </div>
                 </div>
+                <Related_Product category={product.category} currentId={product._id} />
             </div>
         );
     }
@@ -266,7 +268,7 @@ const ProductFilter = () => {
                                                 <img
                                                     src={item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : 'https://via.placeholder.com/400x300?text=No+Image'}
                                                     alt={item.ProductName || 'Product'}
-                                                     loading="lazy"
+                                                    loading="lazy"
                                                     className="product-image"
                                                 />
                                                 <button
@@ -304,6 +306,7 @@ const ProductFilter = () => {
                     )}
                 </main>
             </div>
+
         </div>
     );
 };
