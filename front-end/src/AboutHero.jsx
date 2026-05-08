@@ -14,7 +14,7 @@ const AboutHero = () => {
                 "http://localhost:5000/api/about/all"
             );
 
-          
+
             setData(res.data);
         } catch (error) {
             console.log(error);
@@ -45,6 +45,7 @@ const AboutHero = () => {
                             src={item.Image ? `http://localhost:5000/uploads/${item.Image}` : 'https://via.placeholder.com/600x450?text=No+Image'}
                             //   image: item.ProductImage ? `http://localhost:5000/uploads/${item.ProductImage}` : 'https://via.placeholder.com/600x450?text=No+Image'
                             alt={item.heading}
+
                             className="w-full max-w-xl h-[500px] object-cover rounded-sm shadow-lg"
                         />
                     </div>

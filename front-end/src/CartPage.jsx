@@ -88,6 +88,7 @@ export default function CartPage() {
                                 <img
                                     src={item.image}
                                     alt={item.name}
+                                     loading="lazy"
                                     className="w-full h-full object-contain p-2"
                                     onError={(e) => {
                                         e.target.src =

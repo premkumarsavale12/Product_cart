@@ -41,6 +41,7 @@ const Founder = () => {
                                             : "https://via.placeholder.com/300"
                                     }
                                     alt={item.Name}
+                                     loading="lazy"
                                     className="w-full h-full object-cover"
                                 />
                             </div>

@@ -63,6 +63,7 @@ const ProductDetails = () => {
                     <img
                         src={product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/600x450?text=No+Image"}
                         alt={product.ProductName || "Product"}
+                        loading="lazy"
                         className="details-image"
                     />
                 </div>

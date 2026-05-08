@@ -44,7 +44,8 @@ const Slider = () => {
                 <img
                     src={`http://localhost:5000/uploads/${data[currentIndex]?.SliderImage}`}
                     alt="slider"
-                    className={`slider-image ${isFading ? 'fade-out' : ''}`}                
+                    loading="lazy"
+                    className={`slider-image ${isFading ? 'fade-out' : ''}`}
                 />
             </div>
 
