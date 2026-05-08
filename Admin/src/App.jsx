@@ -5,6 +5,7 @@ import Slider from './Slider.jsx';
 import './App.css';
 import AboutHero from './AboutHero.jsx';
 import AboutMiddle from "./AboutMiddle.jsx"
+import Founder_Section from './Founder_Section.jsx';
 
 const App = () => {
   const [activeView, setActiveView] = useState('dashboard'); // Default to dashboard or slider
@@ -18,7 +19,10 @@ const App = () => {
       case 'abouthero':
         return <AboutHero />;
       case 'aboutmiddle':
-        return <AboutMiddle />
+        return <AboutMiddle />;
+      case 'foundersection':
+        return <Founder_Section />
+
 
       default:
         return <div className="dashboard"><h1>Welcome to Admin Panel</h1><p>Select an option from the sidebar.</p></div>;
@@ -46,6 +50,11 @@ const App = () => {
           <li>
             <button onClick={() => setActiveView('aboutmiddle')}> AboutMiddleSection </button>
           </li>
+
+
+             <li>
+            <button onClick={() => setActiveView('foundersection')}> Founder </button>
+          </li>  
         </ul>
       </div>
       <div className="main-content">
