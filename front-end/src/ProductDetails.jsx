@@ -16,7 +16,6 @@ const ProductDetails = () => {
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
 
-    // 👉 Add to cart
     const handleAddToCart = () => {
         addToCart({
             _id: product._id,
@@ -28,7 +27,7 @@ const ProductDetails = () => {
         });
     };
 
-    // 👉 Zoom logic
+  
     const handleMouseMove = (e) => {
         const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
 
@@ -48,7 +47,6 @@ const ProductDetails = () => {
         });
     };
 
-    // 👉 API Call
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -63,7 +61,7 @@ const ProductDetails = () => {
         fetchProduct();
     }, [id]);
 
-    // 👉 Loading
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-[60vh] text-lg font-semibold">
@@ -72,7 +70,7 @@ const ProductDetails = () => {
         );
     }
 
-    // 👉 Error
+
     if (!product) {
         return (
             <div className="text-center text-red-500 mt-10">
@@ -84,7 +82,7 @@ const ProductDetails = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-6">
 
-            {/* Back Button */}
+        
             <button
                 onClick={() => navigate(-1)}
                 className="mb-4 text-blue-600 hover:underline"
@@ -92,10 +90,10 @@ const ProductDetails = () => {
                 ← Back to Products
             </button>
 
-            {/* Main Layout */}
+        
             <div className="grid md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow">
 
-                {/* LEFT IMAGE SECTION */}
+           
                 <div
                     className="overflow-hidden rounded-lg cursor-zoom-in border"
                     onMouseMove={handleMouseMove}
@@ -113,7 +111,7 @@ const ProductDetails = () => {
                     />
                 </div>
 
-                {/* RIGHT DETAILS */}
+          
                 <div className="flex flex-col gap-4">
 
                     <span className="text-sm bg-gray-200 px-3 py-1 w-fit rounded-full">
@@ -132,7 +130,7 @@ const ProductDetails = () => {
                         In Stock: {product.Productquantity}
                     </p>
 
-                    {/* Description */}
+            
                     <div>
                         <h3 className="font-semibold text-lg mb-1">Description</h3>
                         <p className="text-gray-700 text-sm">
@@ -141,7 +139,6 @@ const ProductDetails = () => {
                         </p>
                     </div>
 
-                    {/* ACTION BUTTONS */}
                     <div className="flex flex-wrap gap-3 mt-4">
 
                         <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600">
@@ -179,7 +176,7 @@ const ProductDetails = () => {
                 </div>
             </div>
 
-            {/* RELATED PRODUCTS */}
+       
             <div className="mt-10">
                 <Related_Product
                     category={product.category}

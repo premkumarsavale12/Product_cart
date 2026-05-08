@@ -22,17 +22,17 @@ const Founder = () => {
 
     return (
         <div className="w-full bg-white py-12 px-6">
-            {/* Container */}
+
             <div className="max-w-7xl mx-auto">
 
-                {/* Cards */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     {data.map((item, index) => (
                         <div
                             key={index}
                             className="bg-white text-center rounded-lg shadow-md hover:shadow-xl transition duration-300 p-6"
                         >
-                            {/* Image */}
+
                             <div className="w-full h-[320px] overflow-hidden rounded-md bg-gray-100">
                                 <img
                                     src={
@@ -41,12 +41,12 @@ const Founder = () => {
                                             : "https://via.placeholder.com/300"
                                     }
                                     alt={item.Name}
-                                     loading="lazy"
+                                    loading="lazy"
                                     className="w-full h-full object-cover"
                                 />
                             </div>
 
-                            {/* Content */}
+
                             <div className="mt-5">
                                 <h3 className="text-2xl font-semibold text-gray-900">
                                     {item.Name}
@@ -56,7 +56,6 @@ const Founder = () => {
                                     {item.Role}
                                 </p>
 
-                                {/* Social Icons */}
                                 <div className="flex justify-center gap-4 mt-4 text-gray-500">
                                     <a
                                         href={item.twitter || "#"}

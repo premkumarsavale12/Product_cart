@@ -28,7 +28,7 @@ const AboutHero = () => {
                     key={index}
                     className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
                 >
-                    {/* Left Content */}
+           
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold text-black mb-8">
                             {item.heading}
@@ -39,7 +39,7 @@ const AboutHero = () => {
                         </p>
                     </div>
 
-                    {/* Right Image */}
+                  
                     <div className="flex justify-center">
                         <img
                             src={item.Image ? `http://localhost:5000/uploads/${item.Image}` : 'https://via.placeholder.com/600x450?text=No+Image'}
