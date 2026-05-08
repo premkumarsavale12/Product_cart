@@ -12,7 +12,9 @@ const ProductRoute = require("./router/product");
 const SliderRoute = require("./router/slider");
 const AboutRoute = require("./router/abouthero");
 const AboutMiddleRoute = require("./router/aboutmiddle");
- 
+const FounderRoute = require("./router/founder");
+
+
 
 
 ConnectDb();
@@ -29,8 +31,9 @@ app.use("/api/product", ProductRoute);
 app.use("/api/slider", SliderRoute);
 app.use("/api/about", AboutRoute);
 app.use("/api/aboutmiddle", AboutMiddleRoute);
- 
- 
+app.use("/api/founder", FounderRoute)
+
+
 
 
 app.listen(port, () => {
