@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ProductDetails.css';
 import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
 import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
@@ -11,19 +10,45 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [zoomStyle, setZoomStyle] = useState({});
     const navigate = useNavigate();
+
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
 
+    // 👉 Add to cart
     const handleAddToCart = () => {
         addToCart({
             _id: product._id,
             name: product.ProductName,
             price: product.ProductPrice,
-            image: product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/600x450?text=No+Image"
+            image: product.ProductImage
+                ? `http://localhost:5000/uploads/${product.ProductImage}`
+                : "https://via.placeholder.com/600x450?text=No+Image"
         });
-    }
+    };
 
+    // 👉 Zoom logic
+    const handleMouseMove = (e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+
+        const x = ((e.clientX - left) / width) * 100;
+        const y = ((e.clientY - top) / height) * 100;
+
+        setZoomStyle({
+            transformOrigin: `${x}% ${y}%`,
+            transform: "scale(2)"
+        });
+    };
+
+    const handleMouseLeave = () => {
+        setZoomStyle({
+            transform: "scale(1)",
+            transformOrigin: "center"
+        });
+    };
+
+    // 👉 API Call
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -38,73 +63,129 @@ const ProductDetails = () => {
         fetchProduct();
     }, [id]);
 
+    // 👉 Loading
     if (loading) {
         return (
-            <div className="loading-container">
-                <div className="spinner"></div> Loading...
+            <div className="flex justify-center items-center h-[60vh] text-lg font-semibold">
+                Loading...
             </div>
         );
     }
 
+    // 👉 Error
     if (!product) {
         return (
-            <div className="error-container">
-                Product not found.
+            <div className="text-center text-red-500 mt-10">
+                Product not found
             </div>
         );
     }
 
     return (
-        <div className="product-details-container">
-            <button className="back-button" onClick={() => navigate(-1)}>
-                &larr; Back to Products
+        <div className="max-w-7xl mx-auto px-4 py-6">
+
+            {/* Back Button */}
+            <button
+                onClick={() => navigate(-1)}
+                className="mb-4 text-blue-600 hover:underline"
+            >
+                ← Back to Products
             </button>
-            <div className="product-details-content">
-                <div className="product-details-left">
+
+            {/* Main Layout */}
+            <div className="grid md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow">
+
+                {/* LEFT IMAGE SECTION */}
+                <div
+                    className="overflow-hidden rounded-lg cursor-zoom-in border"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <img
-                        src={product.ProductImage ? `http://localhost:5000/uploads/${product.ProductImage}` : "https://via.placeholder.com/600x450?text=No+Image"}
-                        alt={product.ProductName || "Product"}
-                        loading="lazy"
-                        className="details-image"
+                        src={
+                            product.ProductImage
+                                ? `http://localhost:5000/uploads/${product.ProductImage}`
+                                : "https://via.placeholder.com/600x450?text=No+Image"
+                        }
+                        alt={product.ProductName}
+                        className="w-full h-[400px] object-cover transition-transform duration-300"
+                        style={zoomStyle}
                     />
                 </div>
-                <div className="product-details-right">
-                    <span className="category-badge">{product.category || "Uncategorized"}</span>
-                    <h1 className="product-title">{product.ProductName}</h1>
-                    <h2 className="product-price">Price: {product.ProductPrice}</h2>
-                    <h4 className="product-quantity">In Stock: {product.Productquantity}</h4>
 
-                    <div className="product-description">
-                        <h3>Description</h3>
-                        <p>
+                {/* RIGHT DETAILS */}
+                <div className="flex flex-col gap-4">
+
+                    <span className="text-sm bg-gray-200 px-3 py-1 w-fit rounded-full">
+                        {product.category || "Uncategorized"}
+                    </span>
+
+                    <h1 className="text-2xl font-bold">
+                        {product.ProductName}
+                    </h1>
+
+                    <h2 className="text-xl text-green-600 font-semibold">
+                        ₹ {product.ProductPrice}
+                    </h2>
+
+                    <p className="text-gray-600">
+                        In Stock: {product.Productquantity}
+                    </p>
+
+                    {/* Description */}
+                    <div>
+                        <h3 className="font-semibold text-lg mb-1">Description</h3>
+                        <p className="text-gray-700 text-sm">
                             Experience the premium quality of {product.ProductName}.
-                            This product is specially crafted for those who value excellence and
-                            reliability. Add it to your collection today and enjoy its remarkable features.
+                            This product is crafted for performance and durability.
                         </p>
                     </div>
 
-                    <div className="details-actions">
-                        <button className="buy-now-btn">{product.Button || "Buy Now"}</button>
-                        <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                    {/* ACTION BUTTONS */}
+                    <div className="flex flex-wrap gap-3 mt-4">
+
+                        <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600">
+                            {product.Button || "Buy Now"}
+                        </button>
+
+                        <button
+                            onClick={handleAddToCart}
+                            className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700"
+                        >
                             <FaShoppingCart /> Add to Cart
                         </button>
+
                         <button
-                            className={`details-wishlist-btn ${isInWishlist(product._id) ? 'active' : ''}`}
-                            onClick={() => toggleWishlist({
-                                _id: product._id,
-                                ProductName: product.ProductName,
-                                ProductPrice: product.ProductPrice,
-                                ProductImage: product.ProductImage
-                            })}
+                            onClick={() =>
+                                toggleWishlist({
+                                    _id: product._id,
+                                    ProductName: product.ProductName,
+                                    ProductPrice: product.ProductPrice,
+                                    ProductImage: product.ProductImage
+                                })
+                            }
+                            className={`flex items-center gap-2 px-5 py-2 rounded border 
+                            ${isInWishlist(product._id)
+                                    ? "bg-red-500 text-white"
+                                    : "bg-white text-black"
+                                }`}
                         >
-                            {isInWishlist(product._id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
-                            {isInWishlist(product._id) ? ' In Wishlist' : ' Add to Wishlist'}
+                            {isInWishlist(product._id) ? <FaHeart /> : <FaRegHeart />}
+                            {isInWishlist(product._id)
+                                ? "In Wishlist"
+                                : "Add to Wishlist"}
                         </button>
                     </div>
                 </div>
             </div>
-            <Related_Product category={product.category} currentId={product._id} />
 
+            {/* RELATED PRODUCTS */}
+            <div className="mt-10">
+                <Related_Product
+                    category={product.category}
+                    currentId={product._id}
+                />
+            </div>
         </div>
     );
 };
