@@ -5,6 +5,7 @@ import './ProductDetails.css';
 import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
 import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+import Related_Product from './Related_Product';
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -102,6 +103,8 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+             <Related_Product />
+              
         </div>
     );
 };
