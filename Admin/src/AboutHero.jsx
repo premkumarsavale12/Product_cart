@@ -250,7 +250,7 @@ const AboutHero = () => {
                                 className="slider-img"
                             />
                             <p className="slider-text">{item.heading}</p>
-                            <p className="slider-text">{item.Description}</p>
+                            {/* <p className="slider-text">{item.Description}</p>  */}
                             <button
                                 className="select-btn"
                                 onClick={() => handleSelect(item)}
