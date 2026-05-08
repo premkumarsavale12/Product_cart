@@ -33,7 +33,6 @@ const Founder_Section = () => {
 
     const handleDelete = () => {
 
-
     }
 
 
@@ -94,11 +93,11 @@ const Founder_Section = () => {
 
             </form>
 
-
-
         </div>
+
     );
 }
+
 
 
 export default Founder_Section
