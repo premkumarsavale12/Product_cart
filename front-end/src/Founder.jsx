@@ -89,13 +89,6 @@ const Founder = () => {
                     ))}
                 </div>
 
-                {/* Dots */}
-                {/* <div className="flex justify-center mt-8 gap-2">
-                    <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-                    <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                    <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-                    <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-                </div> */}
             </div>
         </div>
     );

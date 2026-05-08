@@ -97,7 +97,7 @@ router.put("/:id", upload.single('ProductImage'), async (req, res) => {
                 ...(req.file && { ProductImage: req.file.filename })
 
             },
-            { returnDocument: 'after' }
+            { new: true }
         );
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
@@ -120,8 +120,8 @@ router.delete("/:id", async (req, res) => {
 
     try {
         const deletedata = await Product.findByIdAndDelete(req.params.id);
+        if (!deletedata) return res.status(404).json({ message: "Not Found Item" });
         res.json("Deleted SuccessFully...");
-        if (!deletedata) return res.status(404).json({ message: "Not Foud Item" });
     }
 
     catch (err) {

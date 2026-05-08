@@ -89,11 +89,11 @@ router.put("/:id", upload.single('Image'), async (req, res) => {
                 ...(req.file && { Image: req.file.filename })
 
             },
-            { returnDocument: 'after' }
+            { new: true }
         );
 
-        if (!updateddata) return res.status(404).json({ message: "Not Found" });
-        res.json(updateddata);
+        if (!updatedata) return res.status(404).json({ message: "Not Found" });
+        res.json(updatedata);
 
     }
 
@@ -112,8 +112,8 @@ router.delete("/:id", async (req, res) => {
     try {
 
         const deletedata = await Founder.findByIdAndDelete(req.params.id);
+        if (!deletedata) return res.status(404).json({ message: "Not Found Item" });
         res.json("Deleted SuccessFully...");
-        if (!deletedata) return res.status(404).json({ message: "Not Foud Item" });
     }
     catch (err) {
 

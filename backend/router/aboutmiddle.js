@@ -103,7 +103,7 @@ router.put("/:id", upload.any(), async (req, res) => {
 
                 ...(iconFile && { Icon: iconFile.filename })
             },
-            { returnDocument: 'after' }
+            { new: true }
         );
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
@@ -122,9 +122,9 @@ router.delete("/:id", async (req, res) => {
     try {
 
         const deletedata = await AboutMiddle.findByIdAndDelete(req.params.id);
-        res.json("Deleted SuccessFully....");
 
-        if (!deletedata) return res.status(404).json({ message: "Not Found Item" })
+        if (!deletedata) return res.status(404).json({ message: "Not Found Item" });
+        res.json("Deleted SuccessFully....");
     }
     catch (err) {
         console.log(err);

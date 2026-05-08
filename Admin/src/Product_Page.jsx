@@ -64,8 +64,30 @@ const Product_Page = () => {
         }
 
         try {
-            const res = await axios.put(`http://localhost:5000/api/product/${selectedId}`, formdata);
+            const updateData = new FormData();
+
+            updateData.append("ProductName", formdata.ProductName);
+            updateData.append("ProductPrice", formdata.ProductPrice);
+            updateData.append("Productquantity", formdata.Productquantity);
+            updateData.append("category", formdata.category);
+            updateData.append("Button", formdata.Button);
+
+            if (formdata.ProductImage) {
+                updateData.append("ProductImage", formdata.ProductImage);
+            }
+
+            await axios.put(
+                `http://localhost:5000/api/product/${selectedId}`,
+                updateData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
             alert("Updated SuccessFully....");
+            FetchApiData();
             handleClear();
         }
 

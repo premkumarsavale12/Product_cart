@@ -72,7 +72,7 @@ router.post("/add", upload.single('Image'), async (req, res) => {
 
 // for put 
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single('Image'), async (req, res) => {
 
     try {
 
@@ -86,7 +86,7 @@ router.put("/:id", async (req, res) => {
                 ...(req.file && { Image: req.file.filename })
             },
 
-            { returnDocument: 'after' }
+            { new: true }
 
         );
 
@@ -108,10 +108,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
 
-
         const deletedata = await AboutHero.findByIdAndDelete(req.params.id);
-        res.json("Deleted SuccessFully....");
         if (!deletedata) return res.status(404).json({ message: "Not Found  Items " });
+        res.json("Deleted SuccessFully....");
 
     }
 

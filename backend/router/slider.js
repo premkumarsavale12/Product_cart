@@ -111,7 +111,7 @@ router.put("/:id", upload.single('SliderImage'), async (req, res) => {
                 ...(req.file && { SliderImage: req.file.filename })
 
             },
-            { returnDocument: 'after' }
+            { new: true }
 
         );
 
