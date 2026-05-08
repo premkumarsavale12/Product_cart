@@ -103,8 +103,8 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-             <Related_Product />
-              
+            <Related_Product category={product.category} currentId={product._id} />
+
         </div>
     );
 };

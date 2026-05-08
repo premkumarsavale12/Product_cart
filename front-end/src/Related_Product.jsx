@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 
-const Related_Product = () => {
+const Related_Product = ({ category, currentId }) => {
 
     const [data, setData] = useState([]);
 
@@ -18,11 +18,18 @@ const Related_Product = () => {
     const FetchApiData = async () => {
         try {
             const res = await axios.get("http://localhost:5000/api/product/all");
-            setData(res.data);
+
+
+            const filtered = res.data.filter(
+                (item) =>
+                    item.category === category && item._id !== currentId
+            );
+
+            setData(filtered);
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     return (
         <div className="p-6">
