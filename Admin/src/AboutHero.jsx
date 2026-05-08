@@ -49,7 +49,6 @@ const AboutHero = () => {
                 }
             );
 
-            console.log(res.data);
 
             alert("Data Submitted Successfully....");
 

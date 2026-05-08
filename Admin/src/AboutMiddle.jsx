@@ -68,7 +68,7 @@ const AboutMiddle = () => {
                 }
             );
 
-            console.log(res.data);
+        
 
             alert("Data Submitted Successfully");
 

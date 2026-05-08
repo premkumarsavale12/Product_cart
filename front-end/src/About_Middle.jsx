@@ -14,7 +14,7 @@ const About_Middle = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/aboutmiddle/all");
             setData(res.data);
-            console.log(res.data);
+         
         }
         catch (err) {
             console.log(err);

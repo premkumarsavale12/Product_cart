@@ -14,7 +14,7 @@ const AboutHero = () => {
                 "http://localhost:5000/api/about/all"
             );
 
-            console.log(res.data);
+          
             setData(res.data);
         } catch (error) {
             console.log(error);

@@ -2,6 +2,7 @@
 import React from 'react'
 import AboutHero from './AboutHero'
 import About_Middle from './About_Middle'
+import Founder from './Founder'
 
 const About = () => {
 
@@ -10,9 +11,7 @@ const About = () => {
         <>
             <AboutHero />
             <About_Middle />
-
-
-
+            <Founder />
         </>
 
     )
