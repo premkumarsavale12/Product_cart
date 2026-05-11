@@ -1,6 +1,8 @@
+
 const express = require("express");
 const path = require("path");
 const router = express.Router();
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -15,22 +17,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const Product = require("../module/product");
+const Discount = require("../module/Discount_Sales");
 
-
-// for get all 
+//FOR get all 
 
 router.get("/all", async (req, res) => {
 
     try {
 
-        const data = await Product.find();
+        const data = await Discount.find();
         res.json(data);
-
     }
+
     catch (err) {
         res.status(500).json({ err: err.message });
-
     }
 
 });
@@ -40,33 +40,36 @@ router.get("/all", async (req, res) => {
 router.get("/:id", async (req, res) => {
 
     try {
-
-        const data = await Product.findById(req.params.id);
+        const data = await Discount.findById(req.params.id);
         res.json(data);
-
     }
 
     catch (err) {
+
         res.status(500).json({ err: err.message });
+
     }
 
 });
 
-// for add 
 
-router.post("/add", upload.single('ProductImage'), async (req, res) => {
+// for post method 
+// image 
 
+router.post("/add", upload.single('image'), async (req, res) => {
     try {
 
-        const savedata = await Product.create({
-            ProductImage: req.file ? req.file.filename : req.body.ProductImage,
-            ProductName: req.body.ProductName,
-            ProductPrice: req.body.ProductPrice,
-            Productquantity: req.body.Productquantity,
-            category: req.body.category,
+        const savedata = await Discount.create({
+            image: req.file ? req.file.filename : req.body.image,
+            sale_name: req.body.sale_name,
+            time: req.body.time,
+            product_name: req.body.product_name,
+            price: req.body.price,
+            old_price: req.body.old_price,
             Button: req.body.Button
 
-        });
+        })
+
 
         res.status(201).json(savedata);
 
@@ -75,33 +78,40 @@ router.post("/add", upload.single('ProductImage'), async (req, res) => {
     catch (err) {
 
         res.status(500).json({ message: err.message });
-
     }
+
 });
 
 
-// for update 
+// for put method 
 
-router.put("/:id", upload.single('ProductImage'), async (req, res) => {
+router.put("/:id", upload.single('image'), async (req, res) => {
 
     try {
-        const updateddata = await Product.findByIdAndUpdate(
+
+        const updateddata = await Discount.findByIdAndUpdate(
             req.params.id,
             {
-                ProductName: req.body.ProductName,
-                ProductPrice: req.body.ProductPrice,
-                Productquantity: req.body.Productquantity,
-                category: req.body.category,
+                sale_name: req.body.sale_name,
+                time: req.body.time,
+                product_name: req.body.product_name,
+                price: req.body.price,
+                old_price: req.body.old_price,
                 Button: req.body.Button,
 
                 ...(req.file && { ProductImage: req.file.filename })
 
+
             },
+
             { new: true }
+
         );
+
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
         res.json(updateddata);
+
 
     }
 
@@ -110,23 +120,30 @@ router.put("/:id", upload.single('ProductImage'), async (req, res) => {
         console.log(err);
         res.status(500).json({ message: err.message });
 
+
     }
 });
 
-// delete 
+// for delete 
 
 router.delete("/:id", async (req, res) => {
 
     try {
-        const deletedata = await Product.findByIdAndDelete(req.params.id);
+
+        const deletedata = await Discount.findByIdAndDelete(req.params.id);
         if (!deletedata) return res.status(404).json({ message: "Not Found Item" });
-        res.json("Deleted SuccessFully...");
+        res.json("Deleted SuccessFully......");
+
     }
 
     catch (err) {
+
+        console.log(err);
+
         res.status(500).json({ message: err.message });
+
     }
 
-});
+})
 
 module.exports = router;
