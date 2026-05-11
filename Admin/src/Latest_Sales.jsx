@@ -148,7 +148,7 @@ const Latest_Sales = () => {
             const res = await axios.get("http://localhost:5000/api/discount/all");
             setData(res.data);
             console.log(res.data);
-             
+
         }
         catch (err) {
             console.log(err);
@@ -196,17 +196,12 @@ const Latest_Sales = () => {
                     value={formdata.time}
                     required
                 />
-
-
                 <input
                     type="file"
                     accept="image/*"
                     name="image"
                     onChange={handleChange}
                 />
-
-
-
                 {formdata.image && typeof formdata.image === 'string' && (
                     <img
                         src={`http://localhost:5000/uploads/${formdata.image}`}
@@ -265,9 +260,9 @@ const Latest_Sales = () => {
 
             <div className="data-list">
                 {data.map((item, index) => (
-               
-                      
-      
+
+
+
                     <div className="data-row" key={index}>
                         <img
                             src={`http://localhost:5000/uploads/${item.image}`}
