@@ -59,28 +59,29 @@ router.get("/:id", async (req, res) => {
 router.post("/add", upload.single('image'), async (req, res) => {
     try {
 
-        const savedata = await Discount.create({
-            image: req.file ? req.file.filename : req.body.image,
-            sale_name: req.body.sale_name,
-            time: req.body.time,
-            product_name: req.body.product_name,
-            price: req.body.price,
-            old_price: req.body.old_price,
-            Button: req.body.Button
-        })
+        // DEBUG (check what you are actually receiving)
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
 
+        const savedata = new Discount({
+            sale_name: req.body.sale_name || "",
+            time: req.body.time || "",
+            image: req.file ? req.file.filename : "",
+            product_name: req.body.product_name || "",
+            price: req.body.price || "",
+            old_price: req.body.old_price || "",
+            Button: req.body.Button || ""
+        });
 
-        res.status(201).json(savedata);
+        const result = await savedata.save();
 
-    }
+        res.status(201).json(result);
 
-    catch (err) {
-
+    } catch (err) {
+        console.log(err);
         res.status(500).json({ message: err.message });
     }
-
 });
-
 
 // for put method 
 
@@ -97,8 +98,7 @@ router.put("/:id", upload.single('image'), async (req, res) => {
                 price: req.body.price,
                 old_price: req.body.old_price,
                 Button: req.body.Button,
-
-                ...(req.file && { ProductImage: req.file.filename })
+                ...(req.file && { image: req.file.filename })
 
 
             },
