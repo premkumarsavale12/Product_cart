@@ -127,10 +127,6 @@ const Login = () => {
                             Login
                         </Button>
                     </form>
-
-                    <Typography variant="body2" sx={{ mt: 3, color: '#555' }}>
-                        Don't have an account? <span style={{ color: '#764ba2', cursor: 'pointer', fontWeight: 'bold' }}>Sign Up</span>
-                    </Typography>
                 </Paper>
             </Container>
         </Box>

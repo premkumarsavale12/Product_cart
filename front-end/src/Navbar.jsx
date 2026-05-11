@@ -30,7 +30,7 @@ const Navbar = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 localStorage.removeItem("token");
-                window.location.href = "/login"; // Force reload to clear state in App
+                window.location.href = "/login";
             }
         })
     }
@@ -92,8 +92,8 @@ const Navbar = () => {
                         </span>
                     )}
                 </Link>
-
-                <button
+       
+                <button 
                     onClick={handleLogout}
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-700"
                     title="Logout"
