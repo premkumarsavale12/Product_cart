@@ -26,87 +26,111 @@ const Latest_Sales = () => {
     };
 
     return (
-        <div className="bg-gray-100 py-10 px-6">
-
-            {/* Heading */}
-            <div className="mb-8 flex justify-between items-center">
-                <div>
-                    <p className="text-red-500 font-semibold">Today's</p>
-                    <h2 className="text-3xl font-bold">Flash Sales</h2>
-                </div>
-            </div>
-
-            {/* Slider */}
-            <Swiper
-                modules={[Navigation, Autoplay, Pagination]}
-                spaceBetween={20}
-                slidesPerView={4}
-                navigation
-                pagination={{ clickable: true }}
-                loop={true}
-                autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                }}
-                breakpoints={{
-                    320: { slidesPerView: 1 },
-                    480: { slidesPerView: 2 },
-                    768: { slidesPerView: 3 },
-                    1024: { slidesPerView: 4 },
-                }}
-                className="!pb-12" // space for dots
-            >
-                {data.map((item, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl transition duration-300 h-full flex flex-col">
-
-                            {/* Sale Name */}
-                            <h2 className="text-lg font-bold mb-2 text-center">
-                                {item.sale_name}
-                            </h2>
-
-                            {/* Image */}
-                            <div className="relative">
-                                <img
-                                    src={
-                                        item.image
-                                            ? `http://localhost:5000/uploads/${item.image}`
-                                            : "https://via.placeholder.com/300x200"
-                                    }
-                                    alt=""
-                                    className="w-full h-40 object-cover rounded-lg"
-                                />
-
-                                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                    -25%
-                                </span>
-                            </div>
-
-                            {/* Product */}
-                            <h3 className="mt-3 font-semibold text-md">
-                                {item.product_name}
-                            </h3>
-
-                            {/* Price */}
-                            <div className="flex items-center gap-2 mt-1">
-                                <span className="text-red-500 font-bold text-lg">
-                                    ₹{item.price}
-                                </span>
-                                <span className="line-through text-gray-400 text-sm">
-                                    ₹{item.old_price}
-                                </span>
-                            </div>
-
-                            {/* Button */}
-                            <button className="mt-auto w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                                {item.Button || "Buy Now"}
-                            </button>
-
+        <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                {/* Heading Area */}
+                <div className="mb-10 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+                    <div>
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className="w-5 h-8 bg-red-500 rounded-sm inline-block"></span>
+                            <p className="text-red-500 font-bold tracking-wider uppercase text-sm">Today's</p>
                         </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Flash Sales</h2>
+                    </div>
+                </div>
+
+                {/* Slider */}
+                <Swiper
+                    modules={[Navigation, Autoplay, Pagination]}
+                    spaceBetween={24}
+                    slidesPerView={4}
+                    navigation
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                    }}
+                    loop={true}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    }}
+                    breakpoints={{
+                        320: { slidesPerView: 1, spaceBetween: 16 },
+                        640: { slidesPerView: 2, spaceBetween: 20 },
+                        768: { slidesPerView: 3, spaceBetween: 24 },
+                        1024: { slidesPerView: 4, spaceBetween: 24 },
+                    }}
+                    className="!pb-16" // space for pagination dots
+                >
+                    {data.map((item, index) => {
+                        // Calculate discount percentage dynamically if available
+                        let discountPercent = "-25%"; // Default placeholder
+                        if (item.old_price && item.price && item.old_price > item.price) {
+                            const discount = Math.round(((item.old_price - item.price) / item.old_price) * 100);
+                            discountPercent = `-${discount}%`;
+                        }
+
+                        return (
+                            <SwiperSlide key={index} className="h-auto">
+                                <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden relative">
+
+                                    {/* Image Container */}
+                                    <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 p-4 flex items-center justify-center">
+                                        {/* Discount Badge */}
+                                        <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-md z-10 shadow-sm">
+                                            {discountPercent}
+                                        </span>
+
+                                        <img
+                                            src={
+                                                item.image
+                                                    ? `http://localhost:5000/uploads/${item.image}`
+                                                    : "https://via.placeholder.com/300x200"
+                                            }
+                                            alt={item.product_name}
+                                            className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+                                        />
+                                    </div>
+
+                                    {/* Content Container */}
+                                    <div className="p-5 flex flex-col flex-grow">
+                                        {/* Sale Name or Brand (Optional small text) */}
+                                        {item.sale_name && (
+                                            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1 font-semibold">
+                                                {item.sale_name}
+                                            </p>
+                                        )}
+
+                                        {/* Product Name */}
+                                        <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-2 group-hover:text-red-500 transition-colors">
+                                            {item.product_name || "Awesome Product"}
+                                        </h3>
+
+                                        {/* Price Container */}
+                                        <div className="mt-auto pt-2 flex items-baseline gap-3 mb-4">
+                                            <span className="text-red-500 font-extrabold text-xl">
+                                                ₹{item.price}
+                                            </span>
+                                            {item.old_price && (
+                                                <span className="line-through text-gray-400 font-medium text-sm">
+                                                    ₹{item.old_price}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Action Button */}
+                                        <button className="w-full bg-black text-white font-medium py-2.5 rounded-xl opacity-90 hover:opacity-100 hover:bg-gray-900 transform active:scale-95 transition-all duration-200 shadow-md">
+                                            {item.Button || "Add to Cart"}
+                                        </button>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        )
+                    })}
+                </Swiper>
+            </div>
+        </section>
     );
 };
 
