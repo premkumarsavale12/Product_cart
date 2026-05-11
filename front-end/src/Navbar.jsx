@@ -1,19 +1,38 @@
 import React, { useState } from 'react'
 import './Navbar.css'
-import { FaSearch, FaTimes, FaRegStar, FaShoppingCart } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { FaSearch, FaTimes, FaRegStar, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom';
 import { useWishlist } from './context/WishlistContext';
 import { useCart } from './context/CartContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
 
     const { totalCount } = useCart();
     const { totalWishlistCount } = useWishlist();
 
     const handleSearch = (e) => {
         e.preventDefault();
+    }
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will be logged out!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, logout!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("token");
+                window.location.href = "/login"; // Force reload to clear state in App
+            }
+        })
     }
 
     return (
@@ -73,9 +92,19 @@ const Navbar = () => {
                         </span>
                     )}
                 </Link>
+
+                <button
+                    onClick={handleLogout}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-700"
+                    title="Logout"
+                    style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+                >
+                    <FaSignOutAlt className="text-xl" />
+                </button>
             </ul>
         </nav>
     )
 }
 
 export default Navbar
+

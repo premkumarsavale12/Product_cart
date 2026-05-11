@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import Swal from "sweetalert2";
-import { Box, TextField, Button, Typography, Paper } from "@mui/material";
+import { Box, TextField, Button, Typography, Paper, Container } from "@mui/material";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -11,6 +11,12 @@ const Login = () => {
         email: "",
         password: ""
     });
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate("/");
+        }
+    }, [navigate]);
 
     const handleChange = (e) => {
         setForm({
@@ -32,7 +38,8 @@ const Login = () => {
                     showConfirmButton: false
                 });
                 localStorage.setItem("token", response.data.token);
-                navigate("/");
+
+                window.location.href = "/";
             }
         } catch (err) {
             Swal.fire({
@@ -44,72 +51,88 @@ const Login = () => {
     };
 
     return (
-
         <Box
             sx={{
                 minHeight: "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                padding: 2
             }}
         >
+            <Container maxWidth="xs">
+                <Paper
+                    elevation={10}
+                    sx={{
+                        padding: 4,
+                        borderRadius: 4,
+                        backgroundColor: "rgba(255, 255, 255, 0.9)",
+                        backdropFilter: "blur(10px)",
+                        textAlign: "center"
+                    }}
+                >
+                    <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: '#4a148c' }}>
+                        Welcome Back
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" sx={{ mb: 3 }}>
+                        Please login to your account
+                    </Typography>
 
-            <Paper
-                elevation={6}
-                sx={{
-                    padding: 4,
-                    width: "100%",
-                    maxWidth: 400,
-                    borderRadius: 3,
-                    backgroundColor: "rgba(255, 255, 255, 0.95)",
-                    marginLeft: "300px"
-                }}
-            >
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Email"
+                            name="email"
+                            type="email"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
+                            sx={{ backgroundColor: "white", borderRadius: 1 }}
+                        />
 
+                        <TextField
+                            label="Password"
+                            name="password"
+                            type="password"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            value={form.password}
+                            onChange={handleChange}
+                            required
+                            sx={{ backgroundColor: "white", borderRadius: 1 }}
+                        />
 
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            size="large"
+                            sx={{
+                                mt: 4,
+                                py: 1.5,
+                                fontWeight: "bold",
+                                borderRadius: 2,
+                                background: "linear-gradient(45deg, #667eea 30%, #764ba2 90%)",
+                                boxShadow: '0 3px 5px 2px rgba(102, 126, 234, .3)',
+                                transition: 'transform 0.2s',
+                                '&:hover': {
+                                    transform: 'scale(1.02)',
+                                }
+                            }}
+                        >
+                            Login
+                        </Button>
+                    </form>
 
-                <p style={{ marginTop: "10px" }}> Please Login in into your Account</p>
-                <form onSubmit={handleSubmit}>
-
-                    <TextField
-                        label="Email"
-                        name="email"
-                        type="email"
-                        fullWidth
-                        margin="normal"
-                        value={form.email}
-                        onChange={handleChange}
-                        required
-                    />
-
-                    <TextField
-                        label="Password"
-                        name="password"
-                        type="password"
-                        fullWidth
-                        margin="normal"
-                        value={form.password}
-                        onChange={handleChange}
-                        required
-                    />
-
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        fullWidth
-                        sx={{
-                            mt: 3,
-                            py: 1.5,
-                            fontWeight: "bold"
-                        }}
-                    >
-                        Login
-                    </Button>
-
-                </form>
-
-            </Paper>
-
+                    <Typography variant="body2" sx={{ mt: 3, color: '#555' }}>
+                        Don't have an account? <span style={{ color: '#764ba2', cursor: 'pointer', fontWeight: 'bold' }}>Sign Up</span>
+                    </Typography>
+                </Paper>
+            </Container>
         </Box>
     );
 };
