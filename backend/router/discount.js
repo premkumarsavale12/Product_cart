@@ -67,7 +67,6 @@ router.post("/add", upload.single('image'), async (req, res) => {
             price: req.body.price,
             old_price: req.body.old_price,
             Button: req.body.Button
-
         })
 
 

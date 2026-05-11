@@ -17,7 +17,6 @@ const upload = multer({ storage });
 
 const Product = require("../module/product");
 
-
 // for get all 
 
 router.get("/all", async (req, res) => {
