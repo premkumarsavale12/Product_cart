@@ -12,6 +12,7 @@ import { WishlistProvider } from './context/WishlistContext';
 import ProductFilter from './ProductFilter';
 import About from './About';
 import About_Middle from './About_Middle';
+import Login from './Login';
 
 const App = () => {
   return (
@@ -22,8 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={
               <>
-                <Slider />
-                <Product />
+             <Login />
               </>
             } />
             <Route path="/product/:id" element={<ProductDetails />} />
@@ -32,6 +32,7 @@ const App = () => {
             <Route path="/productfilter" element={<ProductFilter />} />
             <Route path="/productfilter/:id" element={<ProductFilter />} />
             <Route path='/about' element={<About />}> </Route>
+            {/* <Route path='/login' element={<Login />}> </Route> */}
 
           </Routes>
           <Footer />

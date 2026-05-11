@@ -27,7 +27,6 @@ const ProductDetails = () => {
         });
     };
 
-  
     const handleMouseMove = (e) => {
         const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
 
@@ -82,7 +81,7 @@ const ProductDetails = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-6">
 
-        
+
             <button
                 onClick={() => navigate(-1)}
                 className="mb-4 text-blue-600 hover:underline"
@@ -90,10 +89,10 @@ const ProductDetails = () => {
                 ← Back to Products
             </button>
 
-        
+
             <div className="grid md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow">
 
-           
+
                 <div
                     className="overflow-hidden rounded-lg cursor-zoom-in border"
                     onMouseMove={handleMouseMove}
@@ -111,7 +110,7 @@ const ProductDetails = () => {
                     />
                 </div>
 
-          
+
                 <div className="flex flex-col gap-4">
 
                     <span className="text-sm bg-gray-200 px-3 py-1 w-fit rounded-full">
@@ -130,7 +129,7 @@ const ProductDetails = () => {
                         In Stock: {product.Productquantity}
                     </p>
 
-            
+
                     <div>
                         <h3 className="font-semibold text-lg mb-1">Description</h3>
                         <p className="text-gray-700 text-sm">
@@ -176,7 +175,7 @@ const ProductDetails = () => {
                 </div>
             </div>
 
-       
+
             <div className="mt-10">
                 <Related_Product
                     category={product.category}

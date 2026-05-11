@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const cors = require('cors')
+const bodyParser = require("body-parser");
 
 const port = 5000;
 
@@ -13,27 +14,26 @@ const SliderRoute = require("./router/slider");
 const AboutRoute = require("./router/abouthero");
 const AboutMiddleRoute = require("./router/aboutmiddle");
 const FounderRoute = require("./router/founder");
-
-
-
+const Auth = require("./router/auth");
 
 ConnectDb();
 
 app.use(express.json());
 app.use(cors())
 
+app.use(bodyParser.json());
+
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from uploads directory
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/product", ProductRoute);
 app.use("/api/slider", SliderRoute);
 app.use("/api/about", AboutRoute);
 app.use("/api/aboutmiddle", AboutMiddleRoute);
-app.use("/api/founder", FounderRoute)
-
-
+app.use("/api/founder", FounderRoute);
+app.use("/api/auth", Auth);
 
 
 app.listen(port, () => {
