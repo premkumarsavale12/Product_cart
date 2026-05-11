@@ -99,27 +99,19 @@ router.put("/:id", upload.single('image'), async (req, res) => {
                 old_price: req.body.old_price,
                 Button: req.body.Button,
                 ...(req.file && { image: req.file.filename })
-
-
             },
 
             { new: true }
 
         );
 
-
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
         res.json(updateddata);
-
-
     }
 
     catch (err) {
-
         console.log(err);
         res.status(500).json({ message: err.message });
-
-
     }
 });
 
@@ -128,19 +120,14 @@ router.put("/:id", upload.single('image'), async (req, res) => {
 router.delete("/:id", async (req, res) => {
 
     try {
-
         const deletedata = await Discount.findByIdAndDelete(req.params.id);
         if (!deletedata) return res.status(404).json({ message: "Not Found Item" });
         res.json("Deleted SuccessFully......");
-
     }
 
     catch (err) {
-
         console.log(err);
-
         res.status(500).json({ message: err.message });
-
     }
 
 })

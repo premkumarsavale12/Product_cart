@@ -12,6 +12,7 @@ import { WishlistProvider } from './context/WishlistContext';
 import ProductFilter from './ProductFilter';
 import About from './About';
 import Login from './Login';
+import Latest_Sales from './Latest_Sales';
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -35,10 +36,13 @@ const App = () => {
                       <Route path="/" element={
                         <>
                           <Slider />
+                            <Latest_Sales />
                           <Product />
+                        
                         </>
                       } />
                       <Route path="/product/:id" element={<ProductDetails />} />
+
                       <Route path="/cart" element={<CartPage />} />
                       <Route path="/wishlist" element={<Wishlist />} />
                       <Route path="/productfilter" element={<ProductFilter />} />
@@ -59,4 +63,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App;

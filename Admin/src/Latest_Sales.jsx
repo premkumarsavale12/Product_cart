@@ -185,7 +185,7 @@ const Latest_Sales = () => {
                     name="sale_name"
                     onChange={handleChange}
                     value={formdata.sale_name}
-                    required
+     
                 />
 
                 <input
@@ -194,7 +194,7 @@ const Latest_Sales = () => {
                     name="time"
                     onChange={handleChange}
                     value={formdata.time}
-                    required
+         
                 />
                 <input
                     type="file"
