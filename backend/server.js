@@ -16,6 +16,8 @@ const AboutMiddleRoute = require("./router/aboutmiddle");
 const FounderRoute = require("./router/founder");
 const Auth = require("./router/auth");
 const Discount = require("./router/discount");
+const Contact = require("./router/contact");
+ 
 
 
 ConnectDb();
@@ -37,6 +39,7 @@ app.use("/api/aboutmiddle", AboutMiddleRoute);
 app.use("/api/founder", FounderRoute);
 app.use("/api/auth", Auth);
 app.use("/api/discount", Discount);
+app.use("/api/contact",Contact )
 
 
 app.listen(port, () => {
