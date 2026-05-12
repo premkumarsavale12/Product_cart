@@ -64,7 +64,6 @@ const Navbar = () => {
                 <li className="nav-item"><Link to="/contact">Contact</Link> </li>
                 <li className="nav-item"><Link to="/productfilter">Product</Link></li>
 
-
                 <button
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:flex"
                     onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -106,6 +105,4 @@ const Navbar = () => {
         </nav>
     )
 }
-
 export default Navbar
-

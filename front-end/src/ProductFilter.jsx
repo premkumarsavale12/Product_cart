@@ -310,7 +310,4 @@ const ProductFilter = () => {
         </div>
     );
 };
-
 export default ProductFilter;
-
-

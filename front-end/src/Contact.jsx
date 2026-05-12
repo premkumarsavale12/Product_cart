@@ -23,13 +23,10 @@ const Contact = () => {
 
         }
         catch (err) {
-
             console.log(err);
-
         }
 
     }
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -149,5 +146,4 @@ const Contact = () => {
         </div>
     );
 };
-
 export default Contact;

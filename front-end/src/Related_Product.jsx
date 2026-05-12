@@ -83,5 +83,4 @@ const Related_Product = ({ category, currentId }) => {
         </div>
     )
 }
-
 export default Related_Product;

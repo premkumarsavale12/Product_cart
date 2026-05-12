@@ -133,5 +133,4 @@ const Latest_Sales = () => {
         </section>
     );
 };
-
 export default Latest_Sales;
