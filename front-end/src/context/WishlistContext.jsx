@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-// import api from "../utils/api";
+import axios from "axios";
+
 
 const WishlistContext = createContext();
 
@@ -14,7 +15,9 @@ export function WishlistProvider({ children }) {
             const token = localStorage.getItem("token");
             if (token && !isInitialized) {
                 try {
-                    const res = await api.get("/auth/wishlist");
+                    const res = await axios.get("http://localhost:5000/api/auth/wishlist", {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
                     setWishlistItems(res.data || []);
                     setIsInitialized(true);
                 } catch (error) {
@@ -28,7 +31,9 @@ export function WishlistProvider({ children }) {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token && isInitialized) {
-            api.post("/auth/wishlist", { wishlistItems }).catch(err => console.error(err));
+            axios.post("http://localhost:5000/api/auth/wishlist", { wishlistItems }, {
+                headers: { Authorization: `Bearer ${token}` }
+            }).catch(err => console.error(err));
         }
     }, [wishlistItems, isInitialized]);
 

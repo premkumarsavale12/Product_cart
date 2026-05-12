@@ -66,7 +66,6 @@ const Footer = () => {
                 </div>
             </div>
 
-
             <div className="footer-bottom">
                 <div>Become a Seller</div>
                 <div>Advertise</div>
