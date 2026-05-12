@@ -13,6 +13,7 @@ import ProductFilter from './ProductFilter';
 import About from './About';
 import Login from './Login';
 import Latest_Sales from './Latest_Sales';
+import Contact from './Contact';
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -36,9 +37,9 @@ const App = () => {
                       <Route path="/" element={
                         <>
                           <Slider />
-                            <Latest_Sales />
+                          <Latest_Sales />
                           <Product />
-                        
+
                         </>
                       } />
                       <Route path="/product/:id" element={<ProductDetails />} />
@@ -48,6 +49,7 @@ const App = () => {
                       <Route path="/productfilter" element={<ProductFilter />} />
                       <Route path="/productfilter/:id" element={<ProductFilter />} />
                       <Route path='/about' element={<About />} />
+                      <Route path='/contact' element={<Contact />} />
                     </Routes>
                     <Footer />
                   </>

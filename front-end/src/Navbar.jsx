@@ -61,8 +61,9 @@ const Navbar = () => {
                 )}
                 <li className="nav-item"><Link to="/">Home</Link></li>
                 <li className="nav-item"><Link to="/about">About</Link></li>
-                <li className="nav-item">Contact</li>
+                <li className="nav-item"><Link to="/contact">Contact</Link> </li>
                 <li className="nav-item"><Link to="/productfilter">Product</Link></li>
+
 
                 <button
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:flex"
@@ -92,8 +93,8 @@ const Navbar = () => {
                         </span>
                     )}
                 </Link>
-       
-                <button 
+
+                <button
                     onClick={handleLogout}
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-700"
                     title="Logout"
