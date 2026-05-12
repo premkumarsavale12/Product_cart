@@ -177,9 +177,7 @@ const AboutMiddle = () => {
         setSelectedId(null);
     };
 
-
     return (
-
         <>
             <div className="product-container">
 
@@ -195,8 +193,6 @@ const AboutMiddle = () => {
                         name="Icon"
                         onChange={handleChange}
                     />
-
-
 
                     {formdata.Icon && (
                         <img
@@ -216,8 +212,6 @@ const AboutMiddle = () => {
                         />
                     )}
 
-
-
                     <input
                         type="number"
                         placeholder="Enter Number"
@@ -227,8 +221,6 @@ const AboutMiddle = () => {
                         required
                     />
 
-
-
                     <input
                         type="text"
                         placeholder="Enter Data"
@@ -237,8 +229,6 @@ const AboutMiddle = () => {
                         onChange={handleChange}
                         required
                     />
-
-
 
                     <div className="button-group">
 
@@ -275,8 +265,6 @@ const AboutMiddle = () => {
 
                     </div>
                 </form>
-
-
 
                 <div className="data-list">
 
@@ -329,5 +317,4 @@ const AboutMiddle = () => {
         </>
     );
 };
-
 export default AboutMiddle;

@@ -5,7 +5,6 @@ import axios from "axios"
 
 const Latest_Sales = () => {
 
-
     const [formdata, setFormData] = useState({
         sale_name: "",
         time: "",
@@ -83,7 +82,6 @@ const Latest_Sales = () => {
                 updateData.append("image", formdata.image);
             }
 
-
             await axios.put(
                 `http://localhost:5000/api/discount/${selectedId}`,
                 updateData,
@@ -94,12 +92,9 @@ const Latest_Sales = () => {
                 }
             );
 
-
             alert("Updated SuccessFully....");
             FetchApiData();
             handleClear();
-
-
         }
 
         catch (err) {
@@ -107,9 +102,7 @@ const Latest_Sales = () => {
             alert("Error Updating data...");
 
         }
-
     }
-
     const handleDelete = async () => {
 
         if (!selectedId) {
@@ -125,7 +118,6 @@ const Latest_Sales = () => {
             console.log(err);
         }
 
-
     }
 
     const handleClear = () => {
@@ -140,8 +132,6 @@ const Latest_Sales = () => {
         })
 
     }
-
-
     const FetchApiData = async () => {
 
         try {
@@ -159,7 +149,6 @@ const Latest_Sales = () => {
 
         setFormData({
 
-
             sale_name: item.sale_name,
             time: item.time,
             image: item.image,
@@ -171,7 +160,6 @@ const Latest_Sales = () => {
         });
         setSelectedId(item._id || item.id);
     }
-
 
     return (
         <div className="product-container">
@@ -185,7 +173,7 @@ const Latest_Sales = () => {
                     name="sale_name"
                     onChange={handleChange}
                     value={formdata.sale_name}
-     
+
                 />
 
                 <input
@@ -194,7 +182,7 @@ const Latest_Sales = () => {
                     name="time"
                     onChange={handleChange}
                     value={formdata.time}
-         
+
                 />
                 <input
                     type="file"
@@ -218,7 +206,6 @@ const Latest_Sales = () => {
                     value={formdata.product_name}
                     required
                 />
-
                 <input
                     type="number"
                     placeholder="Enter Price"
@@ -227,7 +214,6 @@ const Latest_Sales = () => {
                     value={formdata.price}
                     required
                 />
-
 
                 <input
                     type="number"
@@ -247,7 +233,6 @@ const Latest_Sales = () => {
                     required
                 />
 
-
                 <div className="button-group">
                     <button type="submit" className="submit-btn">Submit</button>
                     <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
@@ -257,11 +242,8 @@ const Latest_Sales = () => {
 
             </form>
 
-
             <div className="data-list">
                 {data.map((item, index) => (
-
-
 
                     <div className="data-row" key={index}>
                         <img
@@ -279,11 +261,7 @@ const Latest_Sales = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
-
 }
-
-
 export default Latest_Sales

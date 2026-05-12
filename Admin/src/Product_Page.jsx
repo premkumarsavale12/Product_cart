@@ -36,7 +36,6 @@ const Product_Page = () => {
 
         try {
             const data = new FormData();
-
             data.append("ProductName", formdata.ProductName);
             data.append("ProductPrice", formdata.ProductPrice);
             data.append("Productquantity", formdata.Productquantity);
@@ -65,7 +64,6 @@ const Product_Page = () => {
 
         try {
             const updateData = new FormData();
-
             updateData.append("ProductName", formdata.ProductName);
             updateData.append("ProductPrice", formdata.ProductPrice);
             updateData.append("Productquantity", formdata.Productquantity);
@@ -156,7 +154,6 @@ const Product_Page = () => {
             <h1 className="title">Product Page</h1>
 
             <form className="product-form" onSubmit={handleSubmit}>
-
                 <input
                     type="text"
                     placeholder="Enter Product Name"
@@ -165,7 +162,6 @@ const Product_Page = () => {
                     value={formdata.ProductName}
                     required
                 />
-
                 <input
                     type="number"
                     placeholder="Enter Product Price"
@@ -174,7 +170,6 @@ const Product_Page = () => {
                     value={formdata.ProductPrice}
                     required
                 />
-
                 <input
                     type="number"
                     placeholder="Enter Product Quantity"
@@ -183,14 +178,12 @@ const Product_Page = () => {
                     value={formdata.Productquantity}
                     required
                 />
-
                 <input
                     type="file"
                     accept="image/*"
                     name="ProductImage"
                     onChange={handleChange}
                 />
-
                 {formdata.ProductImage && typeof formdata.ProductImage === 'string' && (
                     <img
                         src={`http://localhost:5000/uploads/${formdata.ProductImage}`}
@@ -198,7 +191,6 @@ const Product_Page = () => {
                         style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
                     />
                 )}
-
                 <input
                     type="text"
                     placeholder="Enter Category"
@@ -207,7 +199,6 @@ const Product_Page = () => {
                     value={formdata.category}
                     required
                 />
-
                 <input
                     type="text"
                     placeholder="Enter Button Name"
@@ -216,18 +207,13 @@ const Product_Page = () => {
                     value={formdata.Button}
                     required
                 />
-
-                {/* <button type="submit">Submit Product</button> */}
-
                 <div className="button-group">
                     <button type="submit" className="submit-btn">Submit</button>
                     <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
                     <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
                     <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
                 </div>
-
             </form>
-
             <div className="data-list">
                 {data.map((item, index) => (
                     <div className="data-row" key={index}>
@@ -246,7 +232,6 @@ const Product_Page = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

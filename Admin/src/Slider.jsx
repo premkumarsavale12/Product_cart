@@ -92,7 +92,6 @@ const Slider = () => {
         }
     };
 
-
     const fetchApiData = async () => {
         try {
             const res = await axios.get("http://localhost:5000/api/slider/all");
@@ -102,7 +101,6 @@ const Slider = () => {
         }
     };
 
-
     const handleSelect = (item) => {
         setFormData({
             SliderContent: item.SliderContent,
@@ -111,7 +109,6 @@ const Slider = () => {
 
         setSelectedId(item._id || item.id);
     };
-
 
     const handleClear = () => {
         setFormData({
@@ -190,5 +187,4 @@ const Slider = () => {
         </div>
     );
 };
-
 export default Slider;
