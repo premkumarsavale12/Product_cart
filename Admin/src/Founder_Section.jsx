@@ -218,32 +218,39 @@ const Founder_Section = () => {
 
             </form>
 
-            <div className="data-list">
-
+            <div className="w-full flex flex-wrap gap-6 mt-10">
                 {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                    >
+                        {/* Image + Info */}
+                        <div className="flex items-center gap-4 flex-1">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.Image}`}
+                                alt={item.Name}
+                                className="w-24 h-24 object-cover rounded-lg border"
+                            />
 
-                    <div className="data-row" key={index}>
+                            <div>
+                                <p className="text-gray-800 font-semibold text-lg">
+                                    {item.Name}
+                                </p>
+                                <p className="text-gray-500 text-sm">
+                                    {item.Role}
+                                </p>
+                            </div>
+                        </div>
 
-                        <img
-                            src={`http://localhost:5000/uploads/${item.Image}`}
-                            className="slider-img"
-                            alt={item.Name}
-                        />
-
-                        <p className="slider-text">{item.Name}</p>
-
-                        <p className="slider-text">{item.Role}</p>
-
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>
-
                     </div>
                 ))}
-
             </div>
 
         </div>

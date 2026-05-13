@@ -136,7 +136,7 @@ const Category = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/category/all");
             setData(res.data);
-       
+
 
         }
         catch (err) {
@@ -147,7 +147,7 @@ const Category = () => {
 
 
     const handleSelect = (item) => {
-        
+
 
         setFormData({
 
@@ -206,19 +206,32 @@ const Category = () => {
 
             </form>
 
-            <div className="data-list">
+            <div className="w-full flex flex-wrap gap-6 mt-10">
                 {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                    >
+                        {/* Image + Text */}
+                        <div className="flex items-center gap-4 flex">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.Icon}`}
+                                alt={item.Heading}
+                                className="w-24 h-24 object-cover rounded-lg border"
+                            />
 
-                    <div className="data-row" key={index}>
-                        <img
-                            src={`http://localhost:5000/uploads/${item.Icon}`}
-                            className="slider-img"
-                        />
-                        <p className="slider-text">{item.Heading}</p>
-                        <p className="slider-text">₹{item.Name}</p>
+                           
+                   
+                                <p className="text-gray-500 text-sm">
+                                    ₹{item.Name}
+                                </p>
+                           
+                        </div>
+
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>

@@ -306,34 +306,34 @@ const Selling_Product = () => {
 
             </form>
 
-            {/* DATA LIST */}
-
-            <div className="data-list">
-
+            <div className="w-full flex flex-wrap gap-6 mt-10">
                 {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                    >
+                        {/* Image + Name */}
+                        <div className="flex items-center gap-4 flex">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.Image}`}
 
-                    <div className="data-row" key={index}>
+                                className="w-24 h-24 object-cover rounded-lg border"
+                            />
 
-                        <img
-                            src={`http://localhost:5000/uploads/${item.Image}`}
-                            alt={item.Name}
-                            className="slider-img"
-                            width="100"
-                        />
+                            <p className="text-gray-800 font-semibold text-lg">
+                                {item.Name}
+                            </p>
+                        </div>
 
-                        <p className="slider-text">{item.Name}</p>
-
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>
-
                     </div>
-
                 ))}
-
             </div>
 
         </div>

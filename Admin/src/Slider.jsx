@@ -165,19 +165,29 @@ const Slider = () => {
                 </div>
             </form>
 
-            <div className="data-list">
+            <div className="w-full flex flex-wrap gap-6">
                 {data.map((item, index) => (
-                    <div key={index} className="data-row">
-                        <img
-                            src={`http://localhost:5000/uploads/${item.SliderImage}`}
-                            alt="slider"
-                            className="slider-img"
-                        />
-                        <p className="slider-text">{item.SliderContent}</p>
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                    >
+                        {/* Image + Content */}
+                        <div className="flex items-center gap-4 flex-1">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.SliderImage}`}
+                                alt="slider"
+                                className="w-64 h-30 object-cover rounded-lg border"
+                            />
 
+                            <p className="text-gray-800 font-semibold text-lg">
+                                {item.SliderContent}
+                            </p>
+                        </div>
+
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>

@@ -30,7 +30,7 @@ const Product_Page = () => {
     };
 
     const handleSubmit = async (e) => {
-      
+
 
         e.preventDefault();
 
@@ -214,18 +214,34 @@ const Product_Page = () => {
                     <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
                 </div>
             </form>
-            <div className="data-list">
+            <div className="w-full flex flex-wrap gap-4 mt-10">
                 {data.map((item, index) => (
-                    <div className="data-row" key={index}>
-                        <img
-                            src={`http://localhost:5000/uploads/${item.ProductImage}`}
-                            className="slider-img"
-                        />
-                        <p className="slider-text">{item.ProductName}</p>
-                        <p className="slider-text">₹{item.ProductPrice}</p>
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                    >
+                        {/* Image + Name */}
+                        <div className="flex items-center gap-4 flex">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.ProductImage}`}
+                                alt={item.ProductName}
+                                className="w-24 h-24 object-cover rounded-lg border"
+                            />
+
+                            <p className="text-gray-800 font-semibold text-lg">
+                                {item.ProductName}
+                            </p>
+                        </div>
+
+                        {/* Price */}
+                        <p className="text-green-600 font-bold text-xl w-28 text-center">
+                            ₹{item.ProductPrice}
+                        </p>
+
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>

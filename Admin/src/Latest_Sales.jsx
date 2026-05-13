@@ -242,33 +242,39 @@ const Latest_Sales = () => {
 
             </form>
 
-            <div className="data-list">
-
+            <div className="w-full flex flex-wrap gap-6 justify-start mt-10">
                 {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-3"
+                    >
+                        {/* Left: Image + Name */}
+                        <div className="flex items-center gap-4 flex">
+                            <img
+                                src={`http://localhost:5000/uploads/${item.image}`}
+                                alt={item.Name}
+                                className="w-24 h-24 object-cover rounded-lg border"
+                            />
 
-                    <div className="data-row" key={index}>
+                            <p className="text-gray-800 font-semibold text-lg">
+                                {item.product_name}
+                            </p>
+                        </div>
 
-                        <img
-                            src={`http://localhost:5000/uploads/${item.image}`}
-                            alt={item.Name}
-                            className="slider-img"
-                            width="100"
-                        />
-                        <p className="slider-text">
-                            {item.Name}
-                        </p>
-                        <p className="slider-price">
+                        {/* Price */}
+                        <p className="text-green-600 font-bold text-xl w-28 text-center">
                             ₹{item.price}
                         </p>
+
+                        {/* Button */}
                         <button
-                            className="select-btn"
                             onClick={() => handleSelect(item)}
+                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>
                     </div>
                 ))}
-
             </div>
         </div>
     );

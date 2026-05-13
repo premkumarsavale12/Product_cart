@@ -266,52 +266,43 @@ const AboutMiddle = () => {
                     </div>
                 </form>
 
-                <div className="data-list">
-
+                <div className="w-full flex flex-wrap gap-6 mt-10">
                     {data.length > 0 ? (
-
                         data.map((item) => (
-
                             <div
-                                className="data-row"
                                 key={item._id}
+                                className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
                             >
+                                {/* Image + Content */}
+                                <div className="flex items-center gap-4 flex-1">
+                                    <img
+                                        src={`http://localhost:5000/uploads/${item.Icon}`}
+                                        alt="Icon"
+                                        className="w-24 h-24 object-cover rounded-lg border"
+                                    />
 
-                                <img
-                                    src={`http://localhost:5000/uploads/${item.Icon}`}
-                                    alt="Icon"
-                                    className="slider-img"
-                                    style={{
-                                        width: "100px",
-                                        height: "100px",
-                                        objectFit: "cover",
-                                    }}
-                                />
+                                    <div>
+                                        <p className="text-gray-800 font-semibold text-lg">
+                                            {item.Number}
+                                        </p>
+                                        <p className="text-gray-500 text-sm">
+                                            {item.Data}
+                                        </p>
+                                    </div>
+                                </div>
 
-                                <p className="slider-text">
-                                    {item.Number}
-                                </p>
-
-                                <p className="slider-text">
-                                    {item.Data}
-                                </p>
-
+                                {/* Button */}
                                 <button
-                                    className="select-btn"
                                     onClick={() => handleSelect(item)}
+                                    className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
                                 >
                                     Select
                                 </button>
-
                             </div>
                         ))
-
                     ) : (
-
-                        <p>No Data Found</p>
-
+                        <p className="text-gray-500 text-center w-full">No Data Found</p>
                     )}
-
                 </div>
             </div>
         </>
