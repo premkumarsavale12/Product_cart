@@ -30,7 +30,6 @@ router.get("/all", async (req, res) => {
         const data = await Category.find();
         res.json(data);
     }
-
     catch (err) {
         console.log(err);
         res.status(500).json({ err: err.message });
@@ -59,14 +58,12 @@ router.post("/add", upload.single("Icon"), async (req, res) => {
     try {
 
         const savedata = await Category.create({
-
+            Heading: req.body.Heading,
             Icon: req.file ? req.file.filename : req.body.Image,
-            Heading: req.file.Heading,
-            Name: req.file.Name
+
+            Name: req.body.Name
         });
-
         res.status(201).json(savedata)
-
     }
 
     catch (err) {
@@ -83,11 +80,10 @@ router.put("/:id", upload.single("Icon"), async (req, res) => {
 
     try {
 
-
         const updateddata = await Category.findByIdAndUpdate(
             req.params.id,
             {
-                Icon: req.body.Icon,
+
                 Heading: req.body.Heading,
                 Name: req.body.Name,
 

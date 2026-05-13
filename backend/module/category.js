@@ -5,7 +5,6 @@ const categorySchema = new mongoose.Schema({
 
     Heading: {
         type: String,
-
     },
 
     Icon: {
@@ -14,7 +13,6 @@ const categorySchema = new mongoose.Schema({
     },
 
     Name: {
-
         type: String,
 
     }
