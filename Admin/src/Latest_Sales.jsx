@@ -241,35 +241,38 @@ const Latest_Sales = () => {
                 </div>
 
             </form>
+            <div className="data-list">
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 px-6">
                 {data.map((item, index) => (
-                    <div
-                        key={index}
-                        className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-4 text-center hover:-translate-y-1"
-                    >
+
+                    <div className="data-row" key={index}>
+
                         <img
                             src={`http://localhost:5000/uploads/${item.image}`}
-                            alt={item.product_name}
-                            className="w-full h-48 object-cover rounded-xl mb-4"
+                            alt={item.Name}
+                            className="slider-img"
+                            width="100"
                         />
 
-                        <p className="text-lg font-semibold text-gray-800">
-                            {item.product_name}
+                        <p className="slider-text">
+                            {item.Name}
                         </p>
 
-                        <p className="text-orange-600 font-bold text-xl mt-1">
+                        <p className="slider-price">
                             ₹{item.price}
                         </p>
 
                         <button
-                            className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition duration-300"
+                            className="select-btn"
                             onClick={() => handleSelect(item)}
                         >
                             Select
                         </button>
+
                     </div>
+
                 ))}
+
             </div>
         </div>
     );
