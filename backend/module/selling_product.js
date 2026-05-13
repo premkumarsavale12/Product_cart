@@ -14,9 +14,9 @@ const sellingSchema = new mongoose.Schema({
     Price: {
         type: String
     },
-     Old_Price : {
-         type : String
-     }
+    Old_Price: {
+        type: String
+    }
 
 });
 

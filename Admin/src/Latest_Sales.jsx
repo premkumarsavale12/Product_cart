@@ -137,7 +137,7 @@ const Latest_Sales = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/discount/all");
             setData(res.data);
-            console.log(res.data);
+         
 
         }
         catch (err) {
