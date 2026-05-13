@@ -137,7 +137,7 @@ const Latest_Sales = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/discount/all");
             setData(res.data);
-         
+
 
         }
         catch (err) {
@@ -242,18 +242,28 @@ const Latest_Sales = () => {
 
             </form>
 
-            <div className="data-list">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 px-6">
                 {data.map((item, index) => (
-
-                    <div className="data-row" key={index}>
+                    <div
+                        key={index}
+                        className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-4 text-center hover:-translate-y-1"
+                    >
                         <img
                             src={`http://localhost:5000/uploads/${item.image}`}
-                            className="slider-img"
+                            alt={item.product_name}
+                            className="w-full h-48 object-cover rounded-xl mb-4"
                         />
-                        <p className="slider-text">{item.product_name}</p>
-                        <p className="slider-text">₹{item.price}</p>
+
+                        <p className="text-lg font-semibold text-gray-800">
+                            {item.product_name}
+                        </p>
+
+                        <p className="text-orange-600 font-bold text-xl mt-1">
+                            ₹{item.price}
+                        </p>
+
                         <button
-                            className="select-btn"
+                            className="mt-4 px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition duration-300"
                             onClick={() => handleSelect(item)}
                         >
                             Select

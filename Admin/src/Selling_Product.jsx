@@ -180,7 +180,7 @@ const Selling_Product = () => {
         setSelectedId(item._id || item.id);
     };
 
-  
+
 
     const FetchApiData = async () => {
 
