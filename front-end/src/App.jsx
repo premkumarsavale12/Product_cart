@@ -15,6 +15,7 @@ import Login from './Login';
 import Latest_Sales from './Latest_Sales';
 import Contact from './Contact';
 import Category from './Category';
+import Selling_Product from './Selling_Product';
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -40,6 +41,8 @@ const App = () => {
                           <Slider />
                           <Latest_Sales />
                           <Category />
+                          <Selling_Product />
+
                           <Product />
 
                         </>
