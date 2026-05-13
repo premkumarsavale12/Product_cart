@@ -1,6 +1,10 @@
+
 const express = require("express");
+
 const path = require("path");
+
 const router = express.Router();
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -13,115 +17,110 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const upload = multer({ storage });
 
-const AboutHero = require("../module/abouthero");
+const Category = require("../module/category");
 
-
-
-// for get all
+// for get all 
 
 router.get("/all", async (req, res) => {
 
     try {
-        const data = await AboutHero.find();
+        const data = await Category.find();
         res.json(data);
     }
 
     catch (err) {
+        console.log(err);
         res.status(500).json({ err: err.message });
     }
+
 });
 
-// for get id 
+// for get specific id 
 
 router.get("/:id", async (req, res) => {
 
     try {
-        const data = await AboutHero.findById(req.params.id);
+        const data = await Category.findById(req.params.id);
         res.json(data);
     }
 
     catch (err) {
         res.status(500).json({ err: err.message });
     }
-
 });
 
-// for post method
+// for  post method 
 
-router.post("/add", upload.single('Image'), async (req, res) => {
+router.post("/add", upload.single("Icon"), async (req, res) => {
 
     try {
 
-        const savedata = await AboutHero.create({
-            Image: req.file ? req.file.filename : req.body.Image,
-            heading: req.body.heading,
-            Description: req.body.Description
+        const savedata = await Category.create({
+
+            Icon: req.file ? req.file.filename : req.body.Image,
+            Heading: req.file.Heading,
+            Name: req.file.Name
         });
 
-        res.status(201).json(savedata);
+        res.status(201).json(savedata)
+
     }
 
     catch (err) {
         res.status(500).json({ message: err.message })
+
     }
 
 });
 
 
-// for put 
+// for put method 
 
-router.put("/:id", upload.single('Image'), async (req, res) => {
+router.put("/:id", upload.single("Icon"), async (req, res) => {
 
     try {
 
-        const updateddata = await AboutHero.findByIdAndUpdate(
+
+        const updateddata = await Category.findByIdAndUpdate(
             req.params.id,
             {
-                Image: req.body.Image,
-                heading: req.body.heading,
-                Description: req.body.Description,
+                Icon: req.body.Icon,
+                Heading: req.body.Heading,
+                Name: req.body.Name,
 
-                ...(req.file && { Image: req.file.filename })
+                ...(req.file && { Icon: req.file.filename })
             },
-
             { new: true }
 
-        );
+        )
 
         if (!updateddata) return res.status(404).json({ message: "Not Found" });
         res.json(updateddata);
-
     }
 
     catch (err) {
-
         res.status(500).json({ message: err.message });
 
     }
+});
 
-})
-
-// for delete 
+// for delete method 
 
 router.delete("/:id", async (req, res) => {
     try {
 
-        const deletedata = await AboutHero.findByIdAndDelete(req.params.id);
+        const deletedata = await Category.findByIdAndDelete(req.params.id);
         if (!deletedata) return res.status(404).json({ message: "Not Found  Items " });
         res.json("Deleted SuccessFully....");
 
     }
 
     catch (err) {
-
         res.status(500).json({ message: err.message });
-
     }
 
-});
-
+})
 module.exports = router;
-
-
