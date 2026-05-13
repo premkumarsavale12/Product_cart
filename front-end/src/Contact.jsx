@@ -16,7 +16,7 @@ const Contact = () => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:5000/api/contact/add", formdata);
-       
+
             alert("data Submitted SuccessFully....");
 
         }
@@ -37,16 +37,11 @@ const Contact = () => {
     return (
         <div className="bg-[#f5f5f5] py-12 px-4">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                {/* Left Contact Info */}
                 <div className="bg-white shadow-sm border border-gray-200 p-8">
-
-                    {/* Call Us */}
                     <div className="flex items-start gap-4 mb-10">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-xl">
                             📞
                         </div>
-
                         <div>
                             <h3 className="text-lg font-semibold text-gray-800 mb-3">
                                 Call To Us
@@ -63,37 +58,26 @@ const Contact = () => {
                     </div>
 
                     <hr className="mb-10" />
-
-                    {/* Write To Us */}
                     <div className="flex items-start gap-4">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-xl">
                             ✉️
                         </div>
-
                         <div>
                             <h3 className="text-lg font-semibold text-gray-800 mb-3">
                                 Write To US
                             </h3>
-
                             <p className="text-sm text-gray-600 mb-4">
                                 Fill out our form and we will contact you within 24 hours.
                             </p>
-
                             <p className="text-sm text-gray-700 mb-2">
                                 Emails: customer@exclusive.com
-                            </p>
-
-                            <p className="text-sm text-gray-700">
-                                Emails: support@exclusive.com
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Right Contact Form */}
                 <div className="md:col-span-2 bg-white shadow-sm border border-gray-200 p-8">
 
-                    {/* Inputs */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <input
                             type="text"
@@ -103,7 +87,6 @@ const Contact = () => {
                             onChange={handleChange}
                             className="w-full bg-gray-100 px-4 py-3 outline-none border border-transparent focus:border-red-400 rounded-sm text-sm"
                         />
-
                         <input
                             type="email"
                             placeholder="Your Email *"
@@ -112,7 +95,6 @@ const Contact = () => {
                             value={formdata.email}
                             className="w-full bg-gray-100 px-4 py-3 outline-none border border-transparent focus:border-red-400 rounded-sm text-sm"
                         />
-
                         <input
                             type="text"
                             placeholder="Your Phone *"
@@ -122,8 +104,6 @@ const Contact = () => {
                             className="w-full bg-gray-100 px-4 py-3 outline-none border border-transparent focus:border-red-400 rounded-sm text-sm"
                         />
                     </div>
-
-                    {/* Textarea */}
                     <textarea
                         rows="7"
                         placeholder="Your Message"
@@ -132,8 +112,6 @@ const Contact = () => {
                         value={formdata.message}
                         className="w-full bg-gray-100 px-4 py-3 outline-none border border-transparent focus:border-red-400 rounded-sm text-sm resize-none mb-6"
                     ></textarea>
-
-                    {/* Button */}
                     <div className="flex justify-end">
                         <button className="bg-red-500 hover:bg-red-600 transition text-white px-8 py-3 rounded-sm text-sm font-medium" onClick={handleSubmit}>
                             Send Message

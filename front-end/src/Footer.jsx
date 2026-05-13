@@ -5,7 +5,6 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-top">
-
                 <div className="footer-column">
                     <h4>ABOUT</h4>
                     <ul>
@@ -25,8 +24,6 @@ const Footer = () => {
                         <li>Shopsy</li>
                     </ul>
                 </div>
-
-
                 <div className="footer-column">
                     <h4>HELP</h4>
                     <ul>
@@ -36,8 +33,6 @@ const Footer = () => {
                         <li>FAQ</li>
                     </ul>
                 </div>
-
-
                 <div className="footer-column">
                     <h4>CONSUMER POLICY</h4>
                     <ul>
@@ -48,8 +43,6 @@ const Footer = () => {
                         <li>Sitemap</li>
                     </ul>
                 </div>
-
-
                 <div className="footer-column wide">
                     <h4>Mail Us:</h4>
                     <p>

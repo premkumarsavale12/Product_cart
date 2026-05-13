@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import './AboutMiddle.css';
 
 const About_Middle = () => {
-
     const [data, setData] = useState([]);
-
     useEffect(() => {
         FetchApiData();
     }, []);
-
     const FetchApiData = async () => {
         try {
             const res = await axios.get("http://localhost:5000/api/aboutmiddle/all");
@@ -29,7 +26,6 @@ const About_Middle = () => {
                         className={`about-card ${index === 1 ? "active-card" : ""}`}
                         key={index}
                     >
-
                         <div className="icon-box">
                             <img
                                 src={

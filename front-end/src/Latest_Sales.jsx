@@ -39,7 +39,6 @@ const Latest_Sales = () => {
                     </div>
                 </div>
 
-                {/* Slider Styling */}
                 <style>
                     {`
                         .swiper-button-next, .swiper-button-prev {
@@ -60,8 +59,7 @@ const Latest_Sales = () => {
                         }
                     `}
                 </style>
-                
-                {/* Slider */}
+
                 <Swiper
                     modules={[Navigation, Autoplay, Pagination]}
                     spaceBetween={24}

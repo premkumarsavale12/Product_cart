@@ -41,7 +41,6 @@ export default function CartPage() {
             </div>
         );
     }
-
     const deliveryFee = totalPrice >= 499 ? 0 : 49;
     const savings = Math.round(totalPrice * 0.1);
 

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 const AboutHero = () => {
     const [data, setData] = useState([]);
-
     useEffect(() => {
         FetchApiData();
     }, []);
@@ -14,13 +12,11 @@ const AboutHero = () => {
                 "http://localhost:5000/api/about/all"
             );
 
-
             setData(res.data);
         } catch (error) {
             console.log(error);
         }
     };
-
     return (
         <div className="bg-[#f5f5f5] py-16 px-6 md:px-16">
             {data.map((item, index) => (
@@ -33,13 +29,10 @@ const AboutHero = () => {
                         <h1 className="text-4xl md:text-5xl font-bold text-black mb-8">
                             {item.heading}
                         </h1>
-
                         <p className="text-gray-700 leading-8 text-lg mb-6">
                             {item.Description}
                         </p>
                     </div>
-
-                  
                     <div className="flex justify-center">
                         <img
                             src={item.Image ? `http://localhost:5000/uploads/${item.Image}` : 'https://via.placeholder.com/600x450?text=No+Image'}
