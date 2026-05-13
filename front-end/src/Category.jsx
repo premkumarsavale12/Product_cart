@@ -67,7 +67,7 @@ export default function Category() {
                 >
                     {data.map((item, index) => {
                         debugger;
-                         
+
 
                         return (
                             <SwiperSlide key={index} className="h-auto">
