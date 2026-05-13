@@ -144,8 +144,6 @@ const Category = () => {
         }
     }
 
-
-
     const handleSelect = (item) => {
 
 
@@ -161,7 +159,7 @@ const Category = () => {
 
     return (
         <div className="product-container">
-            <h1 className="title">Latest Sales  Page </h1>
+            <h1 className="title"> Category Page  </h1>
 
             <form className="product-form" onSubmit={handleSubmit}>
 
@@ -220,12 +218,12 @@ const Category = () => {
                                 className="w-24 h-24 object-cover rounded-lg border"
                             />
 
-                           
-                   
-                                <p className="text-gray-500 text-sm">
-                                    ₹{item.Name}
-                                </p>
-                           
+
+
+                            <p className="text-gray-500 text-sm">
+                                ₹{item.Name}
+                            </p>
+
                         </div>
 
                         {/* Button */}

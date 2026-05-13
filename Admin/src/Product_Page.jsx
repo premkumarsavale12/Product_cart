@@ -214,34 +214,33 @@ const Product_Page = () => {
                     <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
                 </div>
             </form>
-            <div className="w-full flex flex-wrap gap-4 mt-10">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
+                        className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
-                        {/* Image + Name */}
-                        <div className="flex items-center gap-4 flex">
-                            <img
-                                src={`http://localhost:5000/uploads/${item.ProductImage}`}
-                                alt={item.ProductName}
-                                className="w-24 h-24 object-cover rounded-lg border"
-                            />
+                        {/* Product Image */}
+                        <img
+                            src={`http://localhost:5000/uploads/${item.ProductImage}`}
+                          
+                            className="w-40 h-40 object-cover rounded-xl border mb-4"
+                        />
 
-                            <p className="text-gray-800 font-semibold text-lg">
-                                {item.ProductName}
-                            </p>
-                        </div>
+                        {/* Product Name */}
+                        <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">
+                            {item.ProductName}
+                        </h2>
 
                         {/* Price */}
-                        <p className="text-green-600 font-bold text-xl w-28 text-center">
+                        <p className="text-green-600 font-bold text-2xl mb-4">
                             ₹{item.ProductPrice}
                         </p>
 
-                        {/* Button */}
+                        {/* Select Button */}
                         <button
                             onClick={() => handleSelect(item)}
-                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>
