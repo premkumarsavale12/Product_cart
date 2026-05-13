@@ -14,76 +14,102 @@ const storage = multer.diskStorage({
     }
 });
 
-
 const upload = multer({ storage });
 
-
-const Seling_Product = require("../module/selling_product");
+const Selling_Product = require("../module/selling_product");
 
 // for get all 
 
-router.get("/add", (req, res) => {
+router.get("/all", async (req, res) => {
+
     try {
-
+        const data = await Selling_Product.find();
+        res.json(data);
     }
+
     catch (err) {
-        console.log(err);
 
+        res.status(500).json({ err: err.message });
     }
-
 });
 
 // for get id 
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
 
     try {
 
+        const data = await Selling_Product.findById(req.params.id);
+        res.json(data);
     }
-    catch (err) {
-        console.log(err);
 
+    catch (err) {
+        res.status(500).json({ err: err.message });
     }
 });
 
 // for post method 
 
-
-router.post("/add", (req, res) => {
+router.post("/add", upload.single("Image"), async (req, res) => {
 
     try {
 
+        const savedata = await Selling_Product.create({
+            Image: req.file ? req.file.filename : req.body.Image,
+            Name: req.body.Name,
+            Price: req.body.Price,
+            Old_Price: req.body.Old_Price,
+        });
+        res.status(201).json(savedata);
     }
 
     catch (er) {
-        console.log(err);
-
+        res.status(500).json({ message: err.message });
     }
+
 });
 
 // for put method 
 
-router.put("/:id", (req, res) => {
+router.put("/:id", upload.single("Image"), async (req, res) => {
+
     try {
 
+        const updateddata = await Selling_Product.findByIdAndUpdate(
+            req.params.id,
+            {
+
+                Name: req.body.Name,
+                Price: req.body.Price,
+                Old_Price: req.body.Old_Price,
+                ...(req.file && { Image: req.file.filename })
+            },
+            { new: true }
+        );
+        if (!updateddata) return res.status(404).json({ message: "Not Found" });
+        res.json(updateddata);
     }
 
     catch (err) {
         console.log(err);
-
+        res.status(500).json({ message: err.message });
     }
-
 });
-
 
 // for delete 
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
+
     try {
 
+        const deletedata = await Selling_Product.findByIdAndDelete(req.params.id);
+        if (!deletedata) return res.status(404).json({ message: "Not Found Items...." });
+        res.json("Deleted SuccessFully....");
     }
     catch (err) {
         console.log(err);
-
+        res.status(500).json({ message: err.message });
     }
-})
+});
+
+module.exports = router;

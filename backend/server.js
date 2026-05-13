@@ -18,6 +18,7 @@ const Auth = require("./router/auth");
 const Discount = require("./router/discount");
 const Contact = require("./router/contact");
 const Category = require("./router/category");
+const Selling_Product = require("./router/selling_product");
 
 ConnectDb();
 
@@ -38,9 +39,9 @@ app.use("/api/aboutmiddle", AboutMiddleRoute);
 app.use("/api/founder", FounderRoute);
 app.use("/api/auth", Auth);
 app.use("/api/discount", Discount);
-app.use("/api/contact",Contact );
-app.use("/api/category",Category );
-
+app.use("/api/contact", Contact);
+app.use("/api/category", Category);
+app.use("/api/selling_product", Selling_Product)
 
 
 app.listen(port, () => {
