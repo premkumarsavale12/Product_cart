@@ -8,7 +8,7 @@ import AboutMiddle from "./AboutMiddle.jsx"
 import Founder_Section from './Founder_Section.jsx';
 import Latest_Sales from './Latest_Sales.jsx';
 import Category from './Category.jsx';
- 
+import Selling_Product from './Selling_Product.jsx';
 
 
 const App = () => {
@@ -28,8 +28,10 @@ const App = () => {
         return <Founder_Section />;
       case 'discount':
         return <Latest_Sales />;
-         case 'category':
-           return <Category />
+      case 'category':
+        return <Category />;
+      case 'selling_product':
+        return <Selling_Product />
 
 
       default:
@@ -68,9 +70,14 @@ const App = () => {
             <button onClick={() => setActiveView('discount')}> Latest Sales  </button>
           </li>
 
-  
+
           <li>
             <button onClick={() => setActiveView('category')}> Category Section  </button>
+          </li>
+
+
+          <li>
+            <button onClick={() => setActiveView('selling_product')}>Selling Product </button>
           </li>
 
         </ul>
