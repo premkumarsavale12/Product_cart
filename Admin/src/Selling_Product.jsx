@@ -1,18 +1,16 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from "axios"
-import { useEffect } from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Selling_Product = () => {
 
     const [formdata, setFormdata] = useState({
-
-        Image: "",
+        Image: null,
         Name: "",
         Price: "",
         Old_Price: "",
-    })
+    });
 
+    const [previewImage, setPreviewImage] = useState("");
     const [selectedId, setSelectedId] = useState(null);
     const [data, setData] = useState([]);
 
@@ -20,59 +18,83 @@ const Selling_Product = () => {
         FetchApiData();
     }, []);
 
-
     const handleSubmit = async (e) => {
-
-        debugger;
 
         e.preventDefault();
 
         try {
 
-            const data = new FormData();
+            const form = new FormData();
 
-            data.append("Image", formdata.Image);
-            data.append("Name", formdata.Name);
-            data.append("Price", formdata.Price);
-            data.append("Old_Price", formdata.Old_Price)
+            form.append("Image", formdata.Image);
+            form.append("Name", formdata.Name);
+            form.append("Price", formdata.Price);
+            form.append("Old_Price", formdata.Old_Price);
 
-            const res = await axios.post("http://localhost:5000/api/selling_product/add", data);
-            alert("Data Submitted SuccessFully...");
-        }
-        catch (err) {
+            await axios.post(
+                "http://localhost:5000/api/selling_product/add",
+                form,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            alert("Data Submitted Successfully");
+
+            FetchApiData();
+            handleClear();
+
+        } catch (err) {
             console.log(err.response?.data || err.message);
-
         }
-    }
+    };
+
 
     const handleChange = (e) => {
+
         const { name, value, files } = e.target;
 
-        setFormdata({
-            ...formdata,
-            [name]: name === "Image" ? files[0] : value,
-        });
-    }
+        if (name === "Image") {
+
+            setFormdata({
+                ...formdata,
+                Image: files[0],
+            });
+
+            // Preview selected image
+            setPreviewImage(URL.createObjectURL(files[0]));
+
+        } else {
+
+            setFormdata({
+                ...formdata,
+                [name]: value,
+            });
+        }
+    };
+
 
 
     const handleUpdate = async () => {
 
         if (!selectedId) {
-            alert("Please Select a record First....");
+            alert("Please select a record first");
             return;
         }
 
         try {
+
             const updatedData = new FormData();
 
-            updatedData.append("Image", formdata.Image);
             updatedData.append("Name", formdata.Name);
-            updatedData.append("Price", formdata.Price)
+            updatedData.append("Price", formdata.Price);
             updatedData.append("Old_Price", formdata.Old_Price);
 
-
+            // Only append image if new image selected
             if (formdata.Image) {
-                updatedData.append("image", formdata.Image);
+                updatedData.append("Image", formdata.Image);
             }
 
             await axios.put(
@@ -85,106 +107,130 @@ const Selling_Product = () => {
                 }
             );
 
-            alert("Updated SuccessFully....");
+            alert("Updated Successfully");
+
             FetchApiData();
             handleClear();
+
+        } catch (err) {
+
+            console.log(err);
+            alert("Error updating data");
+
         }
+    };
 
-        catch (err) {
-            alert("Error Updating data...");
 
-        }
-
-    }
 
     const handleDelete = async () => {
+
         if (!selectedId) {
-            alert("Please select a record first....");
+            alert("Please select a record first");
             return;
         }
 
         try {
 
-            await axios.delete(`http://localhost:5000/api/selling_product/${selectedId}`);
-            alert("Deleted SuccessFully....");
+            await axios.delete(
+                `http://localhost:5000/api/selling_product/${selectedId}`
+            );
+
+            alert("Deleted Successfully");
+
+            FetchApiData();
             handleClear();
-        }
-        catch (err) {
+
+        } catch (err) {
+
             console.log(err);
 
         }
+    };
 
-    }
 
     const handleClear = () => {
-        setFormdata({
 
-            Image: "null",
+        setFormdata({
+            Image: null,
             Name: "",
             Price: "",
             Old_Price: "",
-        })
+        });
 
-    }
+        setPreviewImage("");
+        setSelectedId(null);
+    };
+
+
 
     const handleSelect = (item) => {
-        console.log("item", item);
 
-        debugger;
+        console.log(item);
 
         setFormdata({
+            Image: null, // cannot set old file in file input
+            Name: item.Name || "",
+            Price: item.Price || "",
+            Old_Price: item.Old_Price || "",
+        });
 
-            Image: item.Image,
-            Name: item.Name,
-            Price: item.Price,
-            Old_Price: item.Old_Price
-        })
-
-
+        // Show old image preview
+        setPreviewImage(item.Image);
 
         setSelectedId(item._id || item.id);
-    }
+    };
 
-
+  
 
     const FetchApiData = async () => {
 
         try {
-            const res = await axios.get("http://localhost:5000/api/selling_product/all");
+
+            const res = await axios.get(
+                "http://localhost:5000/api/selling_product/all"
+            );
+
             setData(res.data);
-            console.log(res.data);
+
+        } catch (err) {
+
+            console.log(err);
 
         }
-        catch (err) {
-            console.log(err);
-        }
-    }
+    };
 
     return (
 
         <div className="product-container">
 
-            <h1 className="title"> Selling Product Page </h1>
+            <h1 className="title">Selling Product Page</h1>
 
             <form className="product-form" onSubmit={handleSubmit}>
 
+                {/* NAME */}
+
                 <input
                     type="text"
-                    placeholder="Enter Product  Name"
+                    placeholder="Enter Product Name"
                     name="Name"
-                    onChange={handleChange}
                     value={formdata.Name}
-
+                    onChange={handleChange}
+                    required
                 />
+
+                {/* PRICE */}
 
                 <input
                     type="number"
-                    placeholder="Enter Product  Price "
+                    placeholder="Enter Product Price"
                     name="Price"
-                    onChange={handleChange}
                     value={formdata.Price}
-
+                    onChange={handleChange}
+                    required
                 />
+
+                {/* IMAGE */}
+
                 <input
                     type="file"
                     accept="image/*"
@@ -192,33 +238,89 @@ const Selling_Product = () => {
                     onChange={handleChange}
                 />
 
+                {/* IMAGE PREVIEW */}
+
+                {previewImage && (
+
+                    <img
+                        src={
+                            formdata.Image
+                                ? previewImage
+                                : `http://localhost:5000/uploads/${previewImage}`
+                        }
+                        alt="preview"
+                        width="120"
+                        height="120"
+                        style={{
+                            objectFit: "cover",
+                            marginTop: "10px",
+                            borderRadius: "10px",
+                        }}
+                    />
+                )}
+
+                {/* OLD PRICE */}
+
                 <input
                     type="number"
-                    placeholder="Enter product  Old_Price"
+                    placeholder="Enter Old Price"
                     name="Old_Price"
-                    onChange={handleChange}
                     value={formdata.Old_Price}
+                    onChange={handleChange}
                     required
                 />
 
+                {/* BUTTONS */}
+
                 <div className="button-group">
-                    <button type="submit" className="submit-btn">Submit</button>
-                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
-                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
-                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
+
+                    <button type="submit" className="submit-btn">
+                        Submit
+                    </button>
+
+                    <button
+                        type="button"
+                        className="update-btn"
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </button>
+
+                    <button
+                        type="button"
+                        className="delete-btn"
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </button>
+
+                    <button
+                        type="button"
+                        className="clear-btn"
+                        onClick={handleClear}
+                    >
+                        Clear
+                    </button>
+
                 </div>
 
             </form>
 
+            {/* DATA LIST */}
 
             <div className="data-list">
+
                 {data.map((item, index) => (
 
                     <div className="data-row" key={index}>
+
                         <img
                             src={`http://localhost:5000/uploads/${item.Image}`}
+                            alt={item.Name}
                             className="slider-img"
+                            width="100"
                         />
+
                         <p className="slider-text">{item.Name}</p>
 
                         <button
@@ -227,13 +329,15 @@ const Selling_Product = () => {
                         >
                             Select
                         </button>
+
                     </div>
+
                 ))}
+
             </div>
 
         </div>
     );
-}
-
+};
 
 export default Selling_Product;
