@@ -7,6 +7,8 @@ import AboutHero from './AboutHero.jsx';
 import AboutMiddle from "./AboutMiddle.jsx"
 import Founder_Section from './Founder_Section.jsx';
 import Latest_Sales from './Latest_Sales.jsx';
+import Category from './Category.jsx';
+ 
 
 
 const App = () => {
@@ -25,7 +27,9 @@ const App = () => {
       case 'foundersection':
         return <Founder_Section />;
       case 'discount':
-        return <Latest_Sales />
+        return <Latest_Sales />;
+         case 'category':
+           return <Category />
 
 
       default:
@@ -62,6 +66,11 @@ const App = () => {
 
           <li>
             <button onClick={() => setActiveView('discount')}> Latest Sales  </button>
+          </li>
+
+  
+          <li>
+            <button onClick={() => setActiveView('category')}> Category Section  </button>
           </li>
 
         </ul>
