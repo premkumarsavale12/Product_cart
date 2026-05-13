@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 const sellingSchema = new mongoose.Schema({
 
-
     Image: {
         type: String,
     },

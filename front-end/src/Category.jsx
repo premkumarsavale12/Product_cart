@@ -66,7 +66,7 @@ export default function Category() {
                     className="!pb-16"
                 >
                     {data.map((item, index) => {
-                        debugger;
+                  
 
 
                         return (

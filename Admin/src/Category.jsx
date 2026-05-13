@@ -147,7 +147,7 @@ const Category = () => {
 
 
     const handleSelect = (item) => {
-        debugger;
+        
 
         setFormData({
 

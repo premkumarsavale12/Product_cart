@@ -30,7 +30,7 @@ const Product_Page = () => {
     };
 
     const handleSubmit = async (e) => {
-        debugger;
+      
 
         e.preventDefault();
 
