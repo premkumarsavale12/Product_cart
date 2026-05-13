@@ -35,7 +35,7 @@ export default function Selling_Product() {
                             <span className="w-5 h-8 bg-red-500 rounded-sm inline-block"></span>
                             <p className="text-red-500 font-bold tracking-wider uppercase text-sm">Today's</p>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Flash Sales</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight"> Best Selling Product </h2>
                     </div>
                 </div>
 

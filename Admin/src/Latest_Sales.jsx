@@ -241,6 +241,7 @@ const Latest_Sales = () => {
                 </div>
 
             </form>
+
             <div className="data-list">
 
                 {data.map((item, index) => (
@@ -253,24 +254,19 @@ const Latest_Sales = () => {
                             className="slider-img"
                             width="100"
                         />
-
                         <p className="slider-text">
                             {item.Name}
                         </p>
-
                         <p className="slider-price">
                             ₹{item.price}
                         </p>
-
                         <button
                             className="select-btn"
                             onClick={() => handleSelect(item)}
                         >
                             Select
                         </button>
-
                     </div>
-
                 ))}
 
             </div>

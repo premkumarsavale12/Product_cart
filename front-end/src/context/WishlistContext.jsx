@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-
 const WishlistContext = createContext();
 
 export function WishlistProvider({ children }) {
