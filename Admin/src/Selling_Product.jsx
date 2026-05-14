@@ -47,7 +47,7 @@ const Selling_Product = () => {
     };
 
     const handleChange = (e) => {
-   const { name, value, files } = e.target;
+        const { name, value, files } = e.target;
         if (name === "Image") {
             setFormdata({
                 ...formdata,
@@ -166,7 +166,11 @@ const Selling_Product = () => {
 
         <div className="product-container">
             <h1 className="title">Selling Product Page</h1>
-            <form className="product-form" onSubmit={handleSubmit}>
+
+            <form
+                className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200"
+                onSubmit={handleSubmit}
+            >
 
                 <input
                     type="text"
@@ -175,6 +179,7 @@ const Selling_Product = () => {
                     value={formdata.Name}
                     onChange={handleChange}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -184,6 +189,7 @@ const Selling_Product = () => {
                     value={formdata.Price}
                     onChange={handleChange}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -191,6 +197,17 @@ const Selling_Product = () => {
                     accept="image/*"
                     name="Image"
                     onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+                />
+
+                <input
+                    type="number"
+                    placeholder="Enter Old Price"
+                    name="Old_Price"
+                    value={formdata.Old_Price}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 {previewImage && (
@@ -201,8 +218,8 @@ const Selling_Product = () => {
                                 : `http://localhost:5000/uploads/${previewImage}`
                         }
                         alt="preview"
-                        width="120"
-                        height="120"
+                        width="100"
+                        height="100"
                         style={{
                             objectFit: "cover",
                             marginTop: "10px",
@@ -210,24 +227,18 @@ const Selling_Product = () => {
                         }}
                     />
                 )}
-                <input
-                    type="number"
-                    placeholder="Enter Old Price"
-                    name="Old_Price"
-                    value={formdata.Old_Price}
-                    onChange={handleChange}
-                    required
-                />
 
-                <div className="button-group">
+                <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
 
-                    <button type="submit" className="submit-btn">
+                    <button type="submit"
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
                         Submit
                     </button>
 
                     <button
                         type="button"
-                        className="update-btn"
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleUpdate}
                     >
                         Update
@@ -235,7 +246,7 @@ const Selling_Product = () => {
 
                     <button
                         type="button"
-                        className="delete-btn"
+                        className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleDelete}
                     >
                         Delete
@@ -243,7 +254,7 @@ const Selling_Product = () => {
 
                     <button
                         type="button"
-                        className="clear-btn"
+                        className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleClear}
                     >
                         Clear
