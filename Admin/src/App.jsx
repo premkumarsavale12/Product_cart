@@ -12,7 +12,7 @@ import Login from './Login.jsx';
 
 const App = () => {
 
- 
+
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
   );
@@ -63,12 +63,15 @@ const App = () => {
 
             <div className="welcome-card">
 
-              <h1>Welcome to Admin Panel</h1>
+              <h1 className='text-black font-bold text-4xl'>Welcome to Admin Panel</h1>
+
+              <br />
+              <br />
 
               <a href="http://localhost:5174">
                 <button
                   class="px-6 py-3 text-white font-semibold bg-blue-600 rounded-lg shadow
-                  hover:bg-blue-700 hover:shadow-lg transition duration-200"
+                  hover:bg-blue-700 hover:shadow-lg transition duration-200 text-3xl"
                 >
                   Go to Frontend Page
                 </button>
