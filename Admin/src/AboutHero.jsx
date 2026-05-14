@@ -150,7 +150,7 @@ const AboutHero = () => {
                 <h1 className="title">About Hero Section</h1>
 
                 <form
-                   className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border items-start"
+                    className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border items-start"
                     onSubmit={handleSubmit}
                 >
 
