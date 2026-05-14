@@ -119,6 +119,7 @@ const Product_Page = () => {
     }
 
     const FetchApiData = async () => {
+
         try {
             const res = await axios.get("http://localhost:5000/api/product/all");
             setData(res.data);
