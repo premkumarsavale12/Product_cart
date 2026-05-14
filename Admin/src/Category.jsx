@@ -150,29 +150,36 @@ const Category = () => {
         <div className="product-container">
             <h1 className="title"> Category Page  </h1>
 
-            <form className="product-form" onSubmit={handleSubmit}>
+            <form
+                className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200 items-start"
+                onSubmit={handleSubmit}
+            >
                 <input
                     type="text"
                     placeholder="Enter Heading"
                     name="Heading"
                     onChange={handleChange}
                     value={formdata.Heading}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
 
                 />
-                <input
-                    type="file"
-                    accept="image/*"
-                    name="Icon"
-                    onChange={handleChange}
-                />
-
-                {formdata.Icon && typeof formdata.Icon === 'string' && (
-                    <img
-                        src={`http://localhost:5000/uploads/${formdata.Icon}`}
-                        alt="Selected Product Image"
-                        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
+                <div className="flex flex-col">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        name="Icon"
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                     />
-                )}
+
+                    {formdata.Icon && typeof formdata.Icon === 'string' && (
+                        <img
+                            src={`http://localhost:5000/uploads/${formdata.Icon}`}
+                            alt="Selected Product Image"
+                            className="w-full h-32 object-contain rounded-xl mt-2"
+                        />
+                    )}
+                </div>
 
                 <input
                     type="text"
@@ -181,13 +188,40 @@ const Category = () => {
                     onChange={handleChange}
                     value={formdata.Name}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
-                <div className="button-group">
-                    <button type="submit" className="submit-btn" onClick={handleSubmit}>Submit</button>
-                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
-                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
-                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
+                <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Submit
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleUpdate}
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Update
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                        className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Delete
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleClear}
+                        className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Clear
+                    </button>
                 </div>
 
             </form>
