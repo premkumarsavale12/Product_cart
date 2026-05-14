@@ -156,13 +156,17 @@ const Latest_Sales = () => {
         <div className="product-container">
             <h1 className="title">Latest Sales  Page </h1>
 
-            <form className="product-form" onSubmit={handleSubmit}>
+            <form
+                className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200 items-start"
+                onSubmit={handleSubmit}
+            >
                 <input
                     type="text"
                     placeholder="Enter Sale Name"
                     name="sale_name"
                     onChange={handleChange}
                     value={formdata.sale_name}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -171,17 +175,19 @@ const Latest_Sales = () => {
                     name="time"
                     onChange={handleChange}
                     value={formdata.time}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
                 <input
                     type="file"
                     accept="image/*"
                     name="image"
                     onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
                 {formdata.image && typeof formdata.image === 'string' && (
                     <img
                         src={`http://localhost:5000/uploads/${formdata.image}`}
-                        alt="Selected Product Image"
+                   
                         style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
                     />
                 )}
@@ -193,6 +199,7 @@ const Latest_Sales = () => {
                     onChange={handleChange}
                     value={formdata.product_name}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
                 <input
                     type="number"
@@ -201,6 +208,7 @@ const Latest_Sales = () => {
                     onChange={handleChange}
                     value={formdata.price}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -210,6 +218,7 @@ const Latest_Sales = () => {
                     onChange={handleChange}
                     value={formdata.old_price}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -219,6 +228,7 @@ const Latest_Sales = () => {
                     onChange={handleChange}
                     value={formdata.Button}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <div className="button-group">
@@ -240,7 +250,7 @@ const Latest_Sales = () => {
 
                         <img
                             src={`http://localhost:5000/uploads/${item.image}`}
-                            alt={item.Name}
+                          
                             className="w-24 h-24 object-cover rounded-lg border"
                         />
 
