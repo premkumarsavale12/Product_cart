@@ -153,7 +153,10 @@ const Product_Page = () => {
         <div className="product-container">
             <h1 className="title">Product Page</h1>
 
-            <form className="product-form" onSubmit={handleSubmit}>
+            <form
+                className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200"
+                onSubmit={handleSubmit}
+            >
                 <input
                     type="text"
                     placeholder="Enter Product Name"
@@ -161,7 +164,9 @@ const Product_Page = () => {
                     onChange={handleChange}
                     value={formdata.ProductName}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
+
                 <input
                     type="number"
                     placeholder="Enter Product Price"
@@ -169,7 +174,9 @@ const Product_Page = () => {
                     onChange={handleChange}
                     value={formdata.ProductPrice}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
+
                 <input
                     type="number"
                     placeholder="Enter Product Quantity"
@@ -177,20 +184,17 @@ const Product_Page = () => {
                     onChange={handleChange}
                     value={formdata.Productquantity}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
+
                 <input
                     type="file"
                     accept="image/*"
                     name="ProductImage"
                     onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600"
                 />
-                {formdata.ProductImage && typeof formdata.ProductImage === 'string' && (
-                    <img
-                        src={`http://localhost:5000/uploads/${formdata.ProductImage}`}
-                        alt="Selected Product Image"
-                        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
-                    />
-                )}
+
                 <input
                     type="text"
                     placeholder="Enter Category"
@@ -198,7 +202,9 @@ const Product_Page = () => {
                     onChange={handleChange}
                     value={formdata.category}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
+
                 <input
                     type="text"
                     placeholder="Enter Button Name"
@@ -206,15 +212,53 @@ const Product_Page = () => {
                     onChange={handleChange}
                     value={formdata.Button}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
-                <div className="button-group">
-                    <button type="submit" className="submit-btn">Submit</button>
-                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
-                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
-                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
+
+                {formdata.ProductImage && typeof formdata.ProductImage === 'string' && (
+                    <div className="md:col-span-3">
+                        <img
+                            src={`http://localhost:5000/uploads/${formdata.ProductImage}`}
+                            alt="Selected Product"
+                            className="w-full h-[300px] object-cover rounded-2xl shadow-lg border"
+                        />
+                    </div>
+                )}
+
+                <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Submit
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleUpdate}
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Update
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                        className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Delete
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleClear}
+                        className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Clear
+                    </button>
                 </div>
             </form>
-            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
                 {data.map((item, index) => (
                     <div
                         key={index}
@@ -223,7 +267,7 @@ const Product_Page = () => {
                         {/* Product Image */}
                         <img
                             src={`http://localhost:5000/uploads/${item.ProductImage}`}
-                          
+
                             className="w-40 h-40 object-cover rounded-xl border mb-4"
                         />
 
