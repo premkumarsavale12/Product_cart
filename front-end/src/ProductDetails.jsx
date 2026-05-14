@@ -5,16 +5,61 @@ import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
 import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
 import Related_Product from './Related_Product';
+import { loadStripe } from "@stripe/stripe-js";
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [zoomStyle, setZoomStyle] = useState({});
+    const { cartItems } = useCart();
     const navigate = useNavigate();
 
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+
+    const makePayment = async () => {
+        debugger;
+        const stripe = await loadStripe("pk_test_51TWukoPagvMIvM7nnu5763iHx9tFjEzH9nR4hG6mUcApSwaYSjtedEQhVco1fVkZzZcOVHE9AjWRIprABlpkGjWw00erTDaXQo");
+
+        const body = {
+            products: [{
+                _id: product._id,
+                name: product.ProductName,
+                price: product.ProductPrice,
+                image: product.ProductImage
+                    ? `http://localhost:5000/uploads/${product.ProductImage}`
+                    : "https://via.placeholder.com/600x450?text=No+Image",
+                quantity: 1
+            }],
+        };
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        try {
+            const response = await fetch("http://localhost:5000/api/payment/create-checkout-session", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok) {
+                console.error("Payment session creation failed");
+                return;
+            }
+
+            const session = await response.json();
+
+            if (session.url) {
+                window.location.href = session.url;
+            } else {
+                console.error("No checkout URL returned from server");
+            }
+        } catch (error) {
+            console.error("Error connecting to payment gateway:", error);
+        }
+    };
 
     const handleAddToCart = () => {
         addToCart({
@@ -140,7 +185,10 @@ const ProductDetails = () => {
 
                     <div className="flex flex-wrap gap-3 mt-4">
 
-                        <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600">
+                        <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600"
+
+                            onClick={makePayment}
+                        >
                             {product.Button || "Buy Now"}
                         </button>
 
