@@ -22,7 +22,6 @@ const Latest_Sales = () => {
         FetchApiData();
     }, []);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

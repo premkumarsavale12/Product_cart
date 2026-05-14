@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCart } from "./context/CartContext";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function CartPage() {
     const {
@@ -19,6 +20,41 @@ export default function CartPage() {
         totalCount,
         totalPrice,
     } = useCart();
+
+    const makePayment = async () => {
+        debugger;
+        const stripe = await loadStripe("pk_test_51TWukoPagvMIvM7nnu5763iHx9tFjEzH9nR4hG6mUcApSwaYSjtedEQhVco1fVkZzZcOVHE9AjWRIprABlpkGjWw00erTDaXQo");
+
+        const body = {
+            products: cartItems,
+        };
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        try {
+            const response = await fetch("http://localhost:5000/api/payment/create-checkout-session", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok) {
+                console.error("Payment session creation failed");
+                return;
+            }
+
+            const session = await response.json();
+
+            if (session.url) {
+                window.location.href = session.url;
+            } else {
+                console.error("No checkout URL returned from server");
+            }
+        } catch (error) {
+            console.error("Error connecting to payment gateway:", error);
+        }
+    };
 
     if (cartItems.length === 0) {
         return (
@@ -87,7 +123,7 @@ export default function CartPage() {
                                 <img
                                     src={item.image}
                                     alt={item.name}
-                                     loading="lazy"
+                                    loading="lazy"
                                     className="w-full h-full object-contain p-2"
                                     onError={(e) => {
                                         e.target.src =
@@ -210,7 +246,10 @@ export default function CartPage() {
                             <span>₹{(totalPrice + deliveryFee).toFixed(2)}</span>
                         </div>
 
-                        <button className="w-full bg-black text-white py-4 rounded-xl font-bold hover:bg-gray-800 transition-all shadow-lg hover:shadow-black/20 uppercase tracking-widest text-sm flex items-center justify-center gap-2 mt-2">
+                        <button
+                            onClick={makePayment}
+                            className="w-full bg-black text-white py-4 rounded-xl font-bold hover:bg-gray-800 transition-all shadow-lg hover:shadow-black/20 uppercase tracking-widest text-sm flex items-center justify-center gap-2 mt-2"
+                        >
                             <FaLock size={13} />
                             Secure Checkout
                         </button>
