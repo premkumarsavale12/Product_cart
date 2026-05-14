@@ -12,7 +12,7 @@ import Login from './Login.jsx';
 
 const App = () => {
 
-  // Check token directly when app loads
+ 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
   );
@@ -80,7 +80,7 @@ const App = () => {
     }
   };
 
-  // First show login page
+
   if (!isAuthenticated) {
     return <Login onLogin={handleLogin} />;
   }
