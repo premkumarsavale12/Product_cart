@@ -242,24 +242,24 @@ const Latest_Sales = () => {
 
             </form>
 
-            <div className="w-full flex flex-wrap gap-6 justify-start mt-10">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-3"
+                        className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
                         {/* Left: Image + Name */}
-                        <div className="flex items-center gap-4 flex">
-                            <img
-                                src={`http://localhost:5000/uploads/${item.image}`}
-                                alt={item.Name}
-                                className="w-24 h-24 object-cover rounded-lg border"
-                            />
 
-                            <p className="text-gray-800 font-semibold text-lg">
-                                {item.product_name}
-                            </p>
-                        </div>
+                        <img
+                            src={`http://localhost:5000/uploads/${item.image}`}
+                            alt={item.Name}
+                            className="w-24 h-24 object-cover rounded-lg border"
+                        />
+
+                        <p className="text-gray-800 font-semibold text-lg">
+                            {item.product_name}
+                        </p>
+
 
                         {/* Price */}
                         <p className="text-green-600 font-bold text-xl w-28 text-center">
@@ -269,7 +269,7 @@ const Latest_Sales = () => {
                         {/* Button */}
                         <button
                             onClick={() => handleSelect(item)}
-                            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                         >
                             Select
                         </button>
