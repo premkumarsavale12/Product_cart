@@ -9,7 +9,6 @@ const Category = () => {
         Heading: "",
         Icon: "",
         Name: "",
-
     })
 
     const [selectedId, setSelectedId] = useState(null);

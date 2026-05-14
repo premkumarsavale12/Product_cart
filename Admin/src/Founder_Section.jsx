@@ -100,13 +100,11 @@ const Founder_Section = () => {
         }
 
         try {
-
             await axios.delete(
                 `http://localhost:5000/api/founder/${selectedId}`
             );
 
             alert("Deleted Successfully");
-
             FetchApiData();
             handleClear();
         }
@@ -143,28 +141,29 @@ const Founder_Section = () => {
 
             <h1 className="title">Founder Details Page</h1>
 
-            <form className="product-form" onSubmit={handleSubmit}>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    name="Image"
-                    onChange={handleChange}
-                />
-
-                {formdata.Image && typeof formdata.Image === 'string' && (
-                    <img
-                        src={`http://localhost:5000/uploads/${formdata.Image}`}
-                        alt="Founder"
-                        style={{
-                            width: '100%',
-                            height: '200px',
-                            objectFit: 'cover',
-                            borderRadius: '10px',
-                            marginTop: '10px'
-                        }}
+            <form
+                className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200 items-start"
+                onSubmit={handleSubmit}
+            >
+                <div className="flex flex-col gap-4">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        name="Image"
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                     />
-                )}
+
+                    {formdata.Image && typeof formdata.Image === 'string' && (
+                        <div className="flex justify-center">
+                            <img
+                                src={`http://localhost:5000/uploads/${formdata.Image}`}
+                                alt="Founder"
+                                className="w-full h-40 object-cover rounded-xl shadow-md border border-gray-200"
+                            />
+                        </div>
+                    )}
+                </div>
 
                 <input
                     type="text"
@@ -173,6 +172,7 @@ const Founder_Section = () => {
                     onChange={handleChange}
                     value={formdata.Name}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
                 <input
@@ -182,17 +182,20 @@ const Founder_Section = () => {
                     onChange={handleChange}
                     value={formdata.Role}
                     required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
 
-                <div className="button-group">
+                <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
 
-                    <button type="submit" className="submit-btn">
+                    <button type="submit"
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
                         Submit
                     </button>
 
                     <button
                         type="button"
-                        className="update-btn"
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleUpdate}
                     >
                         Update
@@ -200,7 +203,7 @@ const Founder_Section = () => {
 
                     <button
                         type="button"
-                        className="delete-btn"
+                        className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleDelete}
                     >
                         Delete
@@ -208,11 +211,12 @@ const Founder_Section = () => {
 
                     <button
                         type="button"
-                        className="clear-btn"
+                        className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                         onClick={handleClear}
                     >
                         Clear
                     </button>
+
                 </div>
             </form>
 
