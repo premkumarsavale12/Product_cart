@@ -40,7 +40,6 @@ const Founder_Section = () => {
 
         try {
             const data = new FormData();
-
             data.append("Image", formdata.Image);
             data.append("Name", formdata.Name);
             data.append("Role", formdata.Role);
@@ -66,11 +65,8 @@ const Founder_Section = () => {
             alert("Please Select a record First");
             return;
         }
-
         try {
-
             const updatedData = new FormData();
-
             updatedData.append("Image", formdata.Image);
             updatedData.append("Name", formdata.Name);
             updatedData.append("Role", formdata.Role);
@@ -121,12 +117,10 @@ const Founder_Section = () => {
             Name: "",
             Role: "",
         });
-
         setSelectedId(null);
     };
 
     const handleSelect = (item) => {
-
         setFormData({
             Image: item.Image,
             Name: item.Name,
@@ -138,9 +132,7 @@ const Founder_Section = () => {
 
     return (
         <div className="product-container">
-
             <h1 className="title">Founder Details Page</h1>
-
             <form
                 className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200 items-start"
                 onSubmit={handleSubmit}
@@ -174,7 +166,6 @@ const Founder_Section = () => {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
-
                 <input
                     type="text"
                     placeholder="Enter Role"
@@ -184,7 +175,6 @@ const Founder_Section = () => {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
                 />
-
                 <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
 
                     <button type="submit"
@@ -192,7 +182,6 @@ const Founder_Section = () => {
                     >
                         Submit
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -200,7 +189,6 @@ const Founder_Section = () => {
                     >
                         Update
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -208,7 +196,6 @@ const Founder_Section = () => {
                     >
                         Delete
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -216,7 +203,6 @@ const Founder_Section = () => {
                     >
                         Clear
                     </button>
-
                 </div>
             </form>
 
@@ -226,22 +212,18 @@ const Founder_Section = () => {
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
-                        {/* Image + Info */}
                         <div className="flex items-center gap-4 flex-1">
                             <img
                                 src={`http://localhost:5000/uploads/${item.Image}`}
                                 alt={item.Name}
                                 className="w-24 h-24 object-cover rounded-lg border"
                             />
-
                             <p className="text-gray-800 font-semibold text-lg">
                                 {item.Name}
                             </p>
                             <p className="text-gray-500 text-sm">
                                 {item.Role}
                             </p>
-
-                            {/* Button */}
                             <button
                                 onClick={() => handleSelect(item)}
                                 className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
@@ -255,5 +237,4 @@ const Founder_Section = () => {
         </div>
     );
 };
-
 export default Founder_Section;

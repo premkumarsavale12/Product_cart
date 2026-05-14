@@ -91,7 +91,6 @@ const AboutMiddle = () => {
             alert("Please select a record first");
             return;
         }
-
         try {
             await axios.delete(
                 `http://localhost:5000/api/aboutmiddle/${selectedId}`
@@ -112,7 +111,6 @@ const AboutMiddle = () => {
             Number: item.Number,
             Data: item.Data,
         });
-
         setSelectedId(item._id);
     };
 
@@ -122,7 +120,6 @@ const AboutMiddle = () => {
             Number: "",
             Data: "",
         });
-
         setSelectedId(null);
     };
 
@@ -130,12 +127,11 @@ const AboutMiddle = () => {
         <div className="product-container">
             <h1 className="title">About Middle Section</h1>
 
-            {/* FORM */}
             <form
                 className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border items-start"
                 onSubmit={handleSubmit}
             >
-                {/* IMAGE INPUT */}
+
                 <div className="flex flex-col gap-4">
                     <input
                         type="file"
@@ -145,7 +141,6 @@ const AboutMiddle = () => {
                         className="w-full px-4 py-3 border rounded-xl"
                     />
 
-                    {/* IMAGE PREVIEW FIXED */}
                     {formdata.Icon && (
                         <div className="flex justify-center">
                             <img
@@ -161,7 +156,6 @@ const AboutMiddle = () => {
                     )}
                 </div>
 
-                {/* NUMBER */}
                 <input
                     type="number"
                     placeholder="Enter Number"
@@ -171,8 +165,6 @@ const AboutMiddle = () => {
                     required
                     className="w-full px-4 py-3 border rounded-xl"
                 />
-
-                {/* DATA */}
                 <input
                     type="text"
                     placeholder="Enter Data"
@@ -183,14 +175,12 @@ const AboutMiddle = () => {
                     className="w-full px-4 py-3 border rounded-xl"
                 />
 
-                {/* BUTTONS */}
                 <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
                     <button type="submit"
                         className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
                     >
                         Submit
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -198,7 +188,6 @@ const AboutMiddle = () => {
                     >
                         Update
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -206,7 +195,6 @@ const AboutMiddle = () => {
                     >
                         Delete
                     </button>
-
                     <button
                         type="button"
                         className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -217,7 +205,7 @@ const AboutMiddle = () => {
                 </div>
             </form>
 
-            {/* DATA LIST */}
+
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
                 {data.length > 0 ? (
                     data.map((item) => (

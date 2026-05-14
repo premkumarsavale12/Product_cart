@@ -12,7 +12,7 @@ import Selling_Product from './Selling_Product.jsx';
 
 
 const App = () => {
-  const [activeView, setActiveView] = useState('dashboard'); // Default to dashboard or slider
+  const [activeView, setActiveView] = useState('dashboard'); 
 
   const renderView = () => {
     switch (activeView) {
@@ -32,7 +32,6 @@ const App = () => {
         return <Category />;
       case 'selling_product':
         return <Selling_Product />
-
 
       default:
         return <div className="dashboard"><h1>Welcome to Admin Panel</h1><p>Select an option from the sidebar.</p></div>;

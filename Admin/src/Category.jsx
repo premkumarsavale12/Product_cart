@@ -21,7 +21,6 @@ const Category = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-
         const data = new FormData();
         data.append("Heading", formdata.Heading);
         data.append("Icon", formdata.Icon);
@@ -56,21 +55,17 @@ const Category = () => {
         });
     };
 
-
     const handleUpdate = async () => {
-
-        if (!selectedId) {
+      if (!selectedId) {
             alert("Please Select a record First....");
             return;
         }
-
         try {
 
             const updateData = new FormData();
             updateData.append("Heading", formdata.Heading);
             updateData.append("Icon", formdata.Icon);
             updateData.append("Name", formdata.Name);
-
 
             if (formdata.Icon) {
                 updateData.append("Icon", formdata.Icon);
@@ -102,7 +97,6 @@ const Category = () => {
             alert("Please select a record first....");
             return;
         }
-
         try {
             await axios.delete(`http://localhost:5000/api/category/${selectedId}`);
             alert("Deleted SuccessFully....");
@@ -121,7 +115,6 @@ const Category = () => {
             Name: "",
 
         })
-
     }
     const FetchApiData = async () => {
 
@@ -140,7 +133,6 @@ const Category = () => {
             Icon: item.Icon,
             Heading: item.Heading,
             Name: item.Name
-
         });
         setSelectedId(item._id || item.id);
     }
@@ -160,7 +152,6 @@ const Category = () => {
                     onChange={handleChange}
                     value={formdata.Heading}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
-
                 />
                 <div className="flex flex-col">
                     <input
@@ -222,7 +213,6 @@ const Category = () => {
                         Clear
                     </button>
                 </div>
-
             </form>
 
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
@@ -231,8 +221,6 @@ const Category = () => {
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
-                        {/* Image + Text */}
-
                         <img
                             src={`http://localhost:5000/uploads/${item.Icon}`}
                             alt={item.Heading}
@@ -241,8 +229,6 @@ const Category = () => {
                         <p className="text-gray-500 text-sm">
                             ₹{item.Name}
                         </p>
-
-                        {/* Button */}
                         <button
                             onClick={() => handleSelect(item)}
                             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"

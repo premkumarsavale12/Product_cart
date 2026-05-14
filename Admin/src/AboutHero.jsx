@@ -153,8 +153,6 @@ const AboutHero = () => {
                     className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 border items-start"
                     onSubmit={handleSubmit}
                 >
-
-
                     <input
                         type="text"
                         placeholder="Enter Heading"
@@ -226,11 +224,8 @@ const AboutHero = () => {
                         >
                             Clear
                         </button>
-
                     </div>
-
                 </form>
-
 
                 <div className="w-full flex flex-wrap gap-6 mt-10">
                     {data.map((item, index) => (
@@ -245,12 +240,10 @@ const AboutHero = () => {
                                     alt={item.heading}
                                     className="w-24 h-24 object-cover rounded-lg border"
                                 />
-
                                 <p className="text-gray-800 font-semibold text-lg">
                                     {item.heading}
                                 </p>
                             </div>
-
                             {/* Button */}
                             <button
                                 onClick={() => handleSelect(item)}
@@ -266,5 +259,4 @@ const AboutHero = () => {
         </>
     );
 };
-
 export default AboutHero;

@@ -187,7 +187,7 @@ const Latest_Sales = () => {
                 {formdata.image && typeof formdata.image === 'string' && (
                     <img
                         src={`http://localhost:5000/uploads/${formdata.image}`}
-                   
+
                         style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px', marginTop: '10px' }}
                     />
                 )}
@@ -250,7 +250,7 @@ const Latest_Sales = () => {
 
                         <img
                             src={`http://localhost:5000/uploads/${item.image}`}
-                          
+
                             className="w-24 h-24 object-cover rounded-lg border"
                         />
 
