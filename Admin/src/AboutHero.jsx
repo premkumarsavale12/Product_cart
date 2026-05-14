@@ -24,7 +24,6 @@ const AboutHero = () => {
             [name]: name === "Image" ? files[0] : value,
         });
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -60,7 +59,6 @@ const AboutHero = () => {
             alert("Please Select a record First....");
             return;
         }
-
         try {
             const data = new FormData();
             data.append("Image", formdata.Image);
@@ -108,8 +106,6 @@ const AboutHero = () => {
 
         }
     };
-
-
     const FetchApiData = async () => {
 
         try {
@@ -122,7 +118,6 @@ const AboutHero = () => {
     }
 
     const handleClear = () => {
-
         setFormdata({
             heading: "",
             Description: "",
@@ -193,7 +188,6 @@ const AboutHero = () => {
                         )}
                     </div>
 
-
                     <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
                         <button type="submit"
                             className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
@@ -254,7 +248,6 @@ const AboutHero = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
         </>
     );
