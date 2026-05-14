@@ -187,7 +187,7 @@ const ProductDetails = () => {
 
                         <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600"
 
-                            onClick={makePayment}
+                             onClick={makePayment}  
                         >
                             {product.Button || "Buy Now"}
                         </button>

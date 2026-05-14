@@ -8,6 +8,7 @@ import { useWishlist } from './context/WishlistContext';
 import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import Related_Product from './Related_Product';
+import { loadStripe } from "@stripe/stripe-js";
 
 const ProductFilter = () => {
     const { id } = useParams();
@@ -20,6 +21,49 @@ const ProductFilter = () => {
     const { toggleWishlist, isInWishlist } = useWishlist();
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedPrice, setSelectedPrice] = useState("");
+
+    const makePayment = async () => {
+        debugger;
+        const stripe = await loadStripe("pk_test_51TWukoPagvMIvM7nnu5763iHx9tFjEzH9nR4hG6mUcApSwaYSjtedEQhVco1fVkZzZcOVHE9AjWRIprABlpkGjWw00erTDaXQo");
+
+        const body = {
+            products: [{
+                _id: product._id,
+                name: product.ProductName,
+                price: product.ProductPrice,
+                image: product.ProductImage
+                    ? `http://localhost:5000/uploads/${product.ProductImage}`
+                    : "https://via.placeholder.com/600x450?text=No+Image",
+                quantity: 1
+            }],
+        };
+        const headers = {
+            "Content-Type": "application/json",
+        };
+
+        try {
+            const response = await fetch("http://localhost:5000/api/payment/create-checkout-session", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok) {
+                console.error("Payment session creation failed");
+                return;
+            }
+
+            const session = await response.json();
+
+            if (session.url) {
+                window.location.href = session.url;
+            } else {
+                console.error("No checkout URL returned from server");
+            }
+        } catch (error) {
+            console.error("Error connecting to payment gateway:", error);
+        }
+    };
 
     const filteredProducts = useMemo(() => {
         return products.filter((item) => {
@@ -143,7 +187,9 @@ const ProductFilter = () => {
                         </div>
 
                         <div className="details-actions">
-                            <button className="buy-now-btn">{product.Button || 'Buy Now'}</button>
+                            <button
+                                onClick={makePayment}
+                                className="buy-now-btn" >{product.Button || 'Buy Now'}</button>
                             <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>
                                 <FaShoppingCart /> Add to Cart
                             </button>

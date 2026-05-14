@@ -144,7 +144,7 @@ const Slider = () => {
                 </div>
 
                 <div className="form-group">
-                    <label>Slider Text</label>
+           
                     <input
                         type="text"
                         placeholder="Enter Slider Text"
