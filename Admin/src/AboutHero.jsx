@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const AboutHero = () => {
-
     const [formdata, setFormdata] = useState({
         heading: "",
         Description: "",
@@ -16,7 +15,6 @@ const AboutHero = () => {
     const [selectedId, setSelectedId] = useState(null);
     const [data, setData] = useState([]);
 
-
     const handleChange = (e) => {
 
         const { name, value, files } = e.target;
@@ -28,11 +26,8 @@ const AboutHero = () => {
     };
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         try {
-
             const data = new FormData();
 
             data.append("Image", formdata.Image);
@@ -48,7 +43,6 @@ const AboutHero = () => {
                     },
                 }
             );
-
 
             alert("Data Submitted Successfully....");
 
