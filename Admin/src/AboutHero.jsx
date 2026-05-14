@@ -43,10 +43,7 @@ const AboutHero = () => {
                     },
                 }
             );
-
             alert("Data Submitted Successfully....");
-
-
             FetchApiData();
             handleClear();
 
@@ -54,7 +51,6 @@ const AboutHero = () => {
 
             console.log(err.response?.data || err.message);
             alert("Error submitting data...");
-
         }
     };
 
@@ -68,7 +64,6 @@ const AboutHero = () => {
         try {
 
             const data = new FormData();
-
             data.append("Image", formdata.Image);
             data.append("heading", formdata.heading);
             data.append("Description", formdata.Description);
@@ -89,15 +84,12 @@ const AboutHero = () => {
             handleClear();
 
         } catch (err) {
-
             console.log(err);
             alert("Error Updating data...");
-
         }
     };
 
     const handleDelete = async () => {
-
         if (!selectedId) {
             alert("Please select a record first....");
             return;
@@ -108,12 +100,10 @@ const AboutHero = () => {
             await axios.delete(`http://localhost:5000/api/about/${selectedId}`);
 
             alert("Deleted Successfully....");
-
             FetchApiData();
             handleClear();
 
         } catch (err) {
-
             console.log(err);
             alert("Error deleting data...");
 
@@ -158,9 +148,7 @@ const AboutHero = () => {
     return (
         <>
             <div className="product-container">
-
                 <h1 className="title">About Hero Section</h1>
-
                 <form className="product-form" onSubmit={handleSubmit}>
 
                     <input
@@ -188,7 +176,6 @@ const AboutHero = () => {
                         onChange={handleChange}
                     />
 
-
                     {formdata.Image && typeof formdata.Image === 'string' && (
                         <img
                             src={`http://localhost:5000/uploads/${formdata.Image}`}
@@ -198,7 +185,6 @@ const AboutHero = () => {
                     )}
 
                     <div className="button-group">
-
                         <button
                             type="submit"
                             className="submit-btn"
@@ -229,7 +215,6 @@ const AboutHero = () => {
                         >
                             Clear
                         </button>
-
                     </div>
 
                 </form>

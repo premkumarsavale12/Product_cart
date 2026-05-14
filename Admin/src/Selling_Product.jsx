@@ -19,11 +19,8 @@ const Selling_Product = () => {
     }, []);
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         try {
-
             const form = new FormData();
 
             form.append("Image", formdata.Image);
@@ -40,9 +37,7 @@ const Selling_Product = () => {
                     },
                 }
             );
-
             alert("Data Submitted Successfully");
-
             FetchApiData();
             handleClear();
 
@@ -51,19 +46,13 @@ const Selling_Product = () => {
         }
     };
 
-
     const handleChange = (e) => {
-
-        const { name, value, files } = e.target;
-
+   const { name, value, files } = e.target;
         if (name === "Image") {
-
             setFormdata({
                 ...formdata,
                 Image: files[0],
             });
-
-            // Preview selected image
             setPreviewImage(URL.createObjectURL(files[0]));
 
         } else {
@@ -75,8 +64,6 @@ const Selling_Product = () => {
         }
     };
 
-
-
     const handleUpdate = async () => {
 
         if (!selectedId) {
@@ -87,7 +74,6 @@ const Selling_Product = () => {
         try {
 
             const updatedData = new FormData();
-
             updatedData.append("Name", formdata.Name);
             updatedData.append("Price", formdata.Price);
             updatedData.append("Old_Price", formdata.Old_Price);
@@ -108,10 +94,8 @@ const Selling_Product = () => {
             );
 
             alert("Updated Successfully");
-
             FetchApiData();
             handleClear();
-
         } catch (err) {
 
             console.log(err);
@@ -120,15 +104,11 @@ const Selling_Product = () => {
         }
     };
 
-
-
     const handleDelete = async () => {
-
         if (!selectedId) {
             alert("Please select a record first");
             return;
         }
-
         try {
 
             await axios.delete(
@@ -136,20 +116,15 @@ const Selling_Product = () => {
             );
 
             alert("Deleted Successfully");
-
             FetchApiData();
             handleClear();
-
         } catch (err) {
-
             console.log(err);
-
         }
     };
 
 
     const handleClear = () => {
-
         setFormdata({
             Image: null,
             Name: "",
@@ -161,12 +136,9 @@ const Selling_Product = () => {
         setSelectedId(null);
     };
 
-
-
     const handleSelect = (item) => {
 
         console.log(item);
-
         setFormdata({
             Image: null, // cannot set old file in file input
             Name: item.Name || "",
@@ -174,40 +146,27 @@ const Selling_Product = () => {
             Old_Price: item.Old_Price || "",
         });
 
-        // Show old image preview
         setPreviewImage(item.Image);
-
         setSelectedId(item._id || item.id);
     };
-
-
 
     const FetchApiData = async () => {
 
         try {
-
             const res = await axios.get(
                 "http://localhost:5000/api/selling_product/all"
             );
-
             setData(res.data);
-
         } catch (err) {
-
             console.log(err);
-
         }
     };
 
     return (
 
         <div className="product-container">
-
             <h1 className="title">Selling Product Page</h1>
-
             <form className="product-form" onSubmit={handleSubmit}>
-
-                {/* NAME */}
 
                 <input
                     type="text"
@@ -218,8 +177,6 @@ const Selling_Product = () => {
                     required
                 />
 
-                {/* PRICE */}
-
                 <input
                     type="number"
                     placeholder="Enter Product Price"
@@ -229,8 +186,6 @@ const Selling_Product = () => {
                     required
                 />
 
-                {/* IMAGE */}
-
                 <input
                     type="file"
                     accept="image/*"
@@ -238,10 +193,7 @@ const Selling_Product = () => {
                     onChange={handleChange}
                 />
 
-                {/* IMAGE PREVIEW */}
-
                 {previewImage && (
-
                     <img
                         src={
                             formdata.Image
@@ -258,9 +210,6 @@ const Selling_Product = () => {
                         }}
                     />
                 )}
-
-                {/* OLD PRICE */}
-
                 <input
                     type="number"
                     placeholder="Enter Old Price"
@@ -269,8 +218,6 @@ const Selling_Product = () => {
                     onChange={handleChange}
                     required
                 />
-
-                {/* BUTTONS */}
 
                 <div className="button-group">
 
@@ -301,9 +248,7 @@ const Selling_Product = () => {
                     >
                         Clear
                     </button>
-
                 </div>
-
             </form>
 
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
@@ -312,18 +257,15 @@ const Selling_Product = () => {
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
-                        {/* Image + Name */}
 
                         <img
                             src={`http://localhost:5000/uploads/${item.Image}`}
 
                             className="w-24 h-24 object-cover rounded-lg border"
                         />
-
                         <p className="text-gray-800 font-semibold text-lg">
                             {item.Name}
                         </p>
-
 
                         {/* Button */}
                         <button
@@ -335,7 +277,6 @@ const Selling_Product = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

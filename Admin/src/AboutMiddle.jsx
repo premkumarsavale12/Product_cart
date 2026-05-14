@@ -4,10 +4,7 @@ import axios from "axios";
 const AboutMiddle = () => {
 
     const [selectedId, setSelectedId] = useState(null);
-
     const [data, setData] = useState([]);
-
-
     const [formdata, setFormdata] = useState({
         Icon: "",
         Number: "",
@@ -22,24 +19,17 @@ const AboutMiddle = () => {
     const FetchApiData = async () => {
 
         try {
-
             const res = await axios.get(
                 "http://localhost:5000/api/aboutmiddle/all"
             );
-
             setData(res.data);
-
         } catch (err) {
-
             console.log("Fetch Error :", err);
-
         }
     };
 
     const handleChange = (e) => {
-
         const { name, value, files } = e.target;
-
         setFormdata((prev) => ({
             ...prev,
             [name]: name === "Icon" ? files[0] : value,
@@ -47,9 +37,7 @@ const AboutMiddle = () => {
     };
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         try {
 
             const sendData = new FormData();
@@ -68,34 +56,24 @@ const AboutMiddle = () => {
                 }
             );
 
-
-
             alert("Data Submitted Successfully");
-
             FetchApiData();
-
             handleClear();
-
         } catch (err) {
-
             console.log("Submit Error :", err);
-
         }
     };
 
     const handleUpdate = async () => {
 
         if (!selectedId) {
-
             alert("Please select a record first");
-
             return;
         }
 
         try {
 
             const updateData = new FormData();
-
             updateData.append("Icon", formdata.Icon);
             updateData.append("Number", formdata.Number);
             updateData.append("Data", formdata.Data);
@@ -111,15 +89,11 @@ const AboutMiddle = () => {
             );
 
             alert("Updated Successfully");
-
             FetchApiData();
-
             handleClear();
 
         } catch (err) {
-
             console.log("Update Error :", err);
-
             alert("Error Updating Data");
 
         }
@@ -128,9 +102,7 @@ const AboutMiddle = () => {
     const handleDelete = async () => {
 
         if (!selectedId) {
-
             alert("Please select a record first");
-
             return;
         }
 
@@ -141,15 +113,12 @@ const AboutMiddle = () => {
             );
 
             alert("Deleted Successfully");
-
             FetchApiData();
-
             handleClear();
 
         } catch (err) {
 
             console.log("Delete Error :", err);
-
             alert("Error Deleting Data");
 
         }
@@ -281,7 +250,6 @@ const AboutMiddle = () => {
                                         className="w-24 h-24 object-cover rounded-lg border"
                                     />
 
-
                                     <p className="text-gray-800 font-semibold text-lg">
                                         {item.Number}
                                     </p>
@@ -294,7 +262,6 @@ const AboutMiddle = () => {
                                         Select
                                     </button>
                                 </div>
-
 
                             </div>
                         ))

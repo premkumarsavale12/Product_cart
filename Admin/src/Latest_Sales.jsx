@@ -24,11 +24,8 @@ const Latest_Sales = () => {
 
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-
         try {
-
             const data = new FormData();
 
             data.append("sale_name", formdata.sale_name);
@@ -98,9 +95,7 @@ const Latest_Sales = () => {
         }
 
         catch (err) {
-
             alert("Error Updating data...");
-
         }
     }
     const handleDelete = async () => {
@@ -117,7 +112,6 @@ const Latest_Sales = () => {
         catch (err) {
             console.log(err);
         }
-
     }
 
     const handleClear = () => {
@@ -130,15 +124,13 @@ const Latest_Sales = () => {
             old_price: "",
             Button: "",
         })
-
     }
+
     const FetchApiData = async () => {
 
         try {
             const res = await axios.get("http://localhost:5000/api/discount/all");
             setData(res.data);
-
-
         }
         catch (err) {
             console.log(err);
@@ -148,7 +140,6 @@ const Latest_Sales = () => {
     const handleSelect = (item) => {
 
         setFormData({
-
             sale_name: item.sale_name,
             time: item.time,
             image: item.image,
@@ -166,14 +157,12 @@ const Latest_Sales = () => {
             <h1 className="title">Latest Sales  Page </h1>
 
             <form className="product-form" onSubmit={handleSubmit}>
-
                 <input
                     type="text"
                     placeholder="Enter Sale Name"
                     name="sale_name"
                     onChange={handleChange}
                     value={formdata.sale_name}
-
                 />
 
                 <input
@@ -182,7 +171,6 @@ const Latest_Sales = () => {
                     name="time"
                     onChange={handleChange}
                     value={formdata.time}
-
                 />
                 <input
                     type="file"

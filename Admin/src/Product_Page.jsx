@@ -30,8 +30,6 @@ const Product_Page = () => {
     };
 
     const handleSubmit = async (e) => {
-
-
         e.preventDefault();
 
         try {
@@ -42,7 +40,6 @@ const Product_Page = () => {
             data.append("ProductImage", formdata.ProductImage);
             data.append("category", formdata.category);
             data.append("Button", formdata.Button);
-
 
             const res = await axios.post(
                 "http://localhost:5000/api/product/add",
@@ -56,7 +53,6 @@ const Product_Page = () => {
     };
 
     const handleUpdate = async () => {
-
         if (!selectedId) {
             alert("Please Select a record First....");
             return;
@@ -109,7 +105,6 @@ const Product_Page = () => {
         catch (err) {
             console.log(err);
         }
-
     }
 
     const handleClear = () => {
@@ -121,11 +116,9 @@ const Product_Page = () => {
             category: "",
             Button: "",
         })
-
     }
 
     const FetchApiData = async () => {
-
         try {
             const res = await axios.get("http://localhost:5000/api/product/all");
             setData(res.data);
@@ -136,7 +129,6 @@ const Product_Page = () => {
     }
 
     const handleSelect = (item) => {
-
         setFormData({
             ProductName: item.ProductName,
             ProductPrice: item.ProductPrice,
@@ -264,24 +256,18 @@ const Product_Page = () => {
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
                     >
-                        {/* Product Image */}
                         <img
                             src={`http://localhost:5000/uploads/${item.ProductImage}`}
 
                             className="w-40 h-40 object-cover rounded-xl border mb-4"
                         />
 
-                        {/* Product Name */}
                         <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">
                             {item.ProductName}
                         </h2>
-
-                        {/* Price */}
                         <p className="text-green-600 font-bold text-2xl mb-4">
                             ₹{item.ProductPrice}
                         </p>
-
-                        {/* Select Button */}
                         <button
                             onClick={() => handleSelect(item)}
                             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -294,5 +280,4 @@ const Product_Page = () => {
         </div>
     );
 };
-
 export default Product_Page;

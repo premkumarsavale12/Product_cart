@@ -16,7 +16,6 @@ const Slider = () => {
         fetchApiData();
     }, []);
 
-
     const handleChange = (e) => {
         const { name, value, files } = e.target;
 
@@ -73,7 +72,6 @@ const Slider = () => {
             alert("Error updating data");
         }
     };
-
 
     const handleDelete = async () => {
         if (!selectedId) {

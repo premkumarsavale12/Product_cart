@@ -56,30 +56,21 @@ const App = () => {
           <li>
             <button onClick={() => setActiveView('abouthero')}>AboutHero</button>
           </li>
-
           <li>
             <button onClick={() => setActiveView('aboutmiddle')}> AboutMiddleSection </button>
           </li>
-
           <li>
             <button onClick={() => setActiveView('foundersection')}> Founder </button>
           </li>
-
-
           <li>
             <button onClick={() => setActiveView('discount')}> Latest Sales  </button>
           </li>
-
-
           <li>
             <button onClick={() => setActiveView('category')}> Category Section  </button>
           </li>
-
-
           <li>
             <button onClick={() => setActiveView('selling_product')}>Selling Product </button>
           </li>
-
         </ul>
       </div>
       <div className="main-content">

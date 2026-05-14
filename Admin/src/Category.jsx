@@ -24,7 +24,6 @@ const Category = () => {
         e.preventDefault();
 
         const data = new FormData();
-
         data.append("Heading", formdata.Heading);
         data.append("Icon", formdata.Icon);
         data.append("Name", formdata.Name);
@@ -68,7 +67,6 @@ const Category = () => {
 
         try {
 
-
             const updateData = new FormData();
             updateData.append("Heading", formdata.Heading);
             updateData.append("Icon", formdata.Icon);
@@ -78,7 +76,6 @@ const Category = () => {
             if (formdata.Icon) {
                 updateData.append("Icon", formdata.Icon);
             }
-
 
             await axios.put(
                 `http://localhost:5000/api/category/${selectedId}`,
@@ -98,7 +95,6 @@ const Category = () => {
         catch (err) {
             alert("Error Updating data...");
         }
-
     }
 
     const handleDelete = async () => {
@@ -107,7 +103,6 @@ const Category = () => {
             alert("Please select a record first....");
             return;
         }
-
 
         try {
             await axios.delete(`http://localhost:5000/api/category/${selectedId}`);
@@ -119,11 +114,9 @@ const Category = () => {
         }
     }
 
-
     const handleClear = () => {
 
         setFormData({
-
             Heading: "",
             Icon: "",
             Name: "",
@@ -136,8 +129,6 @@ const Category = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/category/all");
             setData(res.data);
-
-
         }
         catch (err) {
             console.log(err);
@@ -146,9 +137,7 @@ const Category = () => {
 
     const handleSelect = (item) => {
 
-
         setFormData({
-
             Icon: item.Icon,
             Heading: item.Heading,
             Name: item.Name
@@ -162,7 +151,6 @@ const Category = () => {
             <h1 className="title"> Category Page  </h1>
 
             <form className="product-form" onSubmit={handleSubmit}>
-
                 <input
                     type="text"
                     placeholder="Enter Heading"
@@ -217,14 +205,9 @@ const Category = () => {
                             alt={item.Heading}
                             className="w-24 h-24 object-cover rounded-lg border"
                         />
-
-
-
                         <p className="text-gray-500 text-sm">
                             ₹{item.Name}
                         </p>
-
-
 
                         {/* Button */}
                         <button
@@ -236,10 +219,7 @@ const Category = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
-
 }
-
 export default Category

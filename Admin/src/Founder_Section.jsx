@@ -230,7 +230,6 @@ const Founder_Section = () => {
                                 className="w-24 h-24 object-cover rounded-lg border"
                             />
 
-
                             <p className="text-gray-800 font-semibold text-lg">
                                 {item.Name}
                             </p>
@@ -246,12 +245,9 @@ const Founder_Section = () => {
                                 Select
                             </button>
                         </div>
-
-
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };
