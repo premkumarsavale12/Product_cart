@@ -206,33 +206,43 @@ const Founder_Section = () => {
                 </div>
             </form>
 
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
-                {data.map((item, index) => (
-                    <div
-                        key={index}
-                        className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-5 flex flex-col items-center"
-                    >
-                        <div className="flex items-center gap-4 flex-1">
-                            <img
-                                src={`http://localhost:5000/uploads/${item.Image}`}
-                                alt={item.Name}
-                                className="w-24 h-24 object-cover rounded-lg border"
-                            />
-                            <p className="text-gray-800 font-semibold text-lg">
-                                {item.Name}
-                            </p>
-                            <p className="text-gray-500 text-sm">
-                                {item.Role}
-                            </p>
-                            <button
-                                onClick={() => handleSelect(item)}
-                                className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
-                            >
-                                Select
-                            </button>
+            <div className="w-full px-4 sm:px-6 lg:px-8 mt-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {data.map((item, index) => (
+                        <div
+                            key={index}
+                            className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 w-full"
+                        >
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+
+                                {/* Image */}
+                                <img
+                                    src={`http://localhost:5000/uploads/${item.Image}`}
+                                    alt={item.Name}
+                                    className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border"
+                                />
+
+                                {/* Content */}
+                                <div className="flex-1 text-center sm:text-left">
+                                    <h2 className="text-lg font-semibold text-gray-800">
+                                        {item.Name}
+                                    </h2>
+
+                                    <p className="text-sm text-gray-500 mt-1">
+                                        {item.Role}
+                                    </p>
+
+                                    <button
+                                        onClick={() => handleSelect(item)}
+                                        className="mt-4 w-full sm:w-auto px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+                                    >
+                                        Select
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );
