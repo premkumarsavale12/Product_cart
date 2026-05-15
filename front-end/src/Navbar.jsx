@@ -54,8 +54,6 @@ const Navbar = () => {
                         <li className="nav-item"><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
                         <li className="nav-item"><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
                         <li className="nav-item"><Link to="/productfilter" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
-                        <li className="nav-item">
-                            <a href="http://localhost:5173" onClick={() => setIsMenuOpen(false)}  >  Admin Panel  </a> </li>
                     </ul>
                 </div>
 

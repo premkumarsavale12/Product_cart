@@ -8,31 +8,15 @@ import Founder_Section from './Founder_Section.jsx';
 import Latest_Sales from './Latest_Sales.jsx';
 import Category from './Category.jsx';
 import Selling_Product from './Selling_Product.jsx';
-import Login from './Login.jsx';
 
 const App = () => {
 
-
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
-  );
-
+  // FIXED HERE
   const [activeView, setActiveView] = useState('dashboard');
-
-  // Called after successful login
-  const handleLogin = () => {
-    localStorage.setItem("token", "admin-token");
-    setIsAuthenticated(true);
-  };
-
-  // Logout
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
-  };
 
   const renderView = () => {
     switch (activeView) {
+
       case 'slider':
         return <Slider />;
 
@@ -60,35 +44,16 @@ const App = () => {
       default:
         return (
           <div className="dashboard">
-
             <div className="welcome-card">
-
-              <h1 className='text-black font-bold text-4xl'>Welcome to Admin Panel</h1>
-
-              <br />
-              <br />
-
-              <a href="http://localhost:5174">
-                <button
-                  class="px-6 py-3 text-white font-semibold bg-blue-600 rounded-lg shadow
-                  hover:bg-blue-700 hover:shadow-lg transition duration-200 text-3xl"
-                >
-                  Go to Frontend Page
-                </button>
-              </a>
-
+              <h1 className='text-black font-bold text-4xl'>
+                Welcome to Admin Panel
+              </h1>
             </div>
           </div>
         );
     }
   };
 
-
-  if (!isAuthenticated) {
-    return <Login onLogin={handleLogin} />;
-  }
-
-  // After login show dashboard
   return (
     <div className="admin-container">
 
@@ -155,12 +120,6 @@ const App = () => {
           </li>
 
         </ul>
-
-        <div className="sidebar-footer">
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
 
       </div>
 
