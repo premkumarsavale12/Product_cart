@@ -114,7 +114,6 @@ const ProductDetails = () => {
         );
     }
 
-
     if (!product) {
         return (
             <div className="text-center text-red-500 mt-10">
@@ -126,7 +125,6 @@ const ProductDetails = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-6">
 
-
             <button
                 onClick={() => navigate("/")}
                 className="mb-4 text-blue-600 hover:underline"
@@ -134,10 +132,7 @@ const ProductDetails = () => {
                 ← Back to Products
             </button>
 
-
             <div className="grid md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow">
-
-
                 <div
                     className="overflow-hidden rounded-lg cursor-zoom-in border"
                     onMouseMove={handleMouseMove}
@@ -155,9 +150,7 @@ const ProductDetails = () => {
                     />
                 </div>
 
-
                 <div className="flex flex-col gap-4">
-
                     <span className="text-sm bg-gray-200 px-3 py-1 w-fit rounded-full">
                         {product.category || "Uncategorized"}
                     </span>
@@ -174,7 +167,6 @@ const ProductDetails = () => {
                         In Stock: {product.Productquantity}
                     </p>
 
-
                     <div>
                         <h3 className="font-semibold text-lg mb-1">Description</h3>
                         <p className="text-gray-700 text-sm">
@@ -186,7 +178,6 @@ const ProductDetails = () => {
                     <div className="flex flex-wrap gap-3 mt-4">
 
                         <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600"
-
                             onClick={makePayment}
                         >
                             {product.Button || "Buy Now"}
@@ -222,7 +213,6 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-
 
             <div className="mt-10">
                 <Related_Product

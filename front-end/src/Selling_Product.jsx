@@ -12,7 +12,6 @@ import { Navigation, Autoplay, Pagination } from "swiper/modules";
 export default function Selling_Product() {
 
     const [data, setData] = useState([]);
-
     useEffect(() => {
         FetchApiData();
     }, []);
@@ -39,7 +38,6 @@ export default function Selling_Product() {
                     </div>
                 </div>
 
-                {/* Slider */}
                 <Swiper
                     modules={[Navigation, Autoplay, Pagination]}
                     spaceBetween={24}
@@ -65,14 +63,11 @@ export default function Selling_Product() {
                 >
                     {data.map((item, index) => {
 
-
                         return (
                             <SwiperSlide key={index} className="h-auto">
                                 <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden relative">
 
-
                                     <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 p-4 flex items-center justify-center">
-
                                         <img
                                             src={
                                                 item.Image
@@ -84,7 +79,6 @@ export default function Selling_Product() {
                                         />
                                     </div>
 
-
                                     <div className="p-5 flex flex-col flex-grow">
 
                                         {item.Name && (
@@ -92,7 +86,6 @@ export default function Selling_Product() {
                                                 {item.Name}
                                             </p>
                                         )}
-
 
                                         <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-2 group-hover:text-red-500 transition-colors">
                                             {item.Price || "Awesome Product"}

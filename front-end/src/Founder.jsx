@@ -77,7 +77,6 @@ const Founder = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
         </div>
     );

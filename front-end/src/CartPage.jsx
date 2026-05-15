@@ -38,12 +38,10 @@ export default function CartPage() {
                 headers: headers,
                 body: JSON.stringify(body),
             });
-
             if (!response.ok) {
                 console.error("Payment session creation failed");
                 return;
             }
-
             const session = await response.json();
 
             if (session.url) {
@@ -55,7 +53,6 @@ export default function CartPage() {
             console.error("Error connecting to payment gateway:", error);
         }
     };
-
     if (cartItems.length === 0) {
         return (
             <div className="min-h-[70vh] flex flex-col items-center justify-center gap-6 text-center px-4">
@@ -79,7 +76,6 @@ export default function CartPage() {
     }
     const deliveryFee = totalPrice >= 499 ? 0 : 49;
     const savings = Math.round(totalPrice * 0.1);
-
     return (
         <div className="max-w-[1200px] mx-auto px-4 sm:px-8 py-10">
             <div className="flex items-center justify-between mb-8">
@@ -172,7 +168,6 @@ export default function CartPage() {
                                             <FaPlus size={11} />
                                         </button>
                                     </div>
-
                                     <div className="text-right">
                                         <p className="font-black text-gray-900 text-lg">
                                             ₹

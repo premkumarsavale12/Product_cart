@@ -25,10 +25,8 @@ const App = () => {
       <WishlistProvider>
         <BrowserRouter>
           <Routes>
-            {/* Login Route - Doesn't show Navbar/Footer usually */}
             <Route path="/login" element={<Login />} />
-
-            {/* Protected Routes - Show Navbar/Footer */}
+            
             <Route
               path="/*"
               element={

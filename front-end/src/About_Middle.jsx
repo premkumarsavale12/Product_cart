@@ -11,13 +11,12 @@ const About_Middle = () => {
         try {
             const res = await axios.get("http://localhost:5000/api/aboutmiddle/all");
             setData(res.data);
-         
+
         }
         catch (err) {
             console.log(err);
         }
     };
-
     return (
         <div className="about-container">
             {
@@ -37,15 +36,12 @@ const About_Middle = () => {
                                 className="icon-image"
                             />
                         </div>
-
                         <h1>{item.Number}</h1>
                         <h4>{item.Data}</h4>
-
                     </div>
                 ))
             }
         </div>
     );
 };
-
 export default About_Middle;

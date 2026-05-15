@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-
 const Latest_Sales = () => {
     const [data, setData] = useState([]);
 
@@ -38,7 +36,6 @@ const Latest_Sales = () => {
                         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Flash Sales</h2>
                     </div>
                 </div>
-
                 <style>
                     {`
                         .swiper-button-next, .swiper-button-prev {
@@ -95,7 +92,6 @@ const Latest_Sales = () => {
                             <SwiperSlide key={index} className="h-auto">
                                 <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden relative">
 
-
                                     <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 p-4 flex items-center justify-center">
 
                                         <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-md z-10 shadow-sm">
@@ -113,7 +109,6 @@ const Latest_Sales = () => {
                                         />
                                     </div>
 
-
                                     <div className="p-5 flex flex-col flex-grow">
 
                                         {item.sale_name && (
@@ -122,11 +117,9 @@ const Latest_Sales = () => {
                                             </p>
                                         )}
 
-
                                         <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-2 group-hover:text-red-500 transition-colors">
                                             {item.product_name || "Awesome Product"}
                                         </h3>
-
 
                                         <div className="mt-auto pt-2 flex items-baseline gap-3 mb-4">
                                             <span className="text-red-500 font-extrabold text-xl">
@@ -138,7 +131,6 @@ const Latest_Sales = () => {
                                                 </span>
                                             )}
                                         </div>
-
 
                                         <button className="w-full bg-black text-white font-medium py-2.5 rounded-xl opacity-90 hover:opacity-100 hover:bg-gray-900 transform active:scale-95 transition-all duration-200 shadow-md">
                                             {item.Button || "Add to Cart"}

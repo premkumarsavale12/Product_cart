@@ -40,7 +40,6 @@ const Navbar = () => {
             }
         })
     }
-
     return (
         <nav className="navbar">
             <div className="nav-container">
@@ -116,5 +115,4 @@ const Navbar = () => {
         </nav>
     )
 }
-
 export default Navbar

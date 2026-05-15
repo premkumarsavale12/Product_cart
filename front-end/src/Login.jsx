@@ -45,22 +45,15 @@ const Login = () => {
                 });
 
                 localStorage.setItem("token", response.data.token);
-
                 localStorage.setItem("role", response.data.user.role);
-
-
                 const role = response.data.user.role;
 
                 setTimeout(() => {
 
                     if (role === "admin") {
-
-                        // Admin app
                         window.location.href = "http://localhost:5173";
 
                     } else {
-
-                        // User app
                         window.location.href = "http://localhost:5174";
 
                     }

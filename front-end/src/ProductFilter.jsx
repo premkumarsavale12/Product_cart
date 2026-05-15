@@ -95,7 +95,6 @@ const ProductFilter = () => {
         setSearchTerm("");
     };
 
-
     const handleAddToCart = (item) => {
         addToCart({
             _id: item._id,
@@ -352,7 +351,6 @@ const ProductFilter = () => {
                     )}
                 </main>
             </div>
-
         </div>
     );
 };

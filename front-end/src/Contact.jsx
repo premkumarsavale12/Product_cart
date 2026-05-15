@@ -8,22 +8,18 @@ const Contact = () => {
         email: "",
         phone: "",
         message: "",
-
     })
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:5000/api/contact/add", formdata);
-
             alert("data Submitted SuccessFully....");
 
         }
         catch (err) {
             console.log(err);
-        }
-
+        } 
     }
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -77,7 +73,6 @@ const Contact = () => {
                 </div>
 
                 <div className="md:col-span-2 bg-white shadow-sm border border-gray-200 p-8">
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <input
                             type="text"

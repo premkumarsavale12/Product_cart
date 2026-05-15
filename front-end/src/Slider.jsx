@@ -48,7 +48,6 @@ const Slider = () => {
                     className={`slider-image ${isFading ? 'fade-out' : ''}`}
                 />
             </div>
-
             <div className="dots">
                 {data.map((_, index) => (
                     <span

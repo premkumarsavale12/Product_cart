@@ -7,7 +7,6 @@ import { useWishlist } from './context/WishlistContext'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import Swal from "sweetalert2";
 
-
 const Product = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -65,7 +64,6 @@ const Product = () => {
         const filteredData = data.filter(item =>
             item.ProductName?.toLowerCase().includes(searchTerm.toLowerCase())
         );
-
         return filteredData.reduce((acc, product) => {
             const category = product.category || "Uncategorized";
             if (!acc[category]) {

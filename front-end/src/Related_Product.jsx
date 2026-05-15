@@ -2,19 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate} from "react-router-dom";
  
-
-// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-
 
 import "swiper/css";
 
 const Related_Product = ({ category, currentId }) => {
 
     const navigate = useNavigate();
-     
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
