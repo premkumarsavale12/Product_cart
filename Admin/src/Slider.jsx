@@ -155,12 +155,41 @@ const Slider = () => {
                     />
                 </div>
 
-                <div className="button-group">
-                    <button type="submit" className="submit-btn">Submit</button>
-                    <button type="button" className="update-btn" onClick={handleUpdate}>Update</button>
-                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete</button>
-                    <button type="button" className="clear-btn" onClick={handleClear}>Clear</button>
+                <div className="md:col-span-3 flex flex-wrap gap-4 justify-center mt-4">
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Submit
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleUpdate}
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Update
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                        className="bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Delete
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleClear}
+                        className="bg-gradient-to-r from-gray-500 to-gray-700 hover:scale-105 hover:shadow-xl text-white px-6 py-3 rounded-xl font-semibold transition duration-300"
+                    >
+                        Clear
+                    </button>
+
                 </div>
+
             </form>
 
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
