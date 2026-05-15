@@ -11,10 +11,10 @@ import Selling_Product from './Selling_Product.jsx';
 
 const App = () => {
 
-  // FIXED HERE
   const [activeView, setActiveView] = useState('dashboard');
 
   const renderView = () => {
+
     switch (activeView) {
 
       case 'slider':

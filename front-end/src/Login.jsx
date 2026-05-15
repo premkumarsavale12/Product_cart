@@ -26,26 +26,56 @@ const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", form);
+
+            const response = await axios.post(
+                "http://localhost:5000/api/auth/login",
+                form
+            );
+
             if (response.status === 200) {
+
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successful',
-                    text: 'Redirecting to home page...',
+                    icon: "success",
+                    title: "Login Successful",
+                    text: "Redirecting...",
                     timer: 1500,
                     showConfirmButton: false
                 });
+
                 localStorage.setItem("token", response.data.token);
 
-                window.location.href = "/";
+                localStorage.setItem("role", response.data.user.role);
+
+
+                const role = response.data.user.role;
+
+                setTimeout(() => {
+
+                    if (role === "admin") {
+
+                        // Admin app
+                        window.location.href = "http://localhost:5173";
+
+                    } else {
+
+                        // User app
+                        window.location.href = "http://localhost:5174";
+
+                    }
+
+                }, 1000);
             }
+
         } catch (err) {
+
             Swal.fire({
-                icon: 'error',
-                title: 'Login Failed',
+                icon: "error",
+                title: "Login Failed",
                 text: err.response?.data?.message || "Something went wrong"
             });
+
         }
     };
 

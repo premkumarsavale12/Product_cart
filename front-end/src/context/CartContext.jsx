@@ -8,9 +8,9 @@ export function CartProvider({ children }) {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cartItems));
-    }, [cartItems]);
+    // useEffect(() => {
+    //     localStorage.setItem("cart", JSON.stringify(cartItems));
+    // }, [cartItems]);
 
     const addToCart = (product, selectedSize = "M") => {
         setCartItems((prev) => {
