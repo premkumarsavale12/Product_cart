@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
+
 const Latest_Sales = () => {
     const [data, setData] = useState([]);
+    const swiperRef = useRef(null);
 
     useEffect(() => {
         FetchApiData();
@@ -35,50 +39,62 @@ const Latest_Sales = () => {
                         </div>
                         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Flash Sales</h2>
                     </div>
+
+                    {/* Custom Buttons */}
+                    <div className="flex items-center gap-3">
+
+                        <button
+                            onClick={() => swiperRef.current?.slidePrev()}
+                            className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:bg-red-500 hover:text-white hover:scale-110 transition-all duration-300"
+                        >
+                            <FaArrowLeft />
+                        </button>
+
+                        <button
+                            onClick={() => swiperRef.current?.slideNext()}
+                            className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:bg-red-500 hover:text-white hover:scale-110 transition-all duration-300"
+                        >
+                            <FaArrowRight />
+                        </button>
+
+                    </div>
+
                 </div>
-                <style>
-                    {`
-                        .swiper-button-next, .swiper-button-prev {
-                            color: #ef4444; /* red-500 */
-                            background: white;
-                            width: 40px;
-                            height: 40px;
-                            border-radius: 50%;
-                            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-                            margin: 0 -15px;
-                        }
-                        .swiper-button-next::after, .swiper-button-prev::after {
-                            font-size: 16px !important;
-                            font-weight: 900;
-                        }
-                        .swiper-button-disabled {
-                            opacity: 0.5 !important;
-                        }
-                    `}
-                </style>
 
                 <Swiper
-                    modules={[Navigation, Autoplay, Pagination]}
+                    modules={[Autoplay, Pagination]}
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                    }}
                     spaceBetween={24}
                     slidesPerView={4}
-                    navigation
-                    pagination={{
-                        clickable: true,
-                        dynamicBullets: true,
-                    }}
                     loop={true}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
+                    }}
+                    pagination={{
+                        clickable: true,
                     }}
                     breakpoints={{
-                        320: { slidesPerView: 1, spaceBetween: 16 },
-                        640: { slidesPerView: 2, spaceBetween: 20 },
-                        768: { slidesPerView: 3, spaceBetween: 24 },
-                        1024: { slidesPerView: 4, spaceBetween: 24 },
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 16,
+                        },
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 24,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 24,
+                        },
                     }}
-                    className="!pb-16"
+                    className="!pb-14"
                 >
                     {data.map((item, index) => {
 
