@@ -58,7 +58,7 @@ export function CartProvider({ children }) {
     const clearCart = () => setCartItems([]);
 
     const totalCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-    
+
     const totalPrice = cartItems.reduce((total, item) => {
         const price = parseFloat(item.price?.toString().replace(/[^0-9.]/g, "") || 0);
         return total + price * item.quantity;

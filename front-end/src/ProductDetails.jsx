@@ -128,7 +128,7 @@ const ProductDetails = () => {
 
 
             <button
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/")}
                 className="mb-4 text-blue-600 hover:underline"
             >
                 ← Back to Products
@@ -187,7 +187,7 @@ const ProductDetails = () => {
 
                         <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600"
 
-                             onClick={makePayment}  
+                            onClick={makePayment}
                         >
                             {product.Button || "Buy Now"}
                         </button>

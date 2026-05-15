@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { useNavigate} from "react-router-dom";
+ 
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
+
 import "swiper/css";
 
 const Related_Product = ({ category, currentId }) => {
+
+    const navigate = useNavigate();
+     
 
     const [data, setData] = useState([]);
 
@@ -53,7 +59,11 @@ const Related_Product = ({ category, currentId }) => {
                 {
                     data.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <div className="border rounded-lg shadow-md p-4 bg-white">
+                            <div 
+                            onClick={()=> navigate(`/product/${item._id}`)} 
+                            
+                            className="border rounded-lg shadow-md p-4 bg-white">
+
 
                                 <img
                                     src={
