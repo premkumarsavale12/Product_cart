@@ -62,7 +62,6 @@ const AboutMiddle = () => {
             alert("Please select a record first");
             return;
         }
-
         try {
             const updateData = new FormData();
             updateData.append("Icon", formdata.Icon);
@@ -205,7 +204,6 @@ const AboutMiddle = () => {
                 </div>
             </form>
 
-
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
                 {data.length > 0 ? (
                     data.map((item) => (
@@ -242,5 +240,4 @@ const AboutMiddle = () => {
         </div>
     );
 };
-
 export default AboutMiddle;

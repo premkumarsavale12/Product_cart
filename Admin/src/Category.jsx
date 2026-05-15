@@ -113,7 +113,6 @@ const Category = () => {
             Heading: "",
             Icon: "",
             Name: "",
-
         })
     }
     const FetchApiData = async () => {

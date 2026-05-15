@@ -227,7 +227,7 @@ const AboutHero = () => {
                             key={index}
                             className="w-full md:w-[48%] flex items-center justify-between bg-white shadow-md hover:shadow-lg transition rounded-xl p-5"
                         >
-                            {/* Image + Text */}
+                         
                             <div className="flex items-center gap-4 flex">
                                 <img
                                     src={`http://localhost:5000/uploads/${item.Image}`}
@@ -238,7 +238,7 @@ const AboutHero = () => {
                                     {item.heading}
                                 </p>
                             </div>
-                            {/* Button */}
+                     
                             <button
                                 onClick={() => handleSelect(item)}
                                 className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
