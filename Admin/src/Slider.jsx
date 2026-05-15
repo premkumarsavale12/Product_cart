@@ -170,8 +170,6 @@ const Slider = () => {
                     >
                         Update
                     </button>
-
-
                     <button
                         type="button"
                         onClick={handleDelete}
@@ -179,7 +177,6 @@ const Slider = () => {
                     >
                         Delete
                     </button>
-
                     <button
                         type="button"
                         onClick={handleClear}
@@ -187,9 +184,7 @@ const Slider = () => {
                     >
                         Clear
                     </button>
-
                 </div>
-
             </form>
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
