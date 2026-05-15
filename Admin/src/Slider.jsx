@@ -186,7 +186,6 @@ const Slider = () => {
                     </button>
                 </div>
             </form>
-
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-20">
                 {data.map((item, index) => (
                     <div
@@ -197,15 +196,13 @@ const Slider = () => {
                         <div className="flex items-center gap-4 flex-1">
                             <img
                                 src={`http://localhost:5000/uploads/${item.SliderImage}`}
-                               
+
                                 className="w-90 h-50 object-cover rounded-xl border mb-4"
                             />
-
                             <p className="text-gray-800 font-semibold text-lg">
                                 {item.SliderContent}
                             </p>
                         </div>
-
                         {/* Button */}
                         <button
                             onClick={() => handleSelect(item)}
