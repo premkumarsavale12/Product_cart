@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetails.css';
 import './Product.css';
@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const ProductFilter = () => {
     const { id } = useParams();
+    const location = useLocation();
     const [product, setProduct] = useState(null);
     const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -133,6 +134,16 @@ const ProductFilter = () => {
 
         fetchData();
     }, [id]);
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const searchFromUrl = params.get('search');
+        if (searchFromUrl) {
+            setSearchTerm(searchFromUrl);
+        } else {
+            setSearchTerm('');
+        }
+    }, [location.search]);
 
     const groupedProducts = useMemo(() => {
         return filteredProducts.reduce((acc, product) => {
