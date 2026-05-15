@@ -202,7 +202,7 @@ const Slider = () => {
                         <div className="flex items-center gap-4 flex-1">
                             <img
                                 src={`http://localhost:5000/uploads/${item.SliderImage}`}
-                                alt="slider"
+                               
                                 className="w-90 h-50 object-cover rounded-xl border mb-4"
                             />
 
